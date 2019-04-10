@@ -25,11 +25,6 @@ RUN apt-get install -y zip unzip
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 RUN composer global require "fxp/composer-asset-plugin:^1.2.0"
 
-#RUN apt-get install -y libicu-dev
-#RUN apt-get install -y libz-dev libmemcached-dev && \
-#    pecl install memcached && \
-#    docker-php-ext-enable memcached
-
 RUN echo "date.timezone = America/Lima" > $PHP_INI_DIR/conf.d/php.ini
 
 ENV TZ=America/Lima
