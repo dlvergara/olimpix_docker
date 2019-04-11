@@ -1,5 +1,5 @@
 FROM php:7.2.1-apache
-#MAINTAINER egidio docile
+MAINTAINER david.l.vergara@gmail.com
 RUN echo "Iniciando la construccion"
 RUN apt-get update && apt-get install -y \
     nano \
@@ -32,3 +32,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Create a volume
 VOLUME ./app/
+
+#APACHE CONF
+COPY ./docker-conf/apache2.conf  /etc/apache2/apache2.conf
+COPY ./docker-conf/000-default.conf  /etc/apache2/sites-available/000-default.conf
