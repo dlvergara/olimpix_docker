@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=107.170.208.14;dbname=olimpix-ecu',
+    'username' => 'ecu_olimpix',
+    'password' => 'olimpixEcu2010.',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

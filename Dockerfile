@@ -36,3 +36,5 @@ VOLUME ./app/
 #APACHE CONF
 COPY ./docker-conf/apache2.conf  /etc/apache2/apache2.conf
 COPY ./docker-conf/000-default.conf  /etc/apache2/sites-available/000-default.conf
+
+#RUN cd /var/www/html/ && composer development-enable
