@@ -52,6 +52,11 @@ $config = [
         ],
         */
     ],
+    'modules' => [
+        'BackOffice' => [
+            'class' => 'app\modules\backOffice\Module',
+        ],
+    ],
     'params' => $params,
 ];
 
