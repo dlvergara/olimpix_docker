@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\EventoSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -131,7 +132,14 @@ class SiteController extends Controller
     */
     public function actionEvents()
     {
-        return $this->render('events');
+        $searchModel = new EventoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $params = [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ];
+        return $this->render('events', $params);
     }
 
     public function actionElements()

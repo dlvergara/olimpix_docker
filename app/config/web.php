@@ -57,9 +57,7 @@ $config = [
     'modules' => [
         'backoffice' => [
             'class' => 'app\modules\backoffice\Module',
-        ],
-        'admin' => [
-            'class' => 'app\modules\admin\Module',
+            'layout' => 'backoffice',
         ],
     ],
     'timezone' => 'America/Lima',
