@@ -48,15 +48,21 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            	'' => 'site/index',
+            	'<action>' => 'site/<action>',
             ],
         ],
         */
     ],
     'modules' => [
-        'BackOffice' => [
-            'class' => 'app\modules\backOffice\Module',
+        'backoffice' => [
+            'class' => 'app\modules\backoffice\Module',
+        ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
         ],
     ],
+    'timezone' => 'America/Lima',
     'params' => $params,
 ];
 

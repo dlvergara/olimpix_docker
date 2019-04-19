@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\backOffice;
+namespace app\modules\backoffice;
 
 /**
- * BackOffice module definition class
+ * backoffice module definition class
  */
 class Module extends \yii\base\Module
 {
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\backOffice\controllers';
+    public $controllerNamespace = 'app\modules\backoffice\controllers';
 
     /**
      * {@inheritdoc}

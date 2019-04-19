@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\backOffice\controllers;
+namespace app\modules\backoffice\controllers;
 
 use yii\web\Controller;
 
 /**
- * Default controller for the `BackOffice` module
+ * Default controller for the `backoffice` module
  */
 class DefaultController extends Controller
 {

@@ -9,12 +9,12 @@ use Yii;
  *
  * @property int $id_order_detail
  * @property int $order_id_order
- * @property int $servicio_id_servicio
  * @property string $cantidad
  * @property string $precio_unitario
+ * @property int $servicio_disponible_id_servicio_disponible
  *
  * @property Order $orderIdOrder
- * @property Servicio $servicioIdServicio
+ * @property ServicioDisponible $servicioDisponibleIdServicioDisponible
  * @property PaymentDistribution[] $paymentDistributions
  */
 class OrderDetail extends \yii\db\ActiveRecord
@@ -34,10 +34,10 @@ class OrderDetail extends \yii\db\ActiveRecord
     {
         return [
             [['order_id_order'], 'required'],
-            [['order_id_order', 'servicio_id_servicio'], 'integer'],
+            [['order_id_order', 'servicio_disponible_id_servicio_disponible'], 'integer'],
             [['cantidad', 'precio_unitario'], 'number'],
             [['order_id_order'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id_order' => 'id_order']],
-            [['servicio_id_servicio'], 'exist', 'skipOnError' => true, 'targetClass' => Servicio::className(), 'targetAttribute' => ['servicio_id_servicio' => 'id_servicio']],
+            [['servicio_disponible_id_servicio_disponible'], 'exist', 'skipOnError' => true, 'targetClass' => ServicioDisponible::className(), 'targetAttribute' => ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']],
         ];
     }
 
@@ -49,9 +49,9 @@ class OrderDetail extends \yii\db\ActiveRecord
         return [
             'id_order_detail' => 'Id Order Detail',
             'order_id_order' => 'Order Id Order',
-            'servicio_id_servicio' => 'Servicio Id Servicio',
             'cantidad' => 'Cantidad',
             'precio_unitario' => 'Precio Unitario',
+            'servicio_disponible_id_servicio_disponible' => 'Servicio Disponible Id Servicio Disponible',
         ];
     }
 
@@ -66,9 +66,9 @@ class OrderDetail extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServicioIdServicio()
+    public function getServicioDisponibleIdServicioDisponible()
     {
-        return $this->hasOne(Servicio::className(), ['id_servicio' => 'servicio_id_servicio']);
+        return $this->hasOne(ServicioDisponible::className(), ['id_servicio_disponible' => 'servicio_disponible_id_servicio_disponible']);
     }
 
     /**

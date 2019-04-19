@@ -24,6 +24,7 @@ use Yii;
  * @property Liga $ligaIdLiga
  * @property PruebaSalto[] $pruebaSaltos
  * @property ServicioContratado[] $servicioContratados
+ * @property ServicioDisponible[] $servicioDisponibles
  */
 class Evento extends \yii\db\ActiveRecord
 {
@@ -102,5 +103,13 @@ class Evento extends \yii\db\ActiveRecord
     public function getServicioContratados()
     {
         return $this->hasMany(ServicioContratado::className(), ['evento_id_evento' => 'id_evento']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioDisponibles()
+    {
+        return $this->hasMany(ServicioDisponible::className(), ['evento_id_evento' => 'id_evento']);
     }
 }

@@ -9,14 +9,10 @@ use Yii;
  *
  * @property int $id_servicio
  * @property string $nombre
- * @property string $precio
- * @property int $cantidad_disponible
- * @property string $fecha_ultima_hora
- * @property string $precio_ultima_hora
  *
- * @property OrderDetail[] $orderDetails
  * @property Proveedor[] $proveedors
  * @property ServicioContratado[] $servicioContratados
+ * @property ServicioDisponible[] $servicioDisponibles
  */
 class Servicio extends \yii\db\ActiveRecord
 {
@@ -34,9 +30,6 @@ class Servicio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['precio', 'precio_ultima_hora'], 'number'],
-            [['cantidad_disponible'], 'integer'],
-            [['fecha_ultima_hora'], 'safe'],
             [['nombre'], 'string', 'max' => 45],
         ];
     }
@@ -49,19 +42,7 @@ class Servicio extends \yii\db\ActiveRecord
         return [
             'id_servicio' => 'Id Servicio',
             'nombre' => 'Nombre',
-            'precio' => 'Precio',
-            'cantidad_disponible' => 'Cantidad Disponible',
-            'fecha_ultima_hora' => 'Fecha Ultima Hora',
-            'precio_ultima_hora' => 'Precio Ultima Hora',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderDetails()
-    {
-        return $this->hasMany(OrderDetail::className(), ['servicio_id_servicio' => 'id_servicio']);
     }
 
     /**
@@ -78,5 +59,13 @@ class Servicio extends \yii\db\ActiveRecord
     public function getServicioContratados()
     {
         return $this->hasMany(ServicioContratado::className(), ['servicio_id_servicio' => 'id_servicio']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioDisponibles()
+    {
+        return $this->hasMany(ServicioDisponible::className(), ['servicio_id_servicio' => 'id_servicio']);
     }
 }
