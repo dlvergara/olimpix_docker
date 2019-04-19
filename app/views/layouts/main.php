@@ -56,7 +56,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-    <?php
+    <?=
     $this->render("header");
     ?>
 
@@ -67,7 +67,7 @@ AppAsset::register($this);
 
     <?= $content ?>
 
-    <?php
+    <?=
     $this->render("footer");
     ?>
 
