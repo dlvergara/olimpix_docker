@@ -125,4 +125,13 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+    * @return string
+    */
+    public function actionEvents()
+    {
+        $this->layout = "main";
+        return $this->render('events');
+    }
 }

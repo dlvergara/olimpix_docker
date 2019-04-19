@@ -1,4 +1,11 @@
 <?php
+
+/* @var $this yii\web\View */
+
+use yii\helpers\Html;use yii\web\View;
+
+$this->title = 'Eventos';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Start upcoming-event Area -->
     <section class="upcoming-event-area section-gap">
