@@ -131,7 +131,11 @@ class SiteController extends Controller
     */
     public function actionEvents()
     {
-        $this->layout = "main";
         return $this->render('events');
+    }
+
+    public function actionElements()
+    {
+        return $this->render('elements');
     }
 }

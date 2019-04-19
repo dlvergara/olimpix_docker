@@ -73,7 +73,7 @@ NavBar::begin([
                 </ul>
               </li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="elements.html">Elements</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/elements"]) ?>">Elements</a></li>
             </ul>
           </nav><!-- #nav-menu-container -->
         </div>
