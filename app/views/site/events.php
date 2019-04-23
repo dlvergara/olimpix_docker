@@ -32,6 +32,7 @@ foreach ($dataProvider->getModels() as $index => $model) {
     $eventoFecha = $model->fecha_inicio;
     $eventoLugar = $model->ciudadIdCiudad->nombre;
     $eventoUbicacion = $model->referencia_ubicacion;
+    $eventoUrl = Yii::$app->getUrlManager()->createUrl(['evento','evento' => $model->id_evento]);
     ?>
     <div class="row align-items-center upcoming-wrap">
         <div class="col-lg-6 upcoming-left">
@@ -42,11 +43,10 @@ foreach ($dataProvider->getModels() as $index => $model) {
             <p class="meta">
                 <span><?= $eventoFecha ?></span> en <?= $eventoLugar . ' - ' . $eventoUbicacion ?>
             </p>
-            <!--
             <p>
-                inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially.
-            </p> -->
-            <a class="primary-btn text-uppercase" href="#">ver detalles</a>
+                <?= $model->descripcion ?>
+            </p>
+            <a class="primary-btn text-uppercase" href="<?= $eventoUrl ?>">ver detalles</a>
         </div>
     </div>
     <?php

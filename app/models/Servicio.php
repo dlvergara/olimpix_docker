@@ -12,7 +12,6 @@ use Yii;
  *
  * @property Proveedor[] $proveedors
  * @property ServicioContratado[] $servicioContratados
- * @property ServicioDisponible[] $servicioDisponibles
  */
 class Servicio extends \yii\db\ActiveRecord
 {
@@ -59,13 +58,5 @@ class Servicio extends \yii\db\ActiveRecord
     public function getServicioContratados()
     {
         return $this->hasMany(ServicioContratado::className(), ['servicio_id_servicio' => 'id_servicio']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getServicioDisponibles()
-    {
-        return $this->hasMany(ServicioDisponible::className(), ['servicio_id_servicio' => 'id_servicio']);
     }
 }

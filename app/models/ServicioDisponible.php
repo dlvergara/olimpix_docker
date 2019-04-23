@@ -35,7 +35,7 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_servicio_disponible', 'evento_id_evento', 'servicio_id_servicio'], 'required'],
+            [['evento_id_evento', 'servicio_id_servicio'], 'required'],
             [['id_servicio_disponible', 'evento_id_evento', 'servicio_id_servicio', 'disponible'], 'integer'],
             [['fecha_inicio', 'fecha_fin'], 'safe'],
             [['cantidad_disponible'], 'number'],

@@ -19,12 +19,13 @@ use Yii;
  * @property string $fecha_cierre
  * @property int $sorteado
  * @property string $fecha_sorteo
+ * @property string $descripcion
+ * @property string $direccion
  *
  * @property Ciudad $ciudadIdCiudad
  * @property Liga $ligaIdLiga
  * @property PruebaSalto[] $pruebaSaltos
  * @property ServicioContratado[] $servicioContratados
- * @property ServicioDisponible[] $servicioDisponibles
  */
 class Evento extends \yii\db\ActiveRecord
 {
@@ -45,7 +46,7 @@ class Evento extends \yii\db\ActiveRecord
             [['fecha_inicio', 'fecha_fin', 'fecha_cierre', 'fecha_sorteo'], 'safe'],
             [['ciudad_id_ciudad', 'liga_id_liga'], 'required'],
             [['ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado'], 'integer'],
-            [['url_bases_tenicas'], 'string'],
+            [['url_bases_tenicas', 'descripcion', 'direccion'], 'string'],
             [['nombre', 'referencia_ubicacion'], 'string', 'max' => 45],
             [['ciudad_id_ciudad'], 'exist', 'skipOnError' => true, 'targetClass' => Ciudad::className(), 'targetAttribute' => ['ciudad_id_ciudad' => 'id_ciudad']],
             [['liga_id_liga'], 'exist', 'skipOnError' => true, 'targetClass' => Liga::className(), 'targetAttribute' => ['liga_id_liga' => 'id_liga']],
@@ -70,6 +71,8 @@ class Evento extends \yii\db\ActiveRecord
             'fecha_cierre' => 'Fecha Cierre',
             'sorteado' => 'Sorteado',
             'fecha_sorteo' => 'Fecha Sorteo',
+            'descripcion' => 'Descripcion',
+            'direccion' => 'Direccion',
         ];
     }
 
@@ -103,13 +106,5 @@ class Evento extends \yii\db\ActiveRecord
     public function getServicioContratados()
     {
         return $this->hasMany(ServicioContratado::className(), ['evento_id_evento' => 'id_evento']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getServicioDisponibles()
-    {
-        return $this->hasMany(ServicioDisponible::className(), ['evento_id_evento' => 'id_evento']);
     }
 }
