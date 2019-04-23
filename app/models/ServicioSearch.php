@@ -18,7 +18,7 @@ class ServicioSearch extends Servicio
     {
         return [
             [['id_servicio'], 'integer'],
-            [['nombre'], 'safe'],
+            [['nombre', 'image_url'], 'safe'],
         ];
     }
 
@@ -61,7 +61,8 @@ class ServicioSearch extends Servicio
             'id_servicio' => $this->id_servicio,
         ]);
 
-        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'image_url', $this->image_url]);
 
         return $dataProvider;
     }

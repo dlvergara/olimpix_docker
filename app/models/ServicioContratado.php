@@ -9,19 +9,19 @@ use Yii;
  *
  * @property int $id_servicio_contratado
  * @property int $evento_id_evento
- * @property int $servicio_id_servicio
  * @property int $id_estado_servicio
  * @property int $caballo_id_caballo
  * @property int $jinete_id_jinete
  * @property string $identificador_servicio_contratado
  * @property string $monto
+ * @property int $servicio_disponible_id_servicio_disponible
  *
  * @property Pago[] $pagos
  * @property Evento $eventoIdEvento
  * @property Caballo $caballoIdCaballo
  * @property EstadoServicio $estadoServicio
  * @property Jinete $jineteIdJinete
- * @property Servicio $servicioIdServicio
+ * @property ServicioDisponible $servicioDisponibleIdServicioDisponible
  */
 class ServicioContratado extends \yii\db\ActiveRecord
 {
@@ -39,15 +39,15 @@ class ServicioContratado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['evento_id_evento', 'servicio_id_servicio', 'id_estado_servicio'], 'required'],
-            [['evento_id_evento', 'servicio_id_servicio', 'id_estado_servicio', 'caballo_id_caballo', 'jinete_id_jinete'], 'integer'],
+            [['evento_id_evento', 'id_estado_servicio', 'servicio_disponible_id_servicio_disponible'], 'required'],
+            [['evento_id_evento', 'id_estado_servicio', 'caballo_id_caballo', 'jinete_id_jinete', 'servicio_disponible_id_servicio_disponible'], 'integer'],
             [['monto'], 'number'],
             [['identificador_servicio_contratado'], 'string', 'max' => 45],
             [['evento_id_evento'], 'exist', 'skipOnError' => true, 'targetClass' => Evento::className(), 'targetAttribute' => ['evento_id_evento' => 'id_evento']],
             [['caballo_id_caballo'], 'exist', 'skipOnError' => true, 'targetClass' => Caballo::className(), 'targetAttribute' => ['caballo_id_caballo' => 'id_caballo']],
             [['id_estado_servicio'], 'exist', 'skipOnError' => true, 'targetClass' => EstadoServicio::className(), 'targetAttribute' => ['id_estado_servicio' => 'id_estado_servicio']],
             [['jinete_id_jinete'], 'exist', 'skipOnError' => true, 'targetClass' => Jinete::className(), 'targetAttribute' => ['jinete_id_jinete' => 'id_jinete']],
-            [['servicio_id_servicio'], 'exist', 'skipOnError' => true, 'targetClass' => Servicio::className(), 'targetAttribute' => ['servicio_id_servicio' => 'id_servicio']],
+            [['servicio_disponible_id_servicio_disponible'], 'exist', 'skipOnError' => true, 'targetClass' => ServicioDisponible::className(), 'targetAttribute' => ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']],
         ];
     }
 
@@ -59,12 +59,12 @@ class ServicioContratado extends \yii\db\ActiveRecord
         return [
             'id_servicio_contratado' => 'Id Servicio Contratado',
             'evento_id_evento' => 'Evento Id Evento',
-            'servicio_id_servicio' => 'Servicio Id Servicio',
             'id_estado_servicio' => 'Id Estado Servicio',
             'caballo_id_caballo' => 'Caballo Id Caballo',
             'jinete_id_jinete' => 'Jinete Id Jinete',
             'identificador_servicio_contratado' => 'Identificador Servicio Contratado',
             'monto' => 'Monto',
+            'servicio_disponible_id_servicio_disponible' => 'Servicio Disponible Id Servicio Disponible',
         ];
     }
 
@@ -111,8 +111,8 @@ class ServicioContratado extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServicioIdServicio()
+    public function getServicioDisponibleIdServicioDisponible()
     {
-        return $this->hasOne(Servicio::className(), ['id_servicio' => 'servicio_id_servicio']);
+        return $this->hasOne(ServicioDisponible::className(), ['id_servicio_disponible' => 'servicio_disponible_id_servicio_disponible']);
     }
 }

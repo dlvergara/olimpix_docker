@@ -14,10 +14,16 @@ use Yii;
  * @property string $fecha_fin
  * @property int $disponible
  * @property string $cantidad_disponible
+ * @property string $timestamp
+ * @property string $descripcion
+ * @property string $monto
+ * @property string $nombre
+ * @property string $image_url
  *
  * @property OrderDetail[] $orderDetails
+ * @property Proveedor[] $proveedors
+ * @property ServicioContratado[] $servicioContratados
  * @property Evento $eventoIdEvento
- * @property Servicio $servicioIdServicio
  */
 class ServicioDisponible extends \yii\db\ActiveRecord
 {
@@ -35,13 +41,14 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_servicio_disponible', 'evento_id_evento', 'servicio_id_servicio'], 'required'],
-            [['id_servicio_disponible', 'evento_id_evento', 'servicio_id_servicio', 'disponible'], 'integer'],
-            [['fecha_inicio', 'fecha_fin'], 'safe'],
-            [['cantidad_disponible'], 'number'],
-            [['id_servicio_disponible'], 'unique'],
+            [['evento_id_evento', 'servicio_id_servicio'], 'required'],
+            [['evento_id_evento', 'servicio_id_servicio', 'disponible'], 'integer'],
+            [['fecha_inicio', 'fecha_fin', 'timestamp'], 'safe'],
+            [['cantidad_disponible', 'monto'], 'number'],
+            [['descripcion'], 'string'],
+            [['nombre'], 'string', 'max' => 45],
+            [['image_url'], 'string', 'max' => 100],
             [['evento_id_evento'], 'exist', 'skipOnError' => true, 'targetClass' => Evento::className(), 'targetAttribute' => ['evento_id_evento' => 'id_evento']],
-            [['servicio_id_servicio'], 'exist', 'skipOnError' => true, 'targetClass' => Servicio::className(), 'targetAttribute' => ['servicio_id_servicio' => 'id_servicio']],
         ];
     }
 
@@ -58,6 +65,11 @@ class ServicioDisponible extends \yii\db\ActiveRecord
             'fecha_fin' => 'Fecha Fin',
             'disponible' => 'Disponible',
             'cantidad_disponible' => 'Cantidad Disponible',
+            'timestamp' => 'Timestamp',
+            'descripcion' => 'Descripcion',
+            'monto' => 'Monto',
+            'nombre' => 'Nombre',
+            'image_url' => 'Image Url',
         ];
     }
 
@@ -72,16 +84,24 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEventoIdEvento()
+    public function getProveedors()
     {
-        return $this->hasOne(Evento::className(), ['id_evento' => 'evento_id_evento']);
+        return $this->hasMany(Proveedor::className(), ['id_servicio_disponible' => 'id_servicio_disponible']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServicioIdServicio()
+    public function getServicioContratados()
     {
-        return $this->hasOne(Servicio::className(), ['id_servicio' => 'servicio_id_servicio']);
+        return $this->hasMany(ServicioContratado::className(), ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventoIdEvento()
+    {
+        return $this->hasOne(Evento::className(), ['id_evento' => 'evento_id_evento']);
     }
 }
