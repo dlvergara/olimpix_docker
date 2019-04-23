@@ -22,17 +22,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'evento_id_evento') ?>
 
-    <?= $form->field($model, 'servicio_id_servicio') ?>
-
     <?= $form->field($model, 'id_estado_servicio') ?>
 
     <?= $form->field($model, 'caballo_id_caballo') ?>
 
-    <?php // echo $form->field($model, 'jinete_id_jinete') ?>
+    <?= $form->field($model, 'jinete_id_jinete') ?>
 
     <?php // echo $form->field($model, 'identificador_servicio_contratado') ?>
 
     <?php // echo $form->field($model, 'monto') ?>
+
+    <?php // echo $form->field($model, 'servicio_disponible_id_servicio_disponible') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

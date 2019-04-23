@@ -14,6 +14,7 @@ use Yii;
  * @property int $servicio_disponible_id_servicio_disponible
  *
  * @property Order $orderIdOrder
+ * @property ServicioDisponible $servicioDisponibleIdServicioDisponible
  * @property PaymentDistribution[] $paymentDistributions
  */
 class OrderDetail extends \yii\db\ActiveRecord
@@ -36,6 +37,7 @@ class OrderDetail extends \yii\db\ActiveRecord
             [['order_id_order', 'servicio_disponible_id_servicio_disponible'], 'integer'],
             [['cantidad', 'precio_unitario'], 'number'],
             [['order_id_order'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id_order' => 'id_order']],
+            [['servicio_disponible_id_servicio_disponible'], 'exist', 'skipOnError' => true, 'targetClass' => ServicioDisponible::className(), 'targetAttribute' => ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']],
         ];
     }
 
@@ -59,6 +61,14 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function getOrderIdOrder()
     {
         return $this->hasOne(Order::className(), ['id_order' => 'order_id_order']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioDisponibleIdServicioDisponible()
+    {
+        return $this->hasOne(ServicioDisponible::className(), ['id_servicio_disponible' => 'servicio_disponible_id_servicio_disponible']);
     }
 
     /**

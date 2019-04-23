@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'evento_id_evento')->textInput() ?>
 
-    <?= $form->field($model, 'servicio_id_servicio')->textInput() ?>
-
     <?= $form->field($model, 'id_estado_servicio')->textInput() ?>
 
     <?= $form->field($model, 'caballo_id_caballo')->textInput() ?>
@@ -25,6 +23,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'identificador_servicio_contratado')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'monto')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'servicio_disponible_id_servicio_disponible')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
