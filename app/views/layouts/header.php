@@ -71,7 +71,7 @@ NavBar::begin([
             <ul class="nav-menu">
               <li class="menu-active"><a href="<?= Yii::$app->getHomeUrl() ?>">Inicio</a></li>
               <li><a href="about.html">Nosotros</a></li>
-              <li><a href="service.html">Servicios</a></li>
+                <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/servicios"]) ?>">servicios</a></li>
               <li><a href="training.html">formación</a></li>
               <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/events"]) ?>">eventos</a></li>
               <li><a href="pricing.html">Precios</a></li>
