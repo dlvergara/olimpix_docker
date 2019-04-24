@@ -30,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         /* @var $model app\models\Evento */
         setlocale(LC_ALL,"es_ES");
-        foreach ($dataProvider->getModels() as $index => $model) {
+        foreach ($dataProvider->getModels() as $index => $model)
+        {
             $date = DateTime::createFromFormat("Y-m-d H:i:s", $model->fecha_inicio);
             $eventoNombre = $model->nombre;
             $eventoFecha = strftime("%A %d de %B", $date->getTimestamp());
