@@ -56,9 +56,9 @@ NavBar::begin([
                 <a class="tel" href="tel:+880 123 12 658 439">+031 87966572</a>
                 <a href="tel:+880 123 12 658 439"><span class="lnr lnr-phone-handset"></span></a>
             </div>
-            <div class="btn-group">
+       <!--     <div class="btn-group">
             <button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>
-               <div id="mobile-nav-toggle" style="display: block;"></div>
+               <div id="mobile-nav-toggle" style="display: block;"></div> -->
                 
                
             </div>
