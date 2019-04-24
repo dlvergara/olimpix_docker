@@ -44,12 +44,18 @@ AppAsset::register($this);
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/linearicons.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/bootstrap.css">
+    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/bootstrap.map">
+    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/jquery.DonutWidget.min.css">
+    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/jquerysctipttop.css">
+    
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/magnific-popup.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/nice-select.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/animate.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/owl.carousel.css">
+    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/main.css">
+    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/main.map">
 
     <?php $this->head() ?>
 </head>

@@ -394,6 +394,9 @@ Federación Ecustre Internacional.
 			<section class="gallery-area">
 				<div class="container-fluid">
 					<div class="row no-padding">
+                        <div class="active-gallery owl-carousel owl-theme owl-loaded">
+				
+                            
 						<div class="active-gallery">
 							<div class="item single-gallery">
 							    <div class="thumb">
@@ -441,5 +444,6 @@ Federación Ecustre Internacional.
 						</div>
 					</div>
 				</div>
-			</section>
+                </div>
+			</section> 
 			<!-- End gallery Area -->
