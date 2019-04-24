@@ -41,7 +41,7 @@ $date = DateTime::createFromFormat("Y-m-d H:i:s", $model->fecha_inicio);
                 <p>Hora: <?= strftime("%l:%M%p", $date->getTimestamp());?></p>
             </div>
         </div>
-        
+
         <div class="row">
             <?php
             /**
@@ -70,7 +70,7 @@ $date = DateTime::createFromFormat("Y-m-d H:i:s", $model->fecha_inicio);
                                 <div class="title justify-content-between d-flex">
                                     <h4><?= $servicioDisponible->nombre ?></h4>
                                     <p class="price">
-                                        $<?= $servicioDisponible->monto ?>
+                                        $<?= number_format($servicioDisponible->monto, 2) ?>
                                     </p>
                                 </div>
                                 <p>
