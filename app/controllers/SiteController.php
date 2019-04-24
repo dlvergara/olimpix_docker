@@ -132,8 +132,9 @@ class SiteController extends Controller
     */
     public function actionEvents()
     {
+        $queryParams = Yii::$app->request->queryParams;
         $searchModel = new EventoSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($queryParams);
 
         $params = [
             'searchModel' => $searchModel,
@@ -142,6 +143,9 @@ class SiteController extends Controller
         return $this->render('events', $params);
     }
 
+    /**
+     * @return string
+     */
     public function actionElements()
     {
         return $this->render('elements');

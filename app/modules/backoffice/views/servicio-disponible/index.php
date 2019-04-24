@@ -34,6 +34,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha_fin',
             //'disponible',
             //'cantidad_disponible',
+            //'timestamp',
+            //'descripcion:ntext',
+            //'monto',
+            //'nombre',
+            //'image_url:url',
+            //'proveedor_id_proveedor',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -32,6 +32,18 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'cantidad_disponible') ?>
 
+    <?php // echo $form->field($model, 'timestamp') ?>
+
+    <?php // echo $form->field($model, 'descripcion') ?>
+
+    <?php // echo $form->field($model, 'monto') ?>
+
+    <?php // echo $form->field($model, 'nombre') ?>
+
+    <?php // echo $form->field($model, 'image_url') ?>
+
+    <?php // echo $form->field($model, 'proveedor_id_proveedor') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

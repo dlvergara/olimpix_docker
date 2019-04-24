@@ -34,6 +34,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fecha_sorteo')->textInput() ?>
 
+    <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'direccion')->textarea(['rows' => 6]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
