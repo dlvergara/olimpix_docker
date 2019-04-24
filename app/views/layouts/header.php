@@ -42,10 +42,10 @@ NavBar::begin([
     <div class="container">
         <div class="row header-top align-items-center">
             <div class="col-lg-4 col-sm-4 menu-top-left">
-                <a href="mailto:info@horseclub.com">
+                <a href="mailto:info@olimpix.com.co">
                     <span class="lnr lnr-location"></span>
                 </a>
-                <a class="tel" href="mailto:info@horseclub.com">info@olimpix.com.co</a>
+                <a class="tel" href="mailto:info@olimpix.com.co">info@olimpix.com.co</a>
             </div>
             <div class="col-lg-4 menu-top-middle justify-content-center d-flex">
                 <a href="<?= Yii::$app->getHomeUrl() ?>/">
@@ -53,8 +53,8 @@ NavBar::begin([
                 </a>
             </div>
             <div class="col-lg-4 col-sm-4 menu-top-right">
-                <a class="tel" href="tel:+880 123 12 658 439">+031 87966572</a>
-                <a href="tel:+880 123 12 658 439"><span class="lnr lnr-phone-handset"></span></a>
+                <a class="tel" href="tel:+031 87966572">+031 87966572</a>
+                <a href="tel:+031 87966572"><span class="lnr lnr-phone-handset"></span></a>
             </div>
            <div class="btn-group">
             <button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>
