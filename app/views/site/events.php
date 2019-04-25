@@ -20,19 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-9 pb-40 header-text text-center">
-                <h1 class="pb-10">Checkout our Upcoming Events</h1>
+                <h1 class="pb-10">Un vistazo a nuestros próximos eventos</h1>
                 <p>
-                    Who are in extremely love with eco friendly system.
+                    Revisa el calendario deportivo
                 </p>
+            
             </div>
         </div>
-
         <?php
         /* @var $model app\models\Evento */
         setlocale(LC_ALL,"es_ES");
-        foreach ($dataProvider->getModels() as $index => $model) {
+        foreach ($dataProvider->getModels() as $index => $model)
+        {
             $date = DateTime::createFromFormat("Y-m-d H:i:s", $model->fecha_inicio);
-
             $eventoNombre = $model->nombre;
             $eventoFecha = strftime("%A %d de %B", $date->getTimestamp());
             $eventoLugar = $model->ciudadIdCiudad->nombre;
@@ -54,6 +54,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a class="primary-btn text-uppercase" href="<?= $eventoUrl ?>">ver detalles</a>
                 </div>
             </div>
+        
+     <!--  <section class="upcoming-event-area section-gap">-->
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+             <div class="col-md-9 pb-40 header-text text-center">
+        
+                <h2 class="pb-10">Revisa el calendario Ecuestre 2019</h2>
+        
+             <div class="embed-responsive embed-responsive-16by9">
+                 <iframe class="embed-responsive-item" src="http://www.fedecuestre.com/images/noticias/2019/CALENDARIO_NACIONAL_2019.pdf" allowfullscreen></iframe>
+            </div>
+         </div>
+        </div>
+  <!--   </section>
+            
             <?php
         }
         ?>
@@ -126,6 +141,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
         -->
+         </div>
+        
     </div>
 </section>
 <!-- End upcoming-event Area -->

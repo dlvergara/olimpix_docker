@@ -128,6 +128,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionServicios()
+    {
+        return $this->render('servicios');
+    }
+
+    /**
     * @return string
     */
     public function actionEvents()

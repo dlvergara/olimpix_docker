@@ -10,13 +10,13 @@ $this->title = 'Olimpix Ecuestre';
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-start">
 						<div class="banner-content col-lg-12">
-							<h6>Introducing Horse Club</h6>
+							<h6>Competencia </h6>
 							<span class="bar"></span>
 							<h1 class="text-white">
-								Inter relation <br>
-								Between Horse & Rider
+								Disciplinas Ecuestres <br>
+								Reconocidas por la FEI
 							</h1>
-							<a href="#" class="genric-btn">Book Consultancy</a>
+							<a href="#" class="genric-btn">INGRESAR</a>
 						</div>
 					</div>
 				</div>
@@ -28,18 +28,19 @@ $this->title = 'Olimpix Ecuestre';
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 about-video-left">
-							<h6 class="text-uppercase">Brand new app to blow your mind</h6>
+							<h6 class="text-uppercase">NUEVA APLICACIÓN PARA DISIPLINAS ECUESTRES</h6>
 							<h1>
-								We’ve made a life <br>
-								that will change you
+								Hacemos las cosas más faciles <br>
+								para cambiar tu vida.
 							</h1>
 							<p>
-								<span>We are here to listen from you deliver exellence</span>
+								<span>Estamos aquí para dar soluciones simples</span>
 							</p>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmo d tempor incididunt ut labore et dolore magna aliqua.
+								Conoce los diferentes deportes ecuestres por modalidades reglamentadas por la 
+Federación Ecustre Internacional.
 							</p>
-							<a class="primary-btn" href="#">Get Started Now</a>
+							<a class="primary-btn" href="#">Empieza Ahora</a>
 						</div>
 						<div class="col-lg-6 about-video-right justify-content-center align-items-center d-flex">
 							<a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid mx-auto" src="img/play.png" alt=""></a>
@@ -56,49 +57,49 @@ $this->title = 'Olimpix Ecuestre';
 					<div class="row align-items-center justify-content-center">
 						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
-								<a href="#"><h4 class="text-white">Expert Technicians</h4></a>
+								<a href="#"><h4 class="text-white">Técnicos Expertos</h4></a>
 								<p>
-									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									Contamos con personal certificado por la FEI, para la realización de evetos ecuestres.
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
-								<a href="#"><h4 class="text-white">Professional Service</h4></a>
+								<a href="#"><h4 class="text-white"> Servicio profesional</h4></a>
 								<p>
-									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									Contamos con personal expecializado para dar soporte a los eventos ecuestres. 
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
-								<a href="#"><h4 class="text-white">Great Support</h4></a>
+								<a href="#"><h4 class="text-white">Gran apoyo</h4></a>
 								<p>
-									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									Contamos con el aval de la Federación Ecuestre de Colombia. 
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
-								<a href="#"><h4 class="text-white">Technical Skills</h4></a>
+								<a href="#"><h4 class="text-white">Habilidades técnicas</h4></a>
 								<p>
-									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									Contamos con un grupo interdisiplinario de profecionales especializados en cada una de las áreas. 
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
-								<a href="#"><h4 class="text-white">Highly Recomended</h4></a>
+								<a href="#"><h4 class="text-white">Altamente recomendado</h4></a>
 								<p>
-									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									Contamos con el reconocimiento de la Federación Ecuestre de Colombia.
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
-								<a href="#"><h4 class="text-white">Positive Reviews</h4></a>
+								<a href="#"><h4 class="text-white">Nos Avalan</h4></a>
 								<p>
-									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+									Contamos con el reconocimiento de la Federación Ecuestre de Colombia y la Fedreción Ecuestre Internacional.
 								</p>
 							</div>
 						</div>
@@ -115,16 +116,16 @@ $this->title = 'Olimpix Ecuestre';
 							<img class="mx-auto d-block img-fluid" src="img/about-img.png" alt="">
 						</div>
 						<div class="col-lg-6 home-about-right">
-							<h6 class="text-uppercase">Brand new app to blow your mind</h6>
-							<h1>We’ve made a life <br>
-							that will change you</h1>
+							<h6 class="text-uppercase">NUEVA APLICACIÓN PARA DISIPLINAS ECUESTRES</h6>
+							<h1>Hacemos las cosas más faciles<br>
+							para cambiar tu vida.</h1>
 							<p>
-								<span>We are here to listen from you deliver exellence</span>
+								<span>Estamos aquí para dar soluciones simples</span>
 							</p>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis.
+								Conoce los diferentes deportes ecuestres por modalidades reglamentadas por la Federación Ecustre Internacional.
 							</p>
-							<a class="primary-btn" href="#">Get Started Now</a>
+							<a class="primary-btn" href="#"> Empieza Ahora</a>
 						</div>
 					</div>
 				</div>
@@ -137,8 +138,8 @@ $this->title = 'Olimpix Ecuestre';
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Choose the best plan that suits you</h1>
-								<p>Who are in extremely love with eco friendly system.</p>
+								<h1 class="mb-10">Elige el mejor plan que más te convenga.</h1>
+								<p>Paquetes según el tipo de evento Ecuestre.</p>
 							</div>
 						</div>
 					</div>
@@ -147,19 +148,19 @@ $this->title = 'Olimpix Ecuestre';
 							<div class="single-price">
 								<div class="top-part">
 									<h1 class="package-no">01</h1>
-									<h4>Basic</h4>
-									<p>For the individuals</p>
+									<h4>Basico</h4>
+									<p>Para Profesionales</p>
 								</div>
 								<div class="package-list">
 									<ul>
-										<li>Secure Online Transfer</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
+										<li>Transferencia segura en línea</li>
+										<li>Sin limite de transacciones </li>
+										<li>Servicio al cliente via chat</li>
 									</ul>
 								</div>
 								<div class="bottom-part">
-									<h1>£199.00</h1>
-									<a class="price-btn text-uppercase" href="#">Purchase</a>
+									<h1>$00.00</h1>
+									<a class="price-btn text-uppercase" href="#">Comprar</a>
 								</div>
 							</div>
 						</div>
@@ -167,19 +168,19 @@ $this->title = 'Olimpix Ecuestre';
 							<div class="single-price">
 								<div class="top-part">
 									<h1 class="package-no">02</h1>
-									<h4>Economy</h4>
-									<p>For the individuals</p>
+									<h4>Club</h4>
+									<p>Para Clubs</p>
 								</div>
 								<div class="package-list">
 									<ul>
-										<li>Secure Online Transfer</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
+										<li>Transferencia segura en línea</li>
+										<li>Sin limite de transacciones</li>
+										<li>Servicio al cliente</li>
 									</ul>
 								</div>
 								<div class="bottom-part">
-									<h1>£299.00</h1>
-									<a class="price-btn text-uppercase" href="#">Purchase</a>
+									<h1>$00.00</h1>
+									<a class="price-btn text-uppercase" href="#">Comprar</a>
 								</div>
 							</div>
 						</div>
@@ -187,19 +188,19 @@ $this->title = 'Olimpix Ecuestre';
 							<div class="single-price">
 								<div class="top-part">
 									<h1 class="package-no">03</h1>
-									<h4>Premium</h4>
-									<p>For the individuals</p>
+									<h4>Liga</h4>
+									<p>Para Ligas</p>
 								</div>
 								<div class="package-list">
 									<ul>
-										<li>Secure Online Transfer</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
+										<li>Transferencia segura en línea</li>
+										<li>Sin limite de transacciones</li>
+										<li>Servicio al cliente</li>
 									</ul>
 								</div>
 								<div class="bottom-part">
-									<h1>£399.00</h1>
-									<a class="price-btn text-uppercase" href="#">Purchase</a>
+									<h1>$00.00</h1>
+									<a class="price-btn text-uppercase" href="#">Comprar</a>
 								</div>
 							</div>
 						</div>
@@ -207,19 +208,19 @@ $this->title = 'Olimpix Ecuestre';
 							<div class="single-price">
 								<div class="top-part">
 									<h1 class="package-no">04</h1>
-									<h4>Enterprise</h4>
-									<p>For the individuals</p>
+									<h4>Federaciones</h4>
+									<p>Para Federaciones</p>
 								</div>
 								<div class="package-list">
 									<ul>
-										<li>Secure Online Transfer</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
+										<li>Transferencia segura en línea</li>
+										<li>Sin limite de transacciones</li>
+										<li>Servicio al cliente</li>
 									</ul>
 								</div>
 								<div class="bottom-part">
-									<h1>£499.00</h1>
-									<a class="price-btn text-uppercase" href="#">Purchase</a>
+									<h1>$00.00</h1>
+									<a class="price-btn text-uppercase" href="#">Comprar</a>
 								</div>
 							</div>
 						</div>
@@ -248,7 +249,7 @@ $this->title = 'Olimpix Ecuestre';
 										</div>
 									</div>
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Comentarios 
 									</p>
 									<img src="img/r2.png" alt="">
 									<div class="title justify-content-start d-flex">
@@ -262,7 +263,7 @@ $this->title = 'Olimpix Ecuestre';
 										</div>
 									</div>
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Comentarios 
 									</p>
 								</div>
 								<div class="single-carusel">
@@ -278,7 +279,7 @@ $this->title = 'Olimpix Ecuestre';
 										</div>
 									</div>
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Comentarios 
 									</p>
 									<img src="img/r2.png" alt="">
 									<div class="title justify-content-start d-flex">
@@ -292,7 +293,7 @@ $this->title = 'Olimpix Ecuestre';
 										</div>
 									</div>
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Comentarios 
 									</p>
 								</div>
 								<div class="single-carusel">
@@ -308,7 +309,7 @@ $this->title = 'Olimpix Ecuestre';
 										</div>
 									</div>
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Comentarios 
 									</p>
 									<img src="img/r2.png" alt="">
 									<div class="title justify-content-start d-flex">
@@ -322,25 +323,25 @@ $this->title = 'Olimpix Ecuestre';
 										</div>
 									</div>
 									<p>
-										Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
+										Comentarios 
 									</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 booking-right">
-								<h4 class="mb-20">Appointment Form</h4>
+								<h4 class="mb-20">Formulario de Contacto</h4>
 								<form action="#">
-									<input class="form-control" type="text" name="name" placeholder="Your name" required>
-									<input class="form-control" type="email" name="email" placeholder="Email Address" required>
-									<input class="form-control" type="text" name="phone" placeholder="Phone Number" required>
+									<input class="form-control" type="text" name="name" placeholder="Nombres" required>
+									<input class="form-control" type="email" name="email" placeholder="Email" required>
+									<input class="form-control" type="text" name="phone" placeholder="Número de Telefono" required>
 									<div class="input-group dates-wrap">
-										<input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Date & time" type="text">
+										<input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Fecha y hora" type="text">
 										<div class="input-group-prepend">
 											<span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
 										</div>
 									</div>
-									<textarea class="common-textarea form-control mt-10" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-									<button  class="btn btn-default btn-lg btn-block text-center">Book Now!</button>
+									<textarea class="common-textarea form-control mt-10" name="message" placeholder="Mensage" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
+									<button  class="btn btn-default btn-lg btn-block text-center">¡Reservar ahora!</button>
 								</form>
 						</div>
 					</div>
@@ -354,8 +355,8 @@ $this->title = 'Olimpix Ecuestre';
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-60 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Latest News from our Blog</h1>
-								<p>Who are in extremely love with eco friendly system.</p>
+								<h1 class="mb-10">Últimas noticias de nuestro blog</h1>
+								<p>Nuevos sistemas de apoyo .</p>
 							</div>
 						</div>
 					</div>
@@ -363,26 +364,26 @@ $this->title = 'Olimpix Ecuestre';
 						<div class="col-lg-6 single-blog">
 							<img class="img-fluid" src="img/b1.jpg" alt="">
 							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
+								<li><a href="#">Viajar</a></li>
+								<li><a href="#">Estilo de vida</a></li>
 							</ul>
-							<a href="#"><h4>Portable latest Fashion for young women</h4></a>
+							<a href="#"><h4>Reglamento FEI para competencias Ecuestres</h4></a>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
+								La FEI. Si se presentara una omisión en el Reglamento de ... Después de la competencia, el Caballo debe estar en buenas condiciones para viajar ... ecuestre de los abusos a los que pueda exponerse y para conservarlo ...
 							</p>
-							<p class="post-date">31st January, 2018</p>
+							<p class="post-date">31 de enero de 2018.</p>
 						</div>
 						<div class="col-lg-6 single-blog">
 							<img class="img-fluid" src="img/b2.jpg" alt="">
 							<ul class="tags">
-								<li><a href="#">Travel</a></li>
-								<li><a href="#">Life style</a></li>
+								<li><a href="#">Viajar</a></li>
+								<li><a href="#">Estilo de vida</a></li>
 							</ul>
-							<a href="#"><h4>Portable latest Fashion for young women</h4></a>
+							<a href="#"><h4>REGLAMENTO NACIONAL DE SALTO FEC</h4></a>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
+								El presente Reglamento de Salto con sus reformas empieza a regir a partir del 1 de julio de 2016 y fueron aprobadas en la Asamblea Extraordinaria celebrada el 
 							</p>
-							<p class="post-date">31st January, 2018</p>
+							<p class="post-date">18 de marzo de 2016</p>
 						</div>
 					</div>
 				</div>
@@ -393,6 +394,9 @@ $this->title = 'Olimpix Ecuestre';
 			<section class="gallery-area">
 				<div class="container-fluid">
 					<div class="row no-padding">
+                        <div class="active-gallery owl-carousel owl-theme owl-loaded">
+				
+                            
 						<div class="active-gallery">
 							<div class="item single-gallery">
 							    <div class="thumb">
@@ -440,5 +444,6 @@ $this->title = 'Olimpix Ecuestre';
 						</div>
 					</div>
 				</div>
-			</section>
+                </div>
+			</section> 
 			<!-- End gallery Area -->

@@ -21,12 +21,14 @@ use Yii;
  * @property string $fecha_sorteo
  * @property string $descripcion
  * @property string $direccion
+ * @property string $tipo_evento
  *
  * @property Ciudad $ciudadIdCiudad
  * @property Liga $ligaIdLiga
  * @property PruebaSalto[] $pruebaSaltos
  * @property ServicioContratado[] $servicioContratados
  * @property ServicioDisponible[] $servicioDisponibles
+ * @property TerminoCondicion[] $terminoCondicions
  */
 class Evento extends \yii\db\ActiveRecord
 {
@@ -48,7 +50,9 @@ class Evento extends \yii\db\ActiveRecord
             [['ciudad_id_ciudad', 'liga_id_liga'], 'required'],
             [['ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado'], 'integer'],
             [['url_bases_tenicas', 'descripcion', 'direccion'], 'string'],
-            [['nombre', 'referencia_ubicacion'], 'string', 'max' => 45],
+            [['nombre'], 'string', 'max' => 100],
+            [['referencia_ubicacion'], 'string', 'max' => 45],
+            [['tipo_evento'], 'string', 'max' => 150],
             [['ciudad_id_ciudad'], 'exist', 'skipOnError' => true, 'targetClass' => Ciudad::className(), 'targetAttribute' => ['ciudad_id_ciudad' => 'id_ciudad']],
             [['liga_id_liga'], 'exist', 'skipOnError' => true, 'targetClass' => Liga::className(), 'targetAttribute' => ['liga_id_liga' => 'id_liga']],
         ];
@@ -74,6 +78,7 @@ class Evento extends \yii\db\ActiveRecord
             'fecha_sorteo' => 'Fecha Sorteo',
             'descripcion' => 'Descripcion',
             'direccion' => 'Direccion',
+            'tipo_evento' => 'Tipo Evento',
         ];
     }
 
@@ -115,5 +120,13 @@ class Evento extends \yii\db\ActiveRecord
     public function getServicioDisponibles()
     {
         return $this->hasMany(ServicioDisponible::className(), ['evento_id_evento' => 'id_evento']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTerminoCondicions()
+    {
+        return $this->hasMany(TerminoCondicion::className(), ['evento_id_evento' => 'id_evento']);
     }
 }
