@@ -37,10 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para contactarnos.
             Gracias
         </p>
-
+        <div class="section-top-border">
         <div class="row">
-            <div class="col-lg-5">
-
+           <div class="col-lg-8 col-md-8">
+                <div class="row align-items-center justify-content-center d-flex">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                     <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
                 <?php ActiveForm::end(); ?>
-
+                   </div>  
             </div>
         </div>
 
