@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Proveedor */
+/* @var $model app\models\TerminoCondicion */
 
-$this->title = $model->id_proveedor;
-$this->params['breadcrumbs'][] = ['label' => 'Proveedors', 'url' => ['index']];
+$this->title = $model->id_termino_condicion;
+$this->params['breadcrumbs'][] = ['label' => 'Termino Condicions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="proveedor-view">
+<div class="termino-condicion-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_proveedor], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_proveedor], [
+        <?= Html::a('Update', ['update', 'id' => $model->id_termino_condicion], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id_termino_condicion], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,11 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_proveedor',
-            'nombre',
-            'monto',
-            'procentaje',
-            'id_servicio_disponible',
+            'id_termino_condicion',
+            'titulo',
+            'texto:ntext',
+            'evento_id_evento',
         ],
     ]) ?>
 

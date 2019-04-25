@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\EventoSearch */
+/* @var $searchModel app\models\TerminoCondicionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Eventos';
+$this->title = 'Termino Condicions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="evento-index">
+<div class="termino-condicion-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Evento', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Termino Condicion', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,21 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_evento',
-            'fecha_inicio',
-            'fecha_fin',
-            'ciudad_id_ciudad',
-            'nombre',
-            //'referencia_ubicacion',
-            //'url_bases_tenicas:ntext',
-            //'liga_id_liga',
-            //'cerrado',
-            //'fecha_cierre',
-            //'sorteado',
-            //'fecha_sorteo',
-            //'descripcion:ntext',
-            //'direccion:ntext',
-            //'tipo_evento',
+            'id_termino_condicion',
+            'titulo',
+            'texto:ntext',
+            'evento_id_evento',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

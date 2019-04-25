@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\ServicioDisponible;
+use app\models\TerminoCondicion;
 
 /**
- * ServicioDisponibleSearch represents the model behind the search form of `app\models\ServicioDisponible`.
+ * TerminoCondicionSearch represents the model behind the search form of `app\models\TerminoCondicion`.
  */
-class ServicioDisponibleSearch extends ServicioDisponible
+class TerminoCondicionSearch extends TerminoCondicion
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class ServicioDisponibleSearch extends ServicioDisponible
     public function rules()
     {
         return [
-            [['id_servicio_disponible', 'evento_id_evento', 'disponible'], 'integer'],
-            [['fecha_inicio', 'fecha_fin', 'timestamp', 'descripcion', 'nombre', 'image_url'], 'safe'],
-            [['cantidad_disponible', 'monto'], 'number'],
+            [['id_termino_condicion', 'evento_id_evento'], 'integer'],
+            [['titulo', 'texto'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class ServicioDisponibleSearch extends ServicioDisponible
      */
     public function search($params)
     {
-        $query = ServicioDisponible::find();
+        $query = TerminoCondicion::find();
 
         // add conditions that should always apply here
 
@@ -59,19 +58,12 @@ class ServicioDisponibleSearch extends ServicioDisponible
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_servicio_disponible' => $this->id_servicio_disponible,
+            'id_termino_condicion' => $this->id_termino_condicion,
             'evento_id_evento' => $this->evento_id_evento,
-            'fecha_inicio' => $this->fecha_inicio,
-            'fecha_fin' => $this->fecha_fin,
-            'disponible' => $this->disponible,
-            'cantidad_disponible' => $this->cantidad_disponible,
-            'timestamp' => $this->timestamp,
-            'monto' => $this->monto,
         ]);
 
-        $query->andFilterWhere(['like', 'descripcion', $this->descripcion])
-            ->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'image_url', $this->image_url]);
+        $query->andFilterWhere(['like', 'titulo', $this->titulo])
+            ->andFilterWhere(['like', 'texto', $this->texto]);
 
         return $dataProvider;
     }

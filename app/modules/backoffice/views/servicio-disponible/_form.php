@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'evento_id_evento')->textInput() ?>
 
-    <?= $form->field($model, 'servicio_id_servicio')->textInput() ?>
-
     <?= $form->field($model, 'fecha_inicio')->textInput() ?>
 
     <?= $form->field($model, 'fecha_fin')->textInput() ?>
@@ -33,8 +31,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'image_url')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'proveedor_id_proveedor')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
