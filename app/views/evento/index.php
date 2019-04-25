@@ -38,9 +38,80 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
     </div>
 </section>
 
+<div class="whole-wrap">
+    <div class="container">
+        <div class="section-top-border">
+
+            <h3 class="mb-30">Información general</h3>
+            <div class="row">
+                <?php
+                /**
+                 * @var $terminoCondicion \app\models\TerminoCondicion
+                 */
+                foreach ($terminosCondiciones as $index => $terminoCondicion) {
+                    if ($index >= 3) {
+                        break;
+                    }
+                    ?>
+                    <div class="col-md-4">
+                        <div class="single-defination">
+                            <h4 class="mb-20"><?= $index .'. '. $terminoCondicion->titulo ?></h4>
+                            <p><?= nl2br($terminoCondicion->texto) ?></p>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+
+        <?php
+        /**
+         * @var $terminoCondicion \app\models\TerminoCondicion
+         */
+        foreach ($terminosCondiciones as $index => $terminoCondicion) {
+            if ($index < 3) continue;//img/elements/d.jpg
+            $align = ($index % 2 == 0) ? '' : 'text-right';//
+            ?>
+            <div class="section-top-border <?= $align ?>">
+                <h3 class="mb-30"><?= $index .'. '. $terminoCondicion->titulo ?></h3>
+                <div class="row">
+                    <?php
+                    if(empty($align)) {
+                        ?>
+                    <div class="col-md-3">
+                        <img src="img/Logo-2.png" alt="" class="img-fluid">
+                    </div>
+                        <?php
+                    }
+                    ?>
+                    <div class="col-md-9 mt-sm-20">
+                        <p><?= nl2br($terminoCondicion->texto) ?></p>
+                    </div>
+                    <?php
+                    if(!empty($align)) {
+                        ?>
+                        <div class="col-md-3">
+                            <img src="img/Logo-2.png" alt="" class="img-fluid">
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+
+
 <!-- Start training Area -->
 <section class="training-area section-gap">
     <div class="container">
+        <div class="row">
+            <h3 class="mb-30">Reservar servicios</h3>
+        </div>
         <div class="row">
             <?php
             /**
@@ -211,70 +282,3 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
     </div>
 </section>
 <!-- End training Area -->
-
-<div class="whole-wrap">
-    <div class="container">
-        <div class="section-top-border">
-
-            <h3 class="mb-30">Información general</h3>
-            <div class="row">
-                <?php
-                /**
-                 * @var $terminoCondicion \app\models\TerminoCondicion
-                 */
-                foreach ($terminosCondiciones as $index => $terminoCondicion) {
-                    if ($index >= 3) {
-                        break;
-                    }
-                    ?>
-                    <div class="col-md-4">
-                        <div class="single-defination">
-                            <h4 class="mb-20"><?= $index .'. '. $terminoCondicion->titulo ?></h4>
-                            <p><?= nl2br($terminoCondicion->texto) ?></p>
-                        </div>
-                    </div>
-                    <?php
-                }
-                ?>
-            </div>
-        </div>
-
-        <?php
-        /**
-         * @var $terminoCondicion \app\models\TerminoCondicion
-         */
-        foreach ($terminosCondiciones as $index => $terminoCondicion) {
-            if ($index < 3) continue;//img/elements/d.jpg
-            $align = ($index % 2 == 0) ? '' : 'text-right';//
-            ?>
-            <div class="section-top-border <?= $align ?>">
-                <h3 class="mb-30"><?= $index .'. '. $terminoCondicion->titulo ?></h3>
-                <div class="row">
-                    <?php
-                    if(empty($align)) {
-                        ?>
-                    <div class="col-md-3">
-                        <img src="img/Logo-2.png" alt="" class="img-fluid">
-                    </div>
-                        <?php
-                    }
-                    ?>
-                    <div class="col-md-9 mt-sm-20">
-                        <p><?= nl2br($terminoCondicion->texto) ?></p>
-                    </div>
-                    <?php
-                    if(!empty($align)) {
-                        ?>
-                        <div class="col-md-3">
-                            <img src="img/Logo-2.png" alt="" class="img-fluid">
-                        </div>
-                        <?php
-                    }
-                    ?>
-                </div>
-            </div>
-            <?php
-        }
-        ?>
-    </div>
-</div>
