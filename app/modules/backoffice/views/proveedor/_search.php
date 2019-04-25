@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'procentaje') ?>
 
-    <?= $form->field($model, 'servicio_id_servicio') ?>
+    <?= $form->field($model, 'id_servicio_disponible') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

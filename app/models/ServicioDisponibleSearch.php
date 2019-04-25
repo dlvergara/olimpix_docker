@@ -17,7 +17,7 @@ class ServicioDisponibleSearch extends ServicioDisponible
     public function rules()
     {
         return [
-            [['id_servicio_disponible', 'evento_id_evento', 'servicio_id_servicio', 'disponible', 'proveedor_id_proveedor'], 'integer'],
+            [['id_servicio_disponible', 'evento_id_evento', 'disponible'], 'integer'],
             [['fecha_inicio', 'fecha_fin', 'timestamp', 'descripcion', 'nombre', 'image_url'], 'safe'],
             [['cantidad_disponible', 'monto'], 'number'],
         ];
@@ -61,14 +61,12 @@ class ServicioDisponibleSearch extends ServicioDisponible
         $query->andFilterWhere([
             'id_servicio_disponible' => $this->id_servicio_disponible,
             'evento_id_evento' => $this->evento_id_evento,
-            'servicio_id_servicio' => $this->servicio_id_servicio,
             'fecha_inicio' => $this->fecha_inicio,
             'fecha_fin' => $this->fecha_fin,
             'disponible' => $this->disponible,
             'cantidad_disponible' => $this->cantidad_disponible,
             'timestamp' => $this->timestamp,
             'monto' => $this->monto,
-            'proveedor_id_proveedor' => $this->proveedor_id_proveedor,
         ]);
 
         $query->andFilterWhere(['like', 'descripcion', $this->descripcion])

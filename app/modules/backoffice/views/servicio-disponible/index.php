@@ -29,17 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id_servicio_disponible',
             'evento_id_evento',
-            'servicio_id_servicio',
             'fecha_inicio',
             'fecha_fin',
-            //'disponible',
+            'disponible',
             //'cantidad_disponible',
             //'timestamp',
             //'descripcion:ntext',
             //'monto',
             //'nombre',
             //'image_url:url',
-            //'proveedor_id_proveedor',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

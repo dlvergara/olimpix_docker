@@ -46,6 +46,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'direccion') ?>
 
+    <?php // echo $form->field($model, 'tipo_evento') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
