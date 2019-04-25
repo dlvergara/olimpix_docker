@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id_servicio_disponible',
             'evento_id_evento',
-            'servicio_id_servicio',
             'fecha_inicio',
             'fecha_fin',
             'disponible',
@@ -41,7 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'monto',
             'nombre',
             'image_url:url',
-            'proveedor_id_proveedor',
         ],
     ]) ?>
 

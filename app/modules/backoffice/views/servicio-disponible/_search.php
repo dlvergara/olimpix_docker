@@ -22,13 +22,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'evento_id_evento') ?>
 
-    <?= $form->field($model, 'servicio_id_servicio') ?>
-
     <?= $form->field($model, 'fecha_inicio') ?>
 
     <?= $form->field($model, 'fecha_fin') ?>
 
-    <?php // echo $form->field($model, 'disponible') ?>
+    <?= $form->field($model, 'disponible') ?>
 
     <?php // echo $form->field($model, 'cantidad_disponible') ?>
 
@@ -41,8 +39,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'nombre') ?>
 
     <?php // echo $form->field($model, 'image_url') ?>
-
-    <?php // echo $form->field($model, 'proveedor_id_proveedor') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

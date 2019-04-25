@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $id_servicio_disponible
  * @property int $evento_id_evento
- * @property int $servicio_id_servicio
  * @property string $fecha_inicio
  * @property string $fecha_fin
  * @property int $disponible
@@ -41,8 +40,8 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['evento_id_evento', 'servicio_id_servicio'], 'required'],
-            [['evento_id_evento', 'servicio_id_servicio', 'disponible'], 'integer'],
+            [['evento_id_evento'], 'required'],
+            [['evento_id_evento', 'disponible'], 'integer'],
             [['fecha_inicio', 'fecha_fin', 'timestamp'], 'safe'],
             [['cantidad_disponible', 'monto'], 'number'],
             [['descripcion'], 'string'],
@@ -60,7 +59,6 @@ class ServicioDisponible extends \yii\db\ActiveRecord
         return [
             'id_servicio_disponible' => 'Id Servicio Disponible',
             'evento_id_evento' => 'Evento Id Evento',
-            'servicio_id_servicio' => 'Servicio Id Servicio',
             'fecha_inicio' => 'Fecha Inicio',
             'fecha_fin' => 'Fecha Fin',
             'disponible' => 'Disponible',

@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'fecha_sorteo',
             //'descripcion:ntext',
             //'direccion:ntext',
+            //'tipo_evento',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
