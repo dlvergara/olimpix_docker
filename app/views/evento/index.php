@@ -41,7 +41,6 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
 <div class="whole-wrap">
     <div class="container">
         <div class="section-top-border">
-
             <h3 class="mb-30">Información general</h3>
             <div class="row">
                 <?php
@@ -55,7 +54,7 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
                     ?>
                     <div class="col-md-4">
                         <div class="single-defination">
-                            <h4 class="mb-20"><?= $index .'. '. $terminoCondicion->titulo ?></h4>
+                            <h4 class="mb-20"><?= $index . '. ' . $terminoCondicion->titulo ?></h4>
                             <p><?= nl2br($terminoCondicion->texto) ?></p>
                         </div>
                     </div>
@@ -64,47 +63,68 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
                 ?>
             </div>
         </div>
-
-        <?php
-        /**
-         * @var $terminoCondicion \app\models\TerminoCondicion
-         */
-        foreach ($terminosCondiciones as $index => $terminoCondicion) {
-            if ($index < 3) continue;//img/elements/d.jpg
-            $align = ($index % 2 == 0) ? '' : 'text-right';//
-            ?>
-            <div class="section-top-border <?= $align ?>">
-                <h3 class="mb-30"><?= $index .'. '. $terminoCondicion->titulo ?></h3>
-                <div class="row">
-                    <?php
-                    if(empty($align)) {
-                        ?>
-                    <div class="col-md-3">
-                        <img src="img/Logo-2.png" alt="" class="img-fluid">
-                    </div>
+        <a href="#" class="genric-btn primary-border circle arrow"
+           onclick="event.preventDefault(); $('#moreInfo').toggle()">Más información<span
+                    class="lnr lnr-arrow-right"></span></a>
+    </div>
+</div>
+<!-- Mas info -->
+<div class="whole-wrap" id="moreInfo" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <?php
+            /**
+             * @var $terminoCondicion \app\models\TerminoCondicion
+             */
+            foreach ($terminosCondiciones as $index => $terminoCondicion) {
+                if ($index < 3) continue;//img/elements/d.jpg
+                $align = ($index % 2 == 0) ? 'text-right' : '';
+                ?>
+                <div class="section-top-border <?= $align ?>">
+                    <h3 class="mb-30"><?= $index . '. ' . $terminoCondicion->titulo ?></h3>
+                    <div class="row">
                         <?php
-                    }
-                    ?>
+                        if (empty($align)) {
+                            ?>
+                            <!--
+                        <div class="col-md-3">
+                            <img src="img/Logo-2.png" alt="" class="img-fluid">
+                        </div> -->
+                            <?php
+                        }
+                        ?>
+                        <!--
                     <div class="col-md-9 mt-sm-20">
                         <p><?= nl2br($terminoCondicion->texto) ?></p>
                     </div>
-                    <?php
-                    if(!empty($align)) {
-                        ?>
-                        <div class="col-md-3">
-                            <img src="img/Logo-2.png" alt="" class="img-fluid">
+                    -->
+                        <div class="col-lg-12">
+                            <blockquote class="generic-blockquote">
+                                <?= nl2br($terminoCondicion->texto) ?>
+                            </blockquote>
                         </div>
                         <?php
-                    }
-                    ?>
+                        if (!empty($align)) {
+                            ?>
+                            <!--
+                            <div class="col-md-3">
+                                <img src="img/Logo-2.png" alt="" class="img-fluid">
+                            </div>
+                            -->
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <?php
-        }
-        ?>
+                <?php
+            }
+            ?>
+        </div>
+        <a href="#" class="genric-btn primary-border circle arrow"
+           onclick="event.preventDefault(); $('#moreInfo').toggle()">Menos información<span
+                    class="lnr lnr-arrow-right"></span></a>
     </div>
 </div>
-
 
 <!-- Start training Area -->
 <section class="training-area section-gap">
@@ -131,20 +151,28 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
                 }
                 if ($showService) {
                     $img = $servicioDisponible->image_url;
+                    if (empty($img)) {
+                        $img = "img/pages/tr3.jpg";
+                    }
                     ?>
                     <div class="col-lg-4 cl-md-6">
                         <div class="single-training">
                             <div class="thumb relative">
                                 <div class="overlay-bg"></div>
                                 <img class="img-fluid" src="<?= $img ?>" alt="">
-                                <a class="admission-btn" href="#">Agregar</a>
                             </div>
                             <div class="details">
                                 <div class="title justify-content-between d-flex">
                                     <h4><?= $servicioDisponible->nombre ?></h4>
                                     <p class="price">
-                                        $<?= number_format($servicioDisponible->monto, 2) ?>
+                                        $ <?= number_format($servicioDisponible->monto, 2) ?>
                                     </p>
+                                    <div class="primary-switch">
+                                        <input type="checkbox"
+                                               id="primary-switch-<?= $servicioDisponible->id_servicio_disponible ?>"
+                                               checked>
+                                        <label for="primary-switch-<?= $servicioDisponible->id_servicio_disponible ?>"></label>
+                                    </div>
                                 </div>
                                 <p>
                                     <?= $servicioDisponible->descripcion ?>
@@ -156,128 +184,6 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
                 }
             }
             ?>
-            <!--
-            <div class="col-lg-4 cl-md-6">
-                <div class="single-training">
-                    <div class="thumb relative">
-                        <div class="overlay-bg"></div>
-                        <img class="img-fluid" src="img/pages/tr1.jpg" alt="">
-                        <a class="admission-btn" href="#">Admission Going on</a>
-                    </div>
-                    <div class="details">
-                        <div class="title justify-content-between d-flex">
-                            <a href="#"><h4>Bsc in Film & Media</h4></a>
-                            <p class="price">
-                                $2500
-                            </p>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 cl-md-6">
-                <div class="single-training">
-                    <div class="thumb relative">
-                        <div class="overlay-bg"></div>
-                        <img class="img-fluid" src="img/pages/tr2.jpg" alt="">
-                        <a class="admission-btn" href="#">Admission Going on</a>
-                    </div>
-                    <div class="details">
-                        <div class="title justify-content-between d-flex">
-                            <a href="#"><h4>Bsc in Film & Media</h4></a>
-                            <p class="price">
-                                $2500
-                            </p>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 cl-md-6">
-                <div class="single-training">
-                    <div class="thumb relative">
-                        <div class="overlay-bg"></div>
-                        <img class="img-fluid" src="img/pages/tr3.jpg" alt="">
-                        <a class="admission-btn" href="#">Admission Going on</a>
-                    </div>
-                    <div class="details">
-                        <div class="title justify-content-between d-flex">
-                            <a href="#"><h4>Bsc in Film & Media</h4></a>
-                            <p class="price">
-                                $2500
-                            </p>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 cl-md-6">
-                <div class="single-training">
-                    <div class="thumb relative">
-                        <div class="overlay-bg"></div>
-                        <img class="img-fluid" src="img/pages/tr4.jpg" alt="">
-                        <a class="admission-btn" href="#">Admission Going on</a>
-                    </div>
-                    <div class="details">
-                        <div class="title justify-content-between d-flex">
-                            <a href="#"><h4>Bsc in Film & Media</h4></a>
-                            <p class="price">
-                                $2500
-                            </p>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 cl-md-6">
-                <div class="single-training">
-                    <div class="thumb relative">
-                        <div class="overlay-bg"></div>
-                        <img class="img-fluid" src="img/pages/tr5.jpg" alt="">
-                        <a class="admission-btn" href="#">Admission Going on</a>
-                    </div>
-                    <div class="details">
-                        <div class="title justify-content-between d-flex">
-                            <a href="#"><h4>Bsc in Film & Media</h4></a>
-                            <p class="price">
-                                $2500
-                            </p>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 cl-md-6">
-                <div class="single-training">
-                    <div class="thumb relative">
-                        <div class="overlay-bg"></div>
-                        <img class="img-fluid" src="img/pages/tr6.jpg" alt="">
-                        <a class="admission-btn" href="#">Admission Going on</a>
-                    </div>
-                    <div class="details">
-                        <div class="title justify-content-between d-flex">
-                            <a href="#"><h4>Bsc in Film & Media</h4></a>
-                            <p class="price">
-                                $2500
-                            </p>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        </p>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
     </div>
 </section>
