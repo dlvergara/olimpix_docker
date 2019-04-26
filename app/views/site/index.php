@@ -390,60 +390,161 @@ Federación Ecustre Internacional.
 			</section>
 			<!-- End latest-blog Area -->
 
-			<!-- Start gallery Area -->
+
+ <!--Carrusel 
+
+
+
+  <!-- Indicators 
+
+<section class="carousel slide">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+  <!-- The slideshow 
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/g1.jpg" alt="Los Angeles">
+    </div>
+    <div class="carousel-item">
+      <img src="img/g2.jpg" alt="Chicago">
+    </div>
+    <div class="carousel-item">
+      <img src="img/g3.jpg" alt="New York">
+    </div>
+  </div>
+
+  <!-- Left and right controls 
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+    </div>
+</section>
+
+
+        End Carrusel -->
+
+
+<!-- Start gallery Area 
+
+
+<section class="gallery-area">
+<div class="container-fluid">
+    <div class="row no-padding">
+   
+<div class="row"> 
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <img src="img/g1.jpg"  class="img-fluid">
+    <img src="img/g2.jpg"  class="img-fluid">
+    <img src="img/g3.jpg"  class="img-fluid">
+    <img src="img/g4.jpg"  class="img-fluid">
+    <img src="img/g5.jpg"  class="img-fluid">
+    <img src="img/g6.jpg"  class="img-fluid">
+    
+  </div>
+<!--  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <img src="https://www.w3schools.com/w3images/underwater.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/ocean.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/wedding.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/mountainskies.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/rocks.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/underwater.jpg"  class="img-fluid">
+  </div>  
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <img src="https://www.w3schools.com/w3images/wedding.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/rocks.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/falls2.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/paris.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/nature.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/mist.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/paris.jpg"  class="img-fluid">
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+    <img src="https://www.w3schools.com/w3images/underwater.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/ocean.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/wedding.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/mountainskies.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/rocks.jpg"  class="img-fluid">
+    <img src="https://www.w3schools.com/w3images/underwater.jpg"  class="img-fluid">
+  </div> 
+</div>
+</div>
+
+</section> -->
+
+<!-- End gallery Area -->
+
+			<!-- Start gallery Area 
 			<section class="gallery-area">
 				<div class="container-fluid">
 					<div class="row no-padding">
                         <div class="active-gallery owl-carousel owl-theme owl-loaded">
-				
-                            
-						<div class="active-gallery">
-							<div class="item single-gallery">
 							    <div class="thumb">
-							        <img src="img/g1.jpg" alt="">
-							        <div class="align-items-center justify-content-center d-flex">
+                                      <img src="img/g1.jpg" alt="">
+                                      <img src="img/g2.jpg" alt="">
+                                      <img src="img/g3.jpg" alt="">
+                                      <img src="img/g4.jpg" alt="">
+                                      <img src="img/g5.jpg" alt="">
+                                      <img src="img/g6.jpg" alt="">
+							       
 							        </div>
 							    </div>
 							</div>
-							<div class="item single-gallery">
-							    <div class="thumb">
-							        <img src="img/g2.jpg" alt="">
-							        <div class="align-items-center justify-content-center d-flex">
-							        </div>
-							    </div>
-							</div>
-							<div class="item single-gallery">
-							    <div class="thumb">
-							        <img src="img/g3.jpg" alt="">
-							        <div class="align-items-center justify-content-center d-flex">
-							        </div>
-							    </div>
-							</div>
-							<div class="item single-gallery">
-							    <div class="thumb">
-							        <img src="img/g4.jpg" alt="">
-							        <div class="align-items-center justify-content-center d-flex">
-							        </div>
-							    </div>
-							</div>
-							<div class="item single-gallery">
-							    <div class="thumb">
-							        <img src="img/g5.jpg" alt="">
-							        <div class="align-items-center justify-content-center d-flex">
-							        </div>
-							    </div>
-							</div>
-							<div class="item single-gallery">
-							    <div class="thumb">
-							        <img src="img/g6.jpg" alt="">
-							        <div class="align-items-center justify-content-center d-flex">
-							        </div>
-							    </div>
-							</div>
-
-						</div>
-					</div>
+						
 				</div>
-                </div>
+                
 			</section> 
+
 			<!-- End gallery Area -->
+
+<section class="gallery-block grid-gallery">
+            <div class="container">
+                <div class="heading">
+                    <h2>Gallery</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 item">
+                        <a class="lightbox" href="img/g1.jpg">
+                            <img class="img-fluid image scale-on-hover" src="img/g1.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <a class="lightbox" href="img/g1.jpg">
+                            <img class="img-fluid image scale-on-hover" src="img/g2.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <a class="lightbox" href="img/g3.jpg">
+                            <img class="img-fluid image scale-on-hover" src="img/g3.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <a class="lightbox" href="img/g4.jpg">
+                            <img class="img-fluid image scale-on-hover" src="img/g4.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <a class="lightbox" href="img/g5.jpg">
+                            <img class="img-fluid image scale-on-hover" src="img/g5.jpg">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <a class="lightbox" href="img/g6.jpg">
+                            <img class="img-fluid image scale-on-hover" src="img/g6.jpg">
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+        <script>
+            baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
+        </script>
