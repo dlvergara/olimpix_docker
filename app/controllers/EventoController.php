@@ -3,14 +3,17 @@
 namespace app\controllers;
 
 use app\models\Evento;
+use app\models\ReservaForm;
 use yii\web\NotFoundHttpException;
 
 class EventoController extends \yii\web\Controller
 {
     public function actionIndex($evento)
     {
+        $formModel = new ReservaForm();
+
         $model = $this->findModel($evento);
-        return $this->render('index', ['model' => $model]);
+        return $this->render('index', ['model' => $model, 'formModel' => $formModel]);
     }
 
     /**
