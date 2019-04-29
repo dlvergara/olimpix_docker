@@ -17,7 +17,7 @@ class ServicioDisponibleSearch extends ServicioDisponible
     public function rules()
     {
         return [
-            [['id_servicio_disponible', 'evento_id_evento', 'disponible'], 'integer'],
+            [['id_servicio_disponible', 'evento_id_evento', 'disponible', 'prueba_salto_id_prueba'], 'integer'],
             [['fecha_inicio', 'fecha_fin', 'timestamp', 'descripcion', 'nombre', 'image_url'], 'safe'],
             [['cantidad_disponible', 'monto'], 'number'],
         ];
@@ -67,6 +67,7 @@ class ServicioDisponibleSearch extends ServicioDisponible
             'cantidad_disponible' => $this->cantidad_disponible,
             'timestamp' => $this->timestamp,
             'monto' => $this->monto,
+            'prueba_salto_id_prueba' => $this->prueba_salto_id_prueba,
         ]);
 
         $query->andFilterWhere(['like', 'descripcion', $this->descripcion])

@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image_url')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'prueba_salto_id_prueba')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
