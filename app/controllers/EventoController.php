@@ -14,6 +14,11 @@ class EventoController extends \yii\web\Controller
     protected $models;
     protected $validModels;
 
+    /**
+     * @param $evento
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionIndex($evento)
     {
         $model = $this->findModel($evento);
@@ -25,14 +30,16 @@ class EventoController extends \yii\web\Controller
      */
     public function actionReservar($evento)
     {
+        $sumaMonto = 0;
         $eventoModel = $this->findModel($evento);
-        if (Yii::$app->request->post() && $this->validarReserva()) {
+        if (Yii::$app->request->isPost && $this->validarReserva()) {
             $sumaMonto = 0;
             /* @var $validModel ReservaForm */
             foreach ($this->validModels as $index => $validModel) {
                 $sumaMonto += $validModel->getServicioDisponible()->monto * $validModel->cantidad;
             }
         }
+
         return $this->render('reservar-servicios', ['model' => $eventoModel, 'formModels' => $this->models, 'subtotal' => $sumaMonto]);
     }
 
@@ -43,6 +50,7 @@ class EventoController extends \yii\web\Controller
     {
         $this->models = [];
         $postData = Yii::$app->request->post();
+
         foreach ($postData['ReservaForm'] as $index => $postDatum) {
             $formModel = new ReservaForm();
             $formModel->cantidad = $postDatum['cantidad'];

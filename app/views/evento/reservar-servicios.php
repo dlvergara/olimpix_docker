@@ -132,11 +132,18 @@ if (count($servicios) > 0) {
                 }
                 ?>
             </div>
+            <?php
+            if( !Yii::$app->request->isPost ) {
+                ?>
+            <div class="row">
+                    <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
+            </div>
+                <?php
+            }
+            ?>
         </div>
         <?php
-        if( !Yii::$app->request->isPost ) {
-            echo Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']);
-        } else {
+        if( Yii::$app->request->isPost ) {
         ?>
         <div class="container" >
             <div class="row">

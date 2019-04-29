@@ -12,6 +12,7 @@ use Yii;
  * @property string $full_name
  * @property string $email
  * @property int $order_id_order
+ * @property string $phone
  *
  * @property Order $orderIdOrder
  */
@@ -35,6 +36,7 @@ class OrderInfo extends \yii\db\ActiveRecord
             [['full_name', 'order_id_order'], 'required'],
             [['order_id_order'], 'integer'],
             [['email'], 'string', 'max' => 45],
+            [['phone'], 'string', 'max' => 15],
             [['order_id_order'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id_order' => 'id_order']],
         ];
     }
@@ -50,6 +52,7 @@ class OrderInfo extends \yii\db\ActiveRecord
             'full_name' => 'Full Name',
             'email' => 'Email',
             'order_id_order' => 'Order Id Order',
+            'phone' => 'Phone',
         ];
     }
 

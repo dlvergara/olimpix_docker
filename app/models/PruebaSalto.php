@@ -26,9 +26,10 @@ use Yii;
  * @property Premio[] $premios
  * @property Evento $eventoIdEvento
  * @property Pista $pistaIdPista
- * @property Categoria $categoriaIdCategoria
+ * @property CategoriaPrueba $categoriaIdCategoria
  * @property ClasificacionJinete $clasificacionJineteIdClasificacionJinete
  * @property ResultadoSalto[] $resultadoSaltos
+ * @property ServicioDisponible[] $servicioDisponibles
  */
 class PruebaSalto extends \yii\db\ActiveRecord
 {
@@ -54,7 +55,7 @@ class PruebaSalto extends \yii\db\ActiveRecord
             [['presidente_jurado'], 'string', 'max' => 250],
             [['evento_id_evento'], 'exist', 'skipOnError' => true, 'targetClass' => Evento::className(), 'targetAttribute' => ['evento_id_evento' => 'id_evento']],
             [['pista_id_pista'], 'exist', 'skipOnError' => true, 'targetClass' => Pista::className(), 'targetAttribute' => ['pista_id_pista' => 'id_pista']],
-            [['categoria_id_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_id_categoria' => 'id_categoria']],
+            [['categoria_id_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => CategoriaPrueba::className(), 'targetAttribute' => ['categoria_id_categoria' => 'id_categoria_prueba']],
             [['clasificacion_jinete_id_clasificacion_jinete'], 'exist', 'skipOnError' => true, 'targetClass' => ClasificacionJinete::className(), 'targetAttribute' => ['clasificacion_jinete_id_clasificacion_jinete' => 'id_clasificacion_jinete']],
         ];
     }
@@ -112,7 +113,7 @@ class PruebaSalto extends \yii\db\ActiveRecord
      */
     public function getCategoriaIdCategoria()
     {
-        return $this->hasOne(Categoria::className(), ['id_categoria' => 'categoria_id_categoria']);
+        return $this->hasOne(CategoriaPrueba::className(), ['id_categoria_prueba' => 'categoria_id_categoria']);
     }
 
     /**
@@ -129,5 +130,13 @@ class PruebaSalto extends \yii\db\ActiveRecord
     public function getResultadoSaltos()
     {
         return $this->hasMany(ResultadoSalto::className(), ['id_prueba' => 'id_prueba']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioDisponibles()
+    {
+        return $this->hasMany(ServicioDisponible::className(), ['prueba_salto_id_prueba' => 'id_prueba']);
     }
 }
