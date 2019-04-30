@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id_prueba',
-            'categoria',
+            'nombre',
             'fecha',
             'distancia',
             'tiempo_acordado',
@@ -43,7 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'evento_id_evento',
             'pista_id_pista',
             'categoria_id_categoria',
-            'clasificacion_jinete_id_clasificacion_jinete',
         ],
     ]) ?>
 

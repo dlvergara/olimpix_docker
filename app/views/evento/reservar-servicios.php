@@ -11,7 +11,9 @@ use yii\widgets\ActiveForm;
  * @var $formModels array
  * @var $subtotal float
  */
-$servicios = $model->getServicioDisponibles()->all();
+$servicios = $model->getServicioDisponibles()->where(['prueba_salto_id_prueba' => null])->all();
+$serviciosPrueba = $model->getServicioDisponibles()->joinWith('pruebaSaltoIdPrueba')->where(['not', ['prueba_salto_id_prueba' => null]])->orderBy('prueba_salto.fecha')->all();
+
 $subtotal = isset($subtotal) ? $subtotal : 0;
 $postUrl = 'evento/reservar';
 if( Yii::$app->request->isPost ) {
@@ -132,35 +134,38 @@ if (count($servicios) > 0) {
                 }
                 ?>
             </div>
+
+            <div class="row" >
+                <?php
+                foreach ($serviciosPrueba as $index => $item) {
+                    $showService = false;
+                    $fechaInicio = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_inicio);
+                    $fechaFin = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_fin);
+                    $ahora = new DateTime();
+                    $idServicio = $servicioDisponible->id_servicio_disponible;
+                    if ($ahora->getTimestamp() >= $fechaInicio->getTimestamp()
+                        && $ahora->getTimestamp() <= $fechaFin->getTimestamp()
+                        && boolval($servicioDisponible->disponible)
+                    ) {
+                        $showService = true;
+                    }
+                        if ($showService) {
+
+                        }
+                    }
+                ?>
+            </div>
+
             <?php
             if( !Yii::$app->request->isPost ) {
                 ?>
             <div class="row">
-                    <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
+                <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
             </div>
                 <?php
             }
             ?>
         </div>
-        <?php
-        if( Yii::$app->request->isPost ) {
-        ?>
-        <div class="container" >
-            <div class="row">
-                <h4>
-                    <b>Total: </b>
-                    <span class="price">
-                        $ <?= number_format($subtotal, 2) ?>
-                    </span>
-                </h4>
-            </div>
-            <p>
-                <?= Html::submitButton('Comprar', ['class' => 'genric-btn primary e-large']) ?>
-            </p>
-        </div>
-        <?php
-        }
-        ?>
     </section>
     <!-- End training Area -->
     <?php

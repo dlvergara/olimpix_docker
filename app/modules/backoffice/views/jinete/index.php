@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PruebaSaltoSearch */
+/* @var $searchModel app\models\JineteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Prueba Saltos';
+$this->title = 'Jinetes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="prueba-salto-index">
+<div class="jinete-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Prueba Salto', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Jinete', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,20 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_prueba',
-            'nombre',
-            'fecha',
-            'distancia',
-            'tiempo_acordado',
-            //'presidente_jurado',
-            //'numero_saltos',
-            //'velocidad',
-            //'altura',
-            //'tiempo_limite',
-            //'numero_clasificados',
-            //'evento_id_evento',
-            //'pista_id_pista',
-            //'categoria_id_categoria',
+            'id_jinete',
+            'club_id_club',
+            'nombre_completo:ntext',
+            'tipo_identificacion',
+            'identificacion',
+            //'liga_id_liga',
+            //'pais_id_pais',
+            //'fecha_nacimiento',
+            //'registro_fec',
+            //'activo_fec',
+            //'activo_equi',
+            //'email:ntext',
+            //'telefono',
+            //'direccion:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

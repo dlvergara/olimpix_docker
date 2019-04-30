@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\CategoriaPrueba */
+/* @var $model app\models\CategoriaPruebaSalto */
 
 $this->title = $model->id_categoria_prueba;
-$this->params['breadcrumbs'][] = ['label' => 'Categoria Pruebas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Categoria Prueba Saltos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="categoria-prueba-view">
+<div class="categoria-prueba-salto-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id_categoria_prueba',
             'nombre',
+            'altura',
+            'valor_preventa',
+            'valor_venta',
+            'valor_posventa',
         ],
     ]) ?>
 

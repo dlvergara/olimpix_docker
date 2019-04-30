@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\CategoriaPruebaSearch */
+/* @var $model app\models\CategoriaPruebaSaltoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="categoria-prueba-search">
+<div class="categoria-prueba-salto-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -21,6 +21,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'id_categoria_prueba') ?>
 
     <?= $form->field($model, 'nombre') ?>
+
+    <?= $form->field($model, 'altura') ?>
+
+    <?= $form->field($model, 'valor_preventa') ?>
+
+    <?= $form->field($model, 'valor_venta') ?>
+
+    <?php // echo $form->field($model, 'valor_posventa') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

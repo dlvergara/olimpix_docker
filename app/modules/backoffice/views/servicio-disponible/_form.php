@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\ServicioDisponible */
 /* @var $form yii\widgets\ActiveForm */
+$pruebaSalto = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->all(),'id_prueba', 'nombre');
 ?>
 
 <div class="servicio-disponible-form">
@@ -32,7 +33,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image_url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'prueba_salto_id_prueba')->textInput() ?>
+    <?= $form->field($model, 'prueba_salto_id_prueba')->dropDownList($pruebaSalto) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

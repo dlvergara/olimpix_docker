@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Evento;
 use app\models\LoginForm;
 use app\models\ReservaForm;
+use app\models\ReservaJineteForm;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\widgets\ActiveForm;
@@ -41,6 +42,18 @@ class EventoController extends \yii\web\Controller
         }
 
         return $this->render('reservar-servicios', ['model' => $eventoModel, 'formModels' => $this->models, 'subtotal' => $sumaMonto]);
+    }
+
+    /**
+     * @param $evento
+     */
+    public function actionSearchJinete($evento)
+    {
+        $eventoModel = $this->findModel($evento);
+        if( Yii::$app->request->isPost ) {
+
+        }
+        return $this->render('index', ['model' => $model, 'formaJinete' => $formaJinete]);
     }
 
     /**

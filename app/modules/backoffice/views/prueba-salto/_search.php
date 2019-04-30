@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_prueba') ?>
 
-    <?= $form->field($model, 'categoria') ?>
+    <?= $form->field($model, 'nombre') ?>
 
     <?= $form->field($model, 'fecha') ?>
 
@@ -45,8 +45,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'pista_id_pista') ?>
 
     <?php // echo $form->field($model, 'categoria_id_categoria') ?>
-
-    <?php // echo $form->field($model, 'clasificacion_jinete_id_clasificacion_jinete') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

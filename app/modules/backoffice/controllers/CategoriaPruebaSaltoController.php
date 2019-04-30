@@ -3,16 +3,16 @@
 namespace app\modules\backoffice\controllers;
 
 use Yii;
-use app\models\PruebaSalto;
-use app\models\PruebaSaltoSearch;
+use app\models\CategoriaPruebaSalto;
+use app\models\CategoriaPruebaSaltoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PruebaSaltoController implements the CRUD actions for PruebaSalto model.
+ * CategoriaPruebaSaltoController implements the CRUD actions for CategoriaPruebaSalto model.
  */
-class PruebaSaltoController extends Controller
+class CategoriaPruebaSaltoController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class PruebaSaltoController extends Controller
     }
 
     /**
-     * Lists all PruebaSalto models.
+     * Lists all CategoriaPruebaSalto models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PruebaSaltoSearch();
+        $searchModel = new CategoriaPruebaSaltoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PruebaSaltoController extends Controller
     }
 
     /**
-     * Displays a single PruebaSalto model.
+     * Displays a single CategoriaPruebaSalto model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,19 +58,16 @@ class PruebaSaltoController extends Controller
     }
 
     /**
-     * Creates a new PruebaSalto model.
+     * Creates a new CategoriaPruebaSalto model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PruebaSalto();
-        if ($model->load(Yii::$app->request->post())) {
-            var_dump( \yii\base\Model::loadMultiple($model, Yii::$app->request->post()) ); exit;
-            if( $model->save() ) {
+        $model = new CategoriaPruebaSalto();
 
-            }
-            return $this->redirect(['view', 'id' => $model->id_prueba]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_categoria_prueba]);
         }
 
         return $this->render('create', [
@@ -79,7 +76,7 @@ class PruebaSaltoController extends Controller
     }
 
     /**
-     * Updates an existing PruebaSalto model.
+     * Updates an existing CategoriaPruebaSalto model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -90,7 +87,7 @@ class PruebaSaltoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_prueba]);
+            return $this->redirect(['view', 'id' => $model->id_categoria_prueba]);
         }
 
         return $this->render('update', [
@@ -99,7 +96,7 @@ class PruebaSaltoController extends Controller
     }
 
     /**
-     * Deletes an existing PruebaSalto model.
+     * Deletes an existing CategoriaPruebaSalto model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,15 +110,15 @@ class PruebaSaltoController extends Controller
     }
 
     /**
-     * Finds the PruebaSalto model based on its primary key value.
+     * Finds the CategoriaPruebaSalto model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PruebaSalto the loaded model
+     * @return CategoriaPruebaSalto the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PruebaSalto::findOne($id)) !== null) {
+        if (($model = CategoriaPruebaSalto::findOne($id)) !== null) {
             return $model;
         }
 

@@ -17,8 +17,8 @@ class PruebaSaltoSearch extends PruebaSalto
     public function rules()
     {
         return [
-            [['id_prueba', 'distancia', 'numero_saltos', 'numero_clasificados', 'evento_id_evento', 'pista_id_pista', 'categoria_id_categoria', 'clasificacion_jinete_id_clasificacion_jinete'], 'integer'],
-            [['categoria', 'fecha', 'presidente_jurado'], 'safe'],
+            [['id_prueba', 'distancia', 'numero_saltos', 'numero_clasificados', 'evento_id_evento', 'pista_id_pista', 'categoria_id_categoria'], 'integer'],
+            [['nombre', 'fecha', 'presidente_jurado'], 'safe'],
             [['tiempo_acordado', 'velocidad', 'altura', 'tiempo_limite'], 'number'],
         ];
     }
@@ -71,10 +71,9 @@ class PruebaSaltoSearch extends PruebaSalto
             'evento_id_evento' => $this->evento_id_evento,
             'pista_id_pista' => $this->pista_id_pista,
             'categoria_id_categoria' => $this->categoria_id_categoria,
-            'clasificacion_jinete_id_clasificacion_jinete' => $this->clasificacion_jinete_id_clasificacion_jinete,
         ]);
 
-        $query->andFilterWhere(['like', 'categoria', $this->categoria])
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
             ->andFilterWhere(['like', 'presidente_jurado', $this->presidente_jurado]);
 
         return $dataProvider;

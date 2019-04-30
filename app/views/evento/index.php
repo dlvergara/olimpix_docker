@@ -2,10 +2,9 @@
 /* @var $this yii\web\View */
 /* @var $model \app\models\Evento */
 /* @var $formModel \app\models\ReservaForm */
-
 /* @var $form yii\widgets\ActiveForm */
 
-use yii\widgets\Pjax;
+use yii\helpers\Html;use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
 
 $date = DateTime::createFromFormat("Y-m-d H:i:s", $model->fecha_inicio);
@@ -135,6 +134,19 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
 Pjax::begin([
     //'enablePushState' => false,
 ]);
+
+/*
+$form = ActiveForm::begin([
+    'options' => ['data' => ['pjax' => true]],
+    'action' => Yii::$app->getUrlManager()->createUrl(['evento/search-jinete', 'evento' => $model->id_evento]),
+]);
+
+echo $form->field($formaJinete, 'identificacion_jinete')->textInput();
+echo $form->field($formaJinete, 'identificacion_caballo')->textInput();
+echo Html::submitButton('Buscar', ['class' => 'genric-btn primary e-large']);
+
+ActiveForm::end();
+*/
 
 echo $this->render('reservar-servicios', ['model' => $model, 'formModels' => []]);
 

@@ -19,7 +19,6 @@ use Yii;
  * @property string $altura_salto_max
  *
  * @property DisciplinaHasJinete[] $disciplinaHasJinetes
- * @property PruebaSalto[] $pruebaSaltos
  */
 class ClasificacionJinete extends \yii\db\ActiveRecord
 {
@@ -69,13 +68,5 @@ class ClasificacionJinete extends \yii\db\ActiveRecord
     public function getDisciplinaHasJinetes()
     {
         return $this->hasMany(DisciplinaHasJinete::className(), ['id_clasificacion_jinete' => 'id_clasificacion_jinete']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPruebaSaltos()
-    {
-        return $this->hasMany(PruebaSalto::className(), ['clasificacion_jinete_id_clasificacion_jinete' => 'id_clasificacion_jinete']);
     }
 }
