@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'monto',
             'nombre',
             'image_url:url',
+            'prueba_salto_id_prueba',
         ],
     ]) ?>
 

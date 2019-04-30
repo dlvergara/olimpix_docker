@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ServicioDisponibleSearch */
+/* @var $searchModel app\models\PruebaSaltoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Servicio Disponibles';
+$this->title = 'Prueba Saltos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="servicio-disponible-index">
+<div class="prueba-salto-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Servicio Disponible', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Prueba Salto', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,18 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_servicio_disponible',
-            'evento_id_evento',
-            'fecha_inicio',
-            'fecha_fin',
-            'disponible',
-            //'cantidad_disponible',
-            //'timestamp',
-            //'descripcion:ntext',
-            //'monto',
-            //'nombre',
-            //'image_url:url',
-            //'prueba_salto_id_prueba',
+            'id_prueba',
+            'nombre',
+            'fecha',
+            'distancia',
+            'tiempo_acordado',
+            //'presidente_jurado',
+            //'numero_saltos',
+            //'velocidad',
+            //'altura',
+            //'tiempo_limite',
+            //'numero_clasificados',
+            //'evento_id_evento',
+            //'pista_id_pista',
+            //'categoria_id_categoria',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

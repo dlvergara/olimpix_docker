@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Evento;
 use app\models\LoginForm;
 use app\models\ReservaForm;
+use app\models\ReservaJineteForm;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\widgets\ActiveForm;
@@ -14,6 +15,11 @@ class EventoController extends \yii\web\Controller
     protected $models;
     protected $validModels;
 
+    /**
+     * @param $evento
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionIndex($evento)
     {
         $model = $this->findModel($evento);
@@ -25,15 +31,29 @@ class EventoController extends \yii\web\Controller
      */
     public function actionReservar($evento)
     {
+        $sumaMonto = 0;
         $eventoModel = $this->findModel($evento);
-        if (Yii::$app->request->post() && $this->validarReserva()) {
+        if (Yii::$app->request->isPost && $this->validarReserva()) {
             $sumaMonto = 0;
             /* @var $validModel ReservaForm */
             foreach ($this->validModels as $index => $validModel) {
                 $sumaMonto += $validModel->getServicioDisponible()->monto * $validModel->cantidad;
             }
         }
+
         return $this->render('reservar-servicios', ['model' => $eventoModel, 'formModels' => $this->models, 'subtotal' => $sumaMonto]);
+    }
+
+    /**
+     * @param $evento
+     */
+    public function actionSearchJinete($evento)
+    {
+        $eventoModel = $this->findModel($evento);
+        if( Yii::$app->request->isPost ) {
+
+        }
+        return $this->render('index', ['model' => $model, 'formaJinete' => $formaJinete]);
     }
 
     /**
@@ -43,6 +63,7 @@ class EventoController extends \yii\web\Controller
     {
         $this->models = [];
         $postData = Yii::$app->request->post();
+
         foreach ($postData['ReservaForm'] as $index => $postDatum) {
             $formModel = new ReservaForm();
             $formModel->cantidad = $postDatum['cantidad'];

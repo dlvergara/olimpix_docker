@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "prueba_salto".
  *
  * @property int $id_prueba
- * @property string $categoria
+ * @property string $nombre
  * @property string $fecha
  * @property int $distancia
  * @property string $tiempo_acordado
@@ -21,14 +21,13 @@ use Yii;
  * @property int $evento_id_evento
  * @property int $pista_id_pista
  * @property int $categoria_id_categoria
- * @property int $clasificacion_jinete_id_clasificacion_jinete
  *
  * @property Premio[] $premios
  * @property Evento $eventoIdEvento
  * @property Pista $pistaIdPista
- * @property Categoria $categoriaIdCategoria
- * @property ClasificacionJinete $clasificacionJineteIdClasificacionJinete
+ * @property CategoriaPruebaSalto $categoriaIdCategoria
  * @property ResultadoSalto[] $resultadoSaltos
+ * @property ServicioDisponible[] $servicioDisponibles
  */
 class PruebaSalto extends \yii\db\ActiveRecord
 {
@@ -47,15 +46,14 @@ class PruebaSalto extends \yii\db\ActiveRecord
     {
         return [
             [['fecha'], 'safe'],
-            [['distancia', 'numero_saltos', 'numero_clasificados', 'evento_id_evento', 'pista_id_pista', 'categoria_id_categoria', 'clasificacion_jinete_id_clasificacion_jinete'], 'integer'],
+            [['distancia', 'numero_saltos', 'numero_clasificados', 'evento_id_evento', 'pista_id_pista', 'categoria_id_categoria'], 'integer'],
             [['tiempo_acordado', 'velocidad', 'altura', 'tiempo_limite'], 'number'],
-            [['evento_id_evento', 'pista_id_pista', 'categoria_id_categoria', 'clasificacion_jinete_id_clasificacion_jinete'], 'required'],
-            [['categoria'], 'string', 'max' => 45],
+            [['evento_id_evento', 'categoria_id_categoria'], 'required'],
+            [['nombre'], 'string', 'max' => 45],
             [['presidente_jurado'], 'string', 'max' => 250],
             [['evento_id_evento'], 'exist', 'skipOnError' => true, 'targetClass' => Evento::className(), 'targetAttribute' => ['evento_id_evento' => 'id_evento']],
             [['pista_id_pista'], 'exist', 'skipOnError' => true, 'targetClass' => Pista::className(), 'targetAttribute' => ['pista_id_pista' => 'id_pista']],
-            [['categoria_id_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_id_categoria' => 'id_categoria']],
-            [['clasificacion_jinete_id_clasificacion_jinete'], 'exist', 'skipOnError' => true, 'targetClass' => ClasificacionJinete::className(), 'targetAttribute' => ['clasificacion_jinete_id_clasificacion_jinete' => 'id_clasificacion_jinete']],
+            [['categoria_id_categoria'], 'exist', 'skipOnError' => true, 'targetClass' => CategoriaPruebaSalto::className(), 'targetAttribute' => ['categoria_id_categoria' => 'id_categoria_prueba']],
         ];
     }
 
@@ -66,7 +64,7 @@ class PruebaSalto extends \yii\db\ActiveRecord
     {
         return [
             'id_prueba' => 'Id Prueba',
-            'categoria' => 'Categoria',
+            'nombre' => 'Nombre',
             'fecha' => 'Fecha',
             'distancia' => 'Distancia',
             'tiempo_acordado' => 'Tiempo Acordado',
@@ -79,7 +77,6 @@ class PruebaSalto extends \yii\db\ActiveRecord
             'evento_id_evento' => 'Evento Id Evento',
             'pista_id_pista' => 'Pista Id Pista',
             'categoria_id_categoria' => 'Categoria Id Categoria',
-            'clasificacion_jinete_id_clasificacion_jinete' => 'Clasificacion Jinete Id Clasificacion Jinete',
         ];
     }
 
@@ -112,15 +109,7 @@ class PruebaSalto extends \yii\db\ActiveRecord
      */
     public function getCategoriaIdCategoria()
     {
-        return $this->hasOne(Categoria::className(), ['id_categoria' => 'categoria_id_categoria']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getClasificacionJineteIdClasificacionJinete()
-    {
-        return $this->hasOne(ClasificacionJinete::className(), ['id_clasificacion_jinete' => 'clasificacion_jinete_id_clasificacion_jinete']);
+        return $this->hasOne(CategoriaPruebaSalto::className(), ['id_categoria_prueba' => 'categoria_id_categoria']);
     }
 
     /**
@@ -129,5 +118,13 @@ class PruebaSalto extends \yii\db\ActiveRecord
     public function getResultadoSaltos()
     {
         return $this->hasMany(ResultadoSalto::className(), ['id_prueba' => 'id_prueba']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioDisponibles()
+    {
+        return $this->hasMany(ServicioDisponible::className(), ['prueba_salto_id_prueba' => 'id_prueba']);
     }
 }

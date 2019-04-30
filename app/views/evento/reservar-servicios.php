@@ -11,10 +11,12 @@ use yii\widgets\ActiveForm;
  * @var $formModels array
  * @var $subtotal float
  */
-$servicios = $model->getServicioDisponibles()->all();
+$servicios = $model->getServicioDisponibles()->where(['prueba_salto_id_prueba' => null])->all();
+$serviciosPrueba = $model->getServicioDisponibles()->joinWith('pruebaSaltoIdPrueba')->where(['not', ['prueba_salto_id_prueba' => null]])->orderBy('prueba_salto.fecha')->all();
+
 $subtotal = isset($subtotal) ? $subtotal : 0;
 $postUrl = 'evento/reservar';
-if( Yii::$app->request->isPost ) {
+if (Yii::$app->request->isPost) {
     $postUrl = 'evento/pagar';
 }
 
@@ -24,18 +26,17 @@ if (count($servicios) > 0) {
         'action' => Yii::$app->getUrlManager()->createUrl([$postUrl, 'evento' => $model->id_evento]),
     ]);
     ?>
-    <script type="application/javascript" >
-        function enableService(obj)
-        {
+    <script type="application/javascript">
+        function enableService(obj) {
             var objeto = $(obj);
             var id = obj.id.replace("check-", "");
-            console.log($("#reservaform-cantidad-"+id).val())
+            console.log($("#reservaform-cantidad-" + id).val())
             if (objeto.is(':checked')) {
-                $("#reservaform-cantidad-"+id).val(1);
+                $("#reservaform-cantidad-" + id).val(1);
             } else {
-                $("#reservaform-cantidad-"+id).val(0);
+                $("#reservaform-cantidad-" + id).val(0);
             }
-            $("#cantidad-"+id).toggle();
+            $("#cantidad-" + id).toggle();
         }
     </script>
     <!-- Start training Area -->
@@ -55,7 +56,7 @@ if (count($servicios) > 0) {
                     $fechaFin = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_fin);
                     $ahora = new DateTime();
                     $idServicio = $servicioDisponible->id_servicio_disponible;
-                    if( isset($formModels[$idServicio]) ) {
+                    if (isset($formModels[$idServicio])) {
                         $formModel = $formModels[$idServicio];
                     } else {
                         $formModel = new ReservaForm();
@@ -63,7 +64,7 @@ if (count($servicios) > 0) {
                     $checked = !empty($formModel->servicio) ? true : false;
                     $cantidad = !empty($formModel->servicio) ? $formModel->cantidad : 0;
                     $display = 'none';
-                    if($checked) {
+                    if ($checked) {
                         $display = 'block';
                     }
 
@@ -132,28 +133,41 @@ if (count($servicios) > 0) {
                 }
                 ?>
             </div>
-        </div>
-        <?php
-        if( !Yii::$app->request->isPost ) {
-            echo Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']);
-        } else {
-        ?>
-        <div class="container" >
+
             <div class="row">
-                <h4>
-                    <b>Total: </b>
-                    <span class="price">
-                        $ <?= number_format($subtotal, 2) ?>
-                    </span>
-                </h4>
+                <?php
+                foreach ($serviciosPrueba as $index => $item) {
+                    $showService = false;
+                    $fechaInicio = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_inicio);
+                    $fechaFin = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_fin);
+                    $ahora = new DateTime();
+                    $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->getPruebaSaltoIdPrueba()->one()->fecha);
+
+                    $idServicio = $servicioDisponible->id_servicio_disponible;
+                    if ($ahora->getTimestamp() >= $fechaInicio->getTimestamp()
+                        && $ahora->getTimestamp() <= $fechaFin->getTimestamp()
+                        && boolval($servicioDisponible->disponible)
+                    ) {
+                        $showService = true;
+                    }
+                    echo '-->'.$servicioDisponible->getPruebaSaltoIdPrueba()->one()->fecha.'<br>';
+                    if ($showService) {
+                        echo '-->' . $servicioDisponible->getPruebaSaltoIdPrueba()->one()->fecha . '<br>';
+                    }
+                }
+                ?>
             </div>
-            <p>
-                <?= Html::submitButton('Comprar', ['class' => 'genric-btn primary e-large']) ?>
-            </p>
+
+            <?php
+            if (!Yii::$app->request->isPost) {
+                ?>
+                <div class="row">
+                    <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
+                </div>
+                <?php
+            }
+            ?>
         </div>
-        <?php
-        }
-        ?>
     </section>
     <!-- End training Area -->
     <?php
