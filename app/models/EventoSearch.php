@@ -17,8 +17,8 @@ class EventoSearch extends Evento
     public function rules()
     {
         return [
-            [['id_evento', 'ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado'], 'integer'],
-            [['fecha_inicio', 'fecha_fin', 'nombre', 'referencia_ubicacion', 'url_bases_tenicas', 'fecha_cierre', 'fecha_sorteo', 'descripcion', 'direccion', 'tipo_evento'], 'safe'],
+            [['id_evento', 'ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado', 'id_tipo_evento'], 'integer'],
+            [['fecha_inicio', 'fecha_fin', 'nombre', 'referencia_ubicacion', 'url_bases_tenicas', 'fecha_cierre', 'fecha_sorteo', 'descripcion', 'direccion'], 'safe'],
         ];
     }
 
@@ -67,14 +67,14 @@ class EventoSearch extends Evento
             'fecha_cierre' => $this->fecha_cierre,
             'sorteado' => $this->sorteado,
             'fecha_sorteo' => $this->fecha_sorteo,
+            'id_tipo_evento' => $this->id_tipo_evento,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
             ->andFilterWhere(['like', 'referencia_ubicacion', $this->referencia_ubicacion])
             ->andFilterWhere(['like', 'url_bases_tenicas', $this->url_bases_tenicas])
             ->andFilterWhere(['like', 'descripcion', $this->descripcion])
-            ->andFilterWhere(['like', 'direccion', $this->direccion])
-            ->andFilterWhere(['like', 'tipo_evento', $this->tipo_evento]);
+            ->andFilterWhere(['like', 'direccion', $this->direccion]);
 
         return $dataProvider;
     }
