@@ -33,11 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php else: ?>
 
-        <p>
-            Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para contactarnos.
-            Gracias
-        </p>
-        <div class="section-top-border">
+     
+  <!--      <div class="section-top-border">
         <div class="row">
            <div class="col-lg-8 col-md-8">
                 <div class="row align-items-center justify-content-center d-flex">
@@ -65,4 +62,161 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     <?php endif; ?>
-</div>
+</div> -->
+
+<section class="booking-area section-gap relative" id="consultancy">
+    
+       
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+                    
+          
+					<div class="row justify-content-between align-items-center">
+						<div class="col-lg-6 col-md-6 booking-left">
+                              <h4>
+            Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para contactarnos.
+            Gracias
+            </h4>
+							<div class="active-review-carusel">
+								<div class="single-carusel">
+									<img src="img/r1.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<h4>Fannie Rowe</h4>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Comentarios 
+									</p>
+									<img src="img/r2.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<h4>Hulda Sutton</h4>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Comentarios 
+									</p>
+								</div>
+								<div class="single-carusel">
+									<img src="img/r1.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<h4>Fannie Rowe</h4>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Comentarios 
+									</p>
+									<img src="img/r2.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<h4>Hulda Sutton</h4>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Comentarios 
+									</p>
+								</div>
+								<div class="single-carusel">
+									<img src="img/r1.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<h4>Fannie Rowe</h4>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Comentarios 
+									</p>
+									<img src="img/r2.png" alt="">
+									<div class="title justify-content-start d-flex">
+										<h4>Hulda Sutton</h4>
+										<div class="star">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+									<p>
+										Comentarios 
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 booking-right">
+								<h4 class="mb-19">Formulario de Contacto</h4>
+                            
+                             <div class="section-top-border" class="mb-19">
+                             <div class="row" class="mb-19">
+          
+                            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+
+                                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+
+                                <?= $form->field($model, 'email') ?>
+
+                                <?= $form->field($model, 'subject') ?>
+
+                                <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+
+                                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                                    'template' => '<div class="row"><div class="col-lg-5">{image}</div><div class="col-lg-6">{input}</div></div>',
+                                ]) ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    </div>
+
+                <?php ActiveForm::end(); ?>
+   	              </div>  
+        	    </div>
+               </div>
+              </div>
+             </div>
+           
+        
+   </section>
+						<!--	<form action="#">
+									<input class="form-control" type="text" name="name" placeholder="Nombres" required>
+									<input class="form-control" type="email" name="email" placeholder="Email" required>
+									<input class="form-control" type="text" name="phone" placeholder="Número de Telefono" required>
+									<div class="input-group dates-wrap">
+										<input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Fecha y hora" type="text">
+										<div class="input-group-prepend">
+											<span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+										</div>
+									</div>
+									<textarea class="common-textarea form-control mt-10" name="message" placeholder="Mensage" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
+									<button  class="btn btn-default btn-lg btn-block text-center">¡Reservar ahora!</button>
+								</form>  
+						</div>
+					</div>
+				</div> -->
+			

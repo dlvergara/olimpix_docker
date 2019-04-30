@@ -21,7 +21,10 @@ $this->title = 'Olimpix Ecuestre';
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->
+		<!--	End banner Area -->
+
+
+
 
 			<!-- Start about-video Area -->
 			<section class="about-video-area section-gap">
@@ -38,7 +41,7 @@ $this->title = 'Olimpix Ecuestre';
 							</p>
 							<p>
 								Conoce los diferentes deportes ecuestres por modalidades reglamentadas por la 
-Federación Ecustre Internacional.
+                                Federación Ecustre Internacional.
 							</p>
 							<a class="primary-btn" href="#">Empieza Ahora</a>
 						</div>

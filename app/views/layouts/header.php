@@ -86,7 +86,10 @@ NavBar::begin([
                   <li><a href="blog-single.html">Blog Single</a></li>
                 </ul>
               </li> --> 
+                 <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
+                
                  <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
+                
             <!--  <li><a href="contact.html">Contacto</a></li> -->
             <!--    <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/elements"]) ?>">Elementos</a></li>  -->
             </ul>

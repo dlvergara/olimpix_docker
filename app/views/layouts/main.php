@@ -99,6 +99,7 @@ AppAsset::register($this);
     <script src="<?= Url::base(true) ?>/js/jquery.counterup.min.js"></script>
     <script src="<?= Url::base(true) ?>/js/mail-script.js"></script>
     <script src="<?= Url::base(true) ?>/js/main.js"></script>
+    
 
 <?php $this->endBody() ?>
 </body>
