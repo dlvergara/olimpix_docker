@@ -14,9 +14,10 @@ $this->title = 'Olimpix Ecuestre';
 							<span class="bar"></span>
 							<h1 class="text-white">
 								Disciplinas Ecuestres <br>
-								Reconocidas por la FEI
+								Reconocidas por la FEI <br>
+                                Estos son los nuevos concuros
 							</h1>
-							<a href="#" class="genric-btn">INGRESAR</a>
+							<a href="index.php?r=site%2Fevents" class="genric-btn">INSCRÍBETE</a>
 						</div>
 					</div>
 				</div>

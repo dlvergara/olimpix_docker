@@ -6,8 +6,10 @@ $this->title = 'Calendario';
 ?>
 
  <!--  <section class="upcoming-event-area section-gap">-->
+<p>
 
-<section class="upcoming-event-area section-gap">
+</p>
+<section upcoming-event-area section-gap>
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-9 pb-40 header-text text-center">
