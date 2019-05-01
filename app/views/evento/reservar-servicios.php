@@ -91,21 +91,9 @@ if (count($model->pruebaSaltos) > 0) {
     <?php
 }
 
+//RESERVA DE OTROS SERVICIOS
 if (count($servicios) > 0) {
     ?>
-    <script type="application/javascript">
-        function enableService(obj) {
-            var objeto = $(obj);
-            var id = obj.id.replace("check-", "");
-            console.log($("#reservaform-cantidad-" + id).val())
-            if (objeto.is(':checked')) {
-                $("#reservaform-cantidad-" + id).val(1);
-            } else {
-                $("#reservaform-cantidad-" + id).val(0);
-            }
-            $("#cantidad-" + id).toggle();
-        }
-    </script>
     <!-- Start training Area -->
     <section class="training-area section-gap">
         <div class="container">
@@ -213,6 +201,18 @@ if (!Yii::$app->request->isPost) {
     </div>
     <?php
 }
-
 ActiveForm::end();
 ?>
+<script type="application/javascript">
+    function enableService(obj) {
+        var objeto = $(obj);
+        var id = obj.id.replace("check-", "");
+        console.log($("#reservaform-cantidad-" + id).val())
+        if (objeto.is(':checked')) {
+            $("#reservaform-cantidad-" + id).val(1);
+        } else {
+            $("#reservaform-cantidad-" + id).val(0);
+        }
+        $("#cantidad-" + id).toggle();
+    }
+</script>
