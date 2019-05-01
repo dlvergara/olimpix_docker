@@ -87,6 +87,8 @@ NavBar::begin([
                 </ul>
               </li> --> 
                  <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
+                  
+                 <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
                 
                  <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
                 

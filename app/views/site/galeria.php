@@ -8,6 +8,11 @@ $this->title = 'Galeria';
 			<!-- Start gallery Area -->
 
 <section class="gallery-block grid-gallery">
+    
+    <h1 class="pb-10">Un vistazo a nuestra galeria</h1>
+                <p>
+                    Los mejores momentos en imagenes
+                </p>
             <div class="container">
                 <div class="heading">
                     <h2>Galleria</h2>
