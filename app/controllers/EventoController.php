@@ -18,6 +18,19 @@ class EventoController extends \yii\web\Controller
     protected $validModels;
 
     /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if (in_array($action->id, ['confirmacion'])) {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
+    /**
      * @param $evento
      * @return string
      * @throws NotFoundHttpException
@@ -70,8 +83,9 @@ class EventoController extends \yii\web\Controller
      */
     public function actionConfirmacion($evento = null, $orden = null, $ref_payco = null)
     {
-        echo '<pre>';
-        var_dump(Yii::$app->request);
+        var_dump( Yii::$app->request->csrfToken );
+
+        echo '<pre>'; var_dump( Yii::$app->request->post());
         exit;
     }
 

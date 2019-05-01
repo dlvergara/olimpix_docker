@@ -40,6 +40,12 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'notamedia\sentry\SentryTarget',
+                    'dsn' => 'https://c789a9eca7464174853b909e1a0c3176@sentry.io/1450721',
+                    'levels' => ['error', 'warning'],
+                    'context' => true // Write the context information. The default is true.
+                ],
             ],
         ],
         'db' => $db,

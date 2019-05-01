@@ -124,7 +124,11 @@ if (count($formModels) > 0) {
                 -->
 
                 <div class="row">
-                    <?= Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order]) ?>
+                    <?php
+                    $csrf = Yii::$app->request->csrfToken;
+                    $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order, ]);
+                    echo $url;
+                    ?>
                     <!-- <?= Html::submitButton('Pagar', ['class' => 'genric-btn primary e-large']) ?> -->
                     <script
                             src="https://checkout.epayco.co/checkout.js"
@@ -137,9 +141,10 @@ if (count($formModels) > 0) {
                             data-epayco-country="co"
                             data-epayco-test="true"
                             data-epayco-external="true"
-                            data-epayco-response="<?= Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order]) ?>"
+                            data-epayco-response="<?= $url ?>"
                             data-epayco-invoice="<?= $orden->id_order ?>"
-                            data-epayco-confirmation="<?= Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order]) ?>">
+                            data-epayco-confirmation="<?= $url ?>"
+                            data-epayco-extra3="<?= $csrf ?>">
                     </script>
                 </div>
             </div>
