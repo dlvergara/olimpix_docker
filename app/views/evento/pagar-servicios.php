@@ -15,7 +15,7 @@ use app\widgets\Util;
 
 $form = ActiveForm::begin([
     'options' => ['data' => ['pjax' => true]],
-    'action' => Yii::$app->getUrlManager()->createUrl(['evento-pagar', 'evento' => $model->id_evento]),
+    'action' => Yii::$app->getUrlManager()->createUrl(['evento/pagar', 'evento' => $model->id_evento]),
 ]);
 
 if (count($formModels) > 0) {
@@ -43,9 +43,25 @@ if (count($formModels) > 0) {
                         foreach ($formModels as $index => $formModel) {
                             $subtotal = floatval($formModel->getServicioDisponible()->monto) * intval($formModel->cantidad);
                             $total += $subtotal;
+                            $idServicio = $formModel->servicio;
+                            $cantidad = intval($formModel->cantidad);
+                            $checkBoxName = 'ReservaForm[' . $idServicio . '][servicio]';
                             ?>
                             <div class="table-row">
-                                <div class="serial"><?= $index ?></div>
+                                <div class="serial">
+                                    <?= $index ?>
+                                    <?php
+                                    echo $form->field( $formModel, 'servicio')->hiddenInput(['name' => $checkBoxName])->label(false);
+                                    echo $form->field($formModel, 'cantidad')
+                                        ->hiddenInput([
+                                            'name' => 'ReservaForm[' . $idServicio . '][cantidad]',
+                                            'min' => 0,
+                                            'value' => $cantidad,
+                                            'id' => 'reservaform-cantidad-' . $idServicio,
+                                        ])
+                                        ->label(false)
+                                    ?>
+                                </div>
                                 <div class="servicio"><?= $formModel->getServicioDisponible()->nombre ?></div>
                                 <div class="precio-unitario"><?= number_format($formModel->getServicioDisponible()->monto, 2, ',', '.') ?></div>
                                 <div class="cantidad"><?= $formModel->cantidad ?></div>

@@ -49,6 +49,13 @@ class EventoController extends \yii\web\Controller
         return $this->render($view, ['model' => $eventoModel, 'formModels' => $formModels, 'subtotal' => $sumaMonto]);
     }
 
+    public function actionPagar($evento)
+    {
+        echo '<pre>'; var_dump(Yii::$app->request->post()); exit;
+
+        return $this->render('pago');
+    }
+
     /**
      *
      */
