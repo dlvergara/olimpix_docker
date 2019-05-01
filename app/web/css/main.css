@@ -1106,7 +1106,12 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
 }
 
-.progress-table .table-head .serial, .progress-table .table-head .country, .progress-table .table-head .visit, .progress-table .table-head .percentage {
+.progress-table .table-head .serial, .progress-table .table-head .country, .progress-table .table-head .visit,
+.progress-table .table-head .percentage,
+.progress-table .table-head .servicio,
+.progress-table .table-head .precio-unitario,
+.progress-table .table-head .cantidad,
+.progress-table .table-head .subtotal {
   color: #222222;
   line-height: 40px;
   text-transform: uppercase;
@@ -1119,7 +1124,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
 }
 
-.progress-table .table-row .serial, .progress-table .table-row .country, .progress-table .table-row .visit, .progress-table .table-row .percentage {
+.progress-table .table-row .serial, .progress-table .table-row .country, .progress-table .table-row .visit, .progress-table .table-row .percentage, .progress-table .table-row .servicio, .progress-table .table-row .precio-unitario, .progress-table .table-row .cantidad, .progress-table .table-row .subtotal {
   display: flex;
   align-items: center;
 }
