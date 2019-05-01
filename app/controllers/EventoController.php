@@ -31,29 +31,29 @@ class EventoController extends \yii\web\Controller
      */
     public function actionReservar($evento)
     {
+        $view = 'reservar-servicios';
         $sumaMonto = 0;
         $eventoModel = $this->findModel($evento);
         if (Yii::$app->request->isPost && $this->validarReserva()) {
+            $view = 'pagar-servicios';
             $sumaMonto = 0;
             /* @var $validModel ReservaForm */
             foreach ($this->validModels as $index => $validModel) {
                 $sumaMonto += $validModel->getServicioDisponible()->monto * $validModel->cantidad;
             }
+            $formModels = $this->validModels;
+        } else {
+            $formModels = $this->models;
         }
 
-        return $this->render('reservar-servicios', ['model' => $eventoModel, 'formModels' => $this->models, 'subtotal' => $sumaMonto]);
+        return $this->render($view, ['model' => $eventoModel, 'formModels' => $formModels, 'subtotal' => $sumaMonto]);
     }
 
-    /**
-     * @param $evento
-     */
-    public function actionSearchJinete($evento)
+    public function actionPagar($evento)
     {
-        $eventoModel = $this->findModel($evento);
-        if( Yii::$app->request->isPost ) {
+        echo '<pre>'; var_dump(Yii::$app->request->post()); exit;
 
-        }
-        return $this->render('index', ['model' => $model, 'formaJinete' => $formaJinete]);
+        return $this->render('pago');
     }
 
     /**

@@ -4,6 +4,7 @@
 use app\models\ReservaForm;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\widgets\Util;
 
 /* @var $model \app\models\Evento
  * @var $form yii\widgets\ActiveForm
@@ -12,7 +13,9 @@ use yii\widgets\ActiveForm;
  * @var $subtotal float
  */
 $servicios = $model->getServicioDisponibles()->where(['prueba_salto_id_prueba' => null])->all();
-$serviciosPrueba = $model->getServicioDisponibles()->joinWith('pruebaSaltoIdPrueba')->where(['not', ['prueba_salto_id_prueba' => null]])->orderBy('prueba_salto.fecha')->all();
+
+//$serviciosPrueba = $model->getServicioDisponibles()->joinWith('pruebaSaltoIdPrueba')->where(['not', ['prueba_salto_id_prueba' => null]])->orderBy('prueba_salto.fecha')->all();
+$pruebas = $model->getPruebaSaltos()->orderBy('fecha')->all();
 
 $subtotal = isset($subtotal) ? $subtotal : 0;
 $postUrl = 'evento/reservar';
@@ -20,25 +23,79 @@ if (Yii::$app->request->isPost) {
     $postUrl = 'evento/pagar';
 }
 
-if (count($servicios) > 0) {
-    $form = ActiveForm::begin([
-        'options' => ['data' => ['pjax' => true]],
-        'action' => Yii::$app->getUrlManager()->createUrl([$postUrl, 'evento' => $model->id_evento]),
-    ]);
+$form = ActiveForm::begin([
+    'options' => ['data' => ['pjax' => true]],
+    'action' => Yii::$app->getUrlManager()->createUrl([$postUrl, 'evento' => $model->id_evento]),
+]);
+
+
+if (count($model->pruebaSaltos) > 0) {
     ?>
-    <script type="application/javascript">
-        function enableService(obj) {
-            var objeto = $(obj);
-            var id = obj.id.replace("check-", "");
-            console.log($("#reservaform-cantidad-" + id).val())
-            if (objeto.is(':checked')) {
-                $("#reservaform-cantidad-" + id).val(1);
-            } else {
-                $("#reservaform-cantidad-" + id).val(0);
-            }
-            $("#cantidad-" + id).toggle();
-        }
-    </script>
+    <!-- Start pruebas Area -->
+    <section class="training-area section-gap">
+        <div class="container">
+            <div class="row">
+                <h3 class="mb-30">Pruebas</h3>
+            </div>
+            <div class="row">
+                <?php
+                $pruebasArray = [];
+                $max = 0;
+                foreach ($model->pruebaSaltos as $index => $prueba) {
+                    $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $prueba->fecha);
+                    $fechaLlave = Util::DayName($fechaPrueba).' '.$fechaPrueba->format('d'). ' de ' . Util::DayMonth($fechaPrueba);
+                    $pruebasArray[$fechaLlave][] = $prueba;
+                    $max = max($max, count($pruebasArray[$fechaLlave]));
+                }
+
+                foreach ($pruebasArray as $index => $fechaPrueba) {
+                    ?>
+                    <div>
+                        <table border="0">
+                            <thead>
+                            <tr>
+                                <h3><?= $index ?></h3>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $conteoFilas = 0;
+                            foreach ($fechaPrueba as $i => $prueba) {
+                                ?>
+                                <tr>
+                                    <td>
+                                    <?=
+                                    $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form,'formModels' => $formModels])
+                                    ?>
+                                    </td>
+                                </tr>
+                                <?php
+                                $conteoFilas++;
+                            }
+                            for ($i = $conteoFilas; $i < $max; $i++) {
+                                ?>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+
+//RESERVA DE OTROS SERVICIOS
+if (count($servicios) > 0) {
+    ?>
     <!-- Start training Area -->
     <section class="training-area section-gap">
         <div class="container">
@@ -133,44 +190,31 @@ if (count($servicios) > 0) {
                 }
                 ?>
             </div>
-
-            <div class="row">
-                <?php
-                foreach ($serviciosPrueba as $index => $item) {
-                    $showService = false;
-                    $fechaInicio = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_inicio);
-                    $fechaFin = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->fecha_fin);
-                    $ahora = new DateTime();
-                    $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $servicioDisponible->getPruebaSaltoIdPrueba()->one()->fecha);
-
-                    $idServicio = $servicioDisponible->id_servicio_disponible;
-                    if ($ahora->getTimestamp() >= $fechaInicio->getTimestamp()
-                        && $ahora->getTimestamp() <= $fechaFin->getTimestamp()
-                        && boolval($servicioDisponible->disponible)
-                    ) {
-                        $showService = true;
-                    }
-                    echo '-->'.$servicioDisponible->getPruebaSaltoIdPrueba()->one()->fecha.'<br>';
-                    if ($showService) {
-                        echo '-->' . $servicioDisponible->getPruebaSaltoIdPrueba()->one()->fecha . '<br>';
-                    }
-                }
-                ?>
-            </div>
-
-            <?php
-            if (!Yii::$app->request->isPost) {
-                ?>
-                <div class="row">
-                    <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
-                </div>
-                <?php
-            }
-            ?>
         </div>
     </section>
     <!-- End training Area -->
     <?php
-    ActiveForm::end();
 }
+
+if (!Yii::$app->request->isPost) {
+    ?>
+    <div class="row">
+        <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
+    </div>
+    <?php
+}
+ActiveForm::end();
 ?>
+<script type="application/javascript">
+    function enableService(obj) {
+        var objeto = $(obj);
+        var id = obj.id.replace("check-", "");
+        console.log($("#reservaform-cantidad-" + id).val())
+        if (objeto.is(':checked')) {
+            $("#reservaform-cantidad-" + id).val(1);
+        } else {
+            $("#reservaform-cantidad-" + id).val(0);
+        }
+        $("#cantidad-" + id).toggle();
+    }
+</script>
