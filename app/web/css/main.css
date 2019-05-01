@@ -1089,7 +1089,12 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 30px;
 }
 
-.progress-table .country {
+.progress-table .cantidad {
+  width: 15.83%;
+  padding-left: 30px;
+}
+
+.progress-table .country, .progress-table .servicio, .progress-table .precio-unitario, .progress-table .subtotal {
   width: 28.07%;
 }
 

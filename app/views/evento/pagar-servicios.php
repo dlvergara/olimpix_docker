@@ -47,7 +47,7 @@ if (count($formModels) > 0) {
                             <div class="table-row">
                                 <div class="serial"><?= $index ?></div>
                                 <div class="servicio"><?= $formModel->getServicioDisponible()->nombre ?></div>
-                                <div class="precio-unitario"><?= $formModel->getServicioDisponible()->monto ?></div>
+                                <div class="precio-unitario"><?= number_format($formModel->getServicioDisponible()->monto, 2, ',', '.') ?></div>
                                 <div class="cantidad"><?= $formModel->cantidad ?></div>
                                 <div class="subtotal"><?= $subtotal ?></div>
                             </div>
