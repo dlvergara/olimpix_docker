@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\BuyerInfoForm;
 use app\models\Evento;
 use app\models\LoginForm;
 use app\models\ReservaForm;
@@ -31,22 +32,18 @@ class EventoController extends \yii\web\Controller
      */
     public function actionReservar($evento)
     {
+        $buyerInfo = new BuyerInfoForm();
         $view = 'reservar-servicios';
-        $sumaMonto = 0;
         $eventoModel = $this->findModel($evento);
+        $cargosAdicionales = $this->getCargosAdicionales();
         if (Yii::$app->request->isPost && $this->validarReserva()) {
             $view = 'pagar-servicios';
-            $sumaMonto = 0;
-            /* @var $validModel ReservaForm */
-            foreach ($this->validModels as $index => $validModel) {
-                $sumaMonto += $validModel->getServicioDisponible()->monto * $validModel->cantidad;
-            }
             $formModels = $this->validModels;
         } else {
             $formModels = $this->models;
         }
 
-        return $this->render($view, ['model' => $eventoModel, 'formModels' => $formModels, 'subtotal' => $sumaMonto]);
+        return $this->render($view, ['buyerInfo' => $buyerInfo,'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales]);
     }
 
     public function actionPagar($evento)
@@ -54,6 +51,14 @@ class EventoController extends \yii\web\Controller
         echo '<pre>'; var_dump(Yii::$app->request->post()); exit;
 
         return $this->render('pago');
+    }
+
+    /**
+     * @return array
+     */
+    private function getCargosAdicionales()
+    {
+        return [];
     }
 
     /**

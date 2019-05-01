@@ -20,7 +20,7 @@ class ReservaForm extends \yii\base\Model
         return [
             [['cantidad'], 'required'],
             [['servicio', 'cantidad'], 'integer'],
-            // define validation rules here
+            [['servicio', 'cantidad', 'name', 'phone', 'email'], 'required', 'on' => 'pagar'],
         ];
     }
 

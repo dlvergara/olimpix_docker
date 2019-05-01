@@ -11,6 +11,8 @@ use app\widgets\Util;
  * @var $formModel \app\models\ReservaForm
  * @var $formModels array
  * @var $subtotal float
+ * @var $cargosAdicionales array
+ * @var $buyerInfo \app\models\BuyerInfoForm
  */
 
 $form = ActiveForm::begin([
@@ -23,12 +25,8 @@ if (count($formModels) > 0) {
     <!-- Start training Area -->
     <section class="training-area section-gap">
         <div class="container">
-            <div class="row">
-                <h3 class="mb-30">Reservar servicios</h3>
-            </div>
-
             <div class="section-top-border">
-                <h3 class="mb-30">Table</h3>
+                <h3 class="mb-30">Reservar servicios</h3>
                 <div class="progress-table-wrap">
                     <div class="progress-table">
                         <div class="table-head">
@@ -41,8 +39,7 @@ if (count($formModels) > 0) {
                         <?php
                         $total = 0;
                         foreach ($formModels as $index => $formModel) {
-                            $subtotal = floatval($formModel->getServicioDisponible()->monto) * intval($formModel->cantidad);
-                            $total += $subtotal;
+                            $total += $formModel->subtotal;
                             $idServicio = $formModel->servicio;
                             $cantidad = intval($formModel->cantidad);
                             $checkBoxName = 'ReservaForm[' . $idServicio . '][servicio]';
@@ -65,13 +62,36 @@ if (count($formModels) > 0) {
                                 <div class="servicio"><?= $formModel->getServicioDisponible()->nombre ?></div>
                                 <div class="precio-unitario"><?= number_format($formModel->getServicioDisponible()->monto, 2, ',', '.') ?></div>
                                 <div class="cantidad"><?= $formModel->cantidad ?></div>
-                                <div class="subtotal"><?= $subtotal ?></div>
+                                <div class="subtotal"><?= number_format($formModel->subtotal,2, ',', '.') ?></div>
                             </div>
                             <?php
+                        }
+
+                        foreach ($cargosAdicionales as $index => $cargoAdicional) {
+
                         }
                         ?>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-8" >
+                        <h3>Datos del comprador</h3>
+                        <div class="mt-10">
+                            <?= $form->field( $buyerInfo, 'name')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
+                            <!--<input type="text" name="BuyerInfo[buyer_name]" placeholder="Nombre completo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre completo'" required=true class="single-input">-->
+                        </div>
+                        <div class="mt-10">
+                            <?= $form->field( $buyerInfo, 'email')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
+                            <!--<input type="email" name="BuyerInfo[email]" placeholder="Correo electronico" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Correo electronico'" required=true class="single-input">-->
+                        </div>
+                        <div class="mt-10">
+                            <?= $form->field( $buyerInfo, 'phone')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
+                            <!--<input type="phone" name="BuyerInfo[phone]" placeholder="Telefono" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Telefono'" required=true class="single-input">-->
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <?= Html::submitButton('Pagar', ['class' => 'genric-btn primary e-large']) ?>
                 </div>
