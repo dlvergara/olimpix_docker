@@ -41,32 +41,31 @@ foreach ($servicios as $index => $servicioDisponible) {
             $img = "img/pages/tr3.jpg";
         }
         ?>
-        <div class="col-lg-4 cl-md-6">
-            <div class="single-training">
-                <div class="details">
-                    <div class="title justify-content-between">
-                        <h4><?= $servicioDisponible->nombre ?></h4>
-                        <p class="price">
-                            $ <?= number_format($servicioDisponible->monto, 2) ?>
-                        </p>
-                        <div class="primary-switch">
-                            <?php
-                            $checkBoxName = 'ReservaForm[' . $idServicio . '][servicio]';
-                            $checkBoxOptions = [
-                                'id' => 'check-' . $idServicio,
-                                'value' => $idServicio,
-                                'onclick' => 'enableService(this)',
-                            ];
+        <div class="single-training">
+            <div class="details">
+                <div class="title justify-content-between">
+                    <h4><?= ucwords($prueba->nombre) . ' - ' . $servicioDisponible->nombre ?></h4>
+                    <p class="price">
+                        $ <?= number_format($servicioDisponible->monto, 2) ?>
+                    </p>
+                    <div class="primary-switch">
+                        <?php
+                        $checkBoxName = 'ReservaForm[' . $idServicio . '][servicio]';
+                        $checkBoxOptions = [
+                            'id' => 'check-' . $idServicio,
+                            'value' => $idServicio,
+                            'onclick' => 'enableService(this)',
+                        ];
 
-                            echo \yii\bootstrap\Html::checkbox(
-                                $checkBoxName, $checked, $checkBoxOptions
-                            );
-                            ?>
-                            <label for="check-<?= $idServicio ?>"></label>
-                        </div>
+                        echo \yii\bootstrap\Html::checkbox(
+                            $checkBoxName, $checked, $checkBoxOptions
+                        );
+                        ?>
+                        <label for="check-<?= $idServicio ?>"></label>
                     </div>
-                    <?= $form->errorSummary($formModel) ?>
-                    <span style="display: <?= $display ?>" id="cantidad-<?= $idServicio ?>"><br>
+                </div>
+                <?= $form->errorSummary($formModel) ?>
+                <span style="display: <?= $display ?>" id="cantidad-<?= $idServicio ?>"><br>
                                     <?=
                                     $form->field($formModel, 'cantidad')
                                         ->textInput([
@@ -79,10 +78,9 @@ foreach ($servicios as $index => $servicioDisponible) {
                                         ->label(false)
                                     ?>
                                     </span>
-                    <p>
-                        <?= $servicioDisponible->descripcion ?>
-                    </p>
-                </div>
+                <p>
+                    <?= $servicioDisponible->descripcion ?>
+                </p>
             </div>
         </div>
         <?php

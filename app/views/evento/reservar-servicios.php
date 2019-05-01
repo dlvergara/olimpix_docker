@@ -4,6 +4,7 @@
 use app\models\ReservaForm;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\widgets\Util;
 
 /* @var $model \app\models\Evento
  * @var $form yii\widgets\ActiveForm
@@ -42,17 +43,18 @@ if (count($model->pruebaSaltos) > 0) {
                 $max = 0;
                 foreach ($model->pruebaSaltos as $index => $prueba) {
                     $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $prueba->fecha);
-                    $pruebasArray[$fechaPrueba->format('l-d')][] = $prueba;
-                    $max = max($max, count($pruebasArray[$fechaPrueba->format('l-d')]));
+                    $fechaLlave = Util::DayName($fechaPrueba).' '.$fechaPrueba->format('d'). ' de ' . Util::DayMonth($fechaPrueba);
+                    $pruebasArray[$fechaLlave][] = $prueba;
+                    $max = max($max, count($pruebasArray[$fechaLlave]));
                 }
 
                 foreach ($pruebasArray as $index => $fechaPrueba) {
                     ?>
                     <div>
-                        <table border="1">
+                        <table border="0">
                             <thead>
                             <tr>
-                                <?= $index ?>
+                                <h3><?= $index ?></h3>
                             </tr>
                             </thead>
                             <tbody>
