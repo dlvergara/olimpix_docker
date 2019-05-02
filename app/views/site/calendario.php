@@ -6,15 +6,17 @@ $this->title = 'Calendario';
 ?>
 
  <!--  <section class="upcoming-event-area section-gap">-->
-<p>
+  
+<div>
+</div>
 
-</p>
-<section upcoming-event-area section-gap>
+<section class="upcoming-event-area section-gap">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-9 pb-40 header-text text-center">
-
-                    <h2 class="pb-10">Revisa el calendario Ecuestre 2019</h2>
+                    <div class="heading">
+                  
+                    <h2 class="pb-10">Revisa el calendario Ecuestre 2019 </h2>
 
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item"
@@ -24,4 +26,5 @@ $this->title = 'Calendario';
                 </div>
             </div>
         </div>
+    </div>
 </section>

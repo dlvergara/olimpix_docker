@@ -15,7 +15,7 @@ $this->title = 'Galeria';
                 </p>
             <div class="container">
                 <div class="heading">
-                    <h2>Galleria</h2>
+                    <h2>Galeria</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-lg-4 item">
