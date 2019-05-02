@@ -49,12 +49,17 @@ class EventoController extends \yii\web\Controller
         $buyerInfo = new BuyerInfoForm();
         $view = 'reservar-servicios';
         $eventoModel = $this->findModel($evento);
-        $cargosAdicionales = $this->getCargosAdicionales();
+        $cargosAdicionales = $this->getCargosAdicionales(0);
         if (Yii::$app->request->isPost && $this->validarReserva()) {
             $view = 'pagar-servicios';
             $formModels = $this->validModels;
+            $total = 0;
+            foreach ($formModels as $index => $formModel) {
+                $total += $formModel->subtotal;
+            }
 
             //$token = $buyerInfo->getShopToken();
+            $cargosAdicionales = $this->getCargosAdicionales($total);
             $buyerInfo->createOrder($formModels, $cargosAdicionales);
 
         } else {
@@ -83,28 +88,39 @@ class EventoController extends \yii\web\Controller
      */
     public function actionConfirmacion($evento = null, $orden = null, $ref_payco = null)
     {
-        var_dump( Yii::$app->request->csrfToken );
+        $post = Yii::$app->request->post();
 
-        echo '<pre>'; var_dump( Yii::$app->request->post());
+        echo '<pre>';
+        //var_dump( Yii::$app->request->csrfToken );
+        //var_dump( Yii::$app->request );
+        Yii::$app->request->csrfToken =
+        var_dump( Yii::$app->request->post());
+
         exit;
     }
 
     /**
      * @return array
      */
-    private function getCargosAdicionales()
+    private function getCargosAdicionales($total = 0)
     {
         //comision OLIMPIX
         $comisionOlimpix = new CargoAdicional();
-        $comisionOlimpix->monto = 0;
+        $comisionOlimpix->monto = 1000;
         $comisionOlimpix->concepto = "Comision Olimpix";
 
         //comision Pasarela de pago
+        //2.99 + 900 + iva
         $comisionPasarela = new CargoAdicional();
-        $comisionPasarela->monto = 0;
+        $comisionPasarela->monto = (($total * 2.99) / 100) + 900;
         $comisionPasarela->concepto = "Comision Pasarela de pagos";
+        $comisionPasarela->iva = ($comisionPasarela->monto * 19) / 100;
 
-        return [$comisionOlimpix, $comisionPasarela];
+        $comisionPasarela = new CargoAdicional();
+        $comisionPasarela->monto = (($total * 19) / 100);
+        $comisionPasarela->concepto = "Iva";
+
+        return [];
     }
 
     /**

@@ -128,6 +128,7 @@ if (count($servicios) > 0) {
                     if ($ahora->getTimestamp() >= $fechaInicio->getTimestamp()
                         && $ahora->getTimestamp() <= $fechaFin->getTimestamp()
                         && boolval($servicioDisponible->disponible)
+                        && $servicioDisponible->cantidad_disponible > 0
                     ) {
                         $showService = true;
                     }

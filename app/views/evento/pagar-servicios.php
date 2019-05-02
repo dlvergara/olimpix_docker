@@ -21,7 +21,7 @@ $form = ActiveForm::begin([
     'action' => Yii::$app->getUrlManager()->createUrl(['evento/pagar', 'evento' => $model->id_evento]),
 ]);
 ?>
-<script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
 <?php
 if (count($formModels) > 0) {
     ?>
@@ -50,14 +50,18 @@ if (count($formModels) > 0) {
                             $idServicio = $formModel->servicio;
                             $cantidad = intval($formModel->cantidad);
                             $checkBoxName = 'ReservaForm[' . $idServicio . '][servicio]';
-                            $paymentConcept = $formModel->getServicioDisponible()->pruebaSaltoIdPrueba->nombre. ' - '.$formModel->getServicioDisponible()->nombre;
-                            $paymentDescription .= $paymentConcept.', ';
+
+                            $paymentConcept = $formModel->getServicioDisponible()->nombre;
+                            if( !empty($formModel->getServicioDisponible()->pruebaSaltoIdPrueba) ) {
+                                $paymentConcept = $formModel->getServicioDisponible()->pruebaSaltoIdPrueba->nombre . ' - ' . $formModel->getServicioDisponible()->nombre;
+                            }
+                            $paymentDescription .= $paymentConcept . ', ';
                             ?>
                             <div class="table-row">
                                 <div class="serial">
                                     <?= $conteoItems ?>
                                     <?php
-                                    echo $form->field( $formModel, 'servicio')->hiddenInput(['name' => $checkBoxName])->label(false);
+                                    echo $form->field($formModel, 'servicio')->hiddenInput(['name' => $checkBoxName])->label(false);
                                     echo $form->field($formModel, 'cantidad')
                                         ->hiddenInput([
                                             'name' => 'ReservaForm[' . $idServicio . '][cantidad]',
@@ -71,7 +75,7 @@ if (count($formModels) > 0) {
                                 <div class="servicio"><?= $paymentConcept ?></div>
                                 <div class="precio-unitario"><?= number_format($formModel->getServicioDisponible()->monto, 2, ',', '.') ?></div>
                                 <div class="cantidad"><?= $formModel->cantidad ?></div>
-                                <div class="subtotal"><?= number_format($formModel->subtotal,2, ',', '.') ?></div>
+                                <div class="subtotal"><?= number_format($formModel->subtotal, 2, ',', '.') ?></div>
                             </div>
                             <?php
                             $conteoItems++;
@@ -90,7 +94,7 @@ if (count($formModels) > 0) {
                                 <div class="servicio"><?= $cargoAdicional->concepto ?></div>
                                 <div class="precio-unitario">&nbsp;</div>
                                 <div class="cantidad">&nbsp;</div>
-                                <div class="subtotal"><?= number_format($cargoAdicional->monto,2, ',', '.') ?></div>
+                                <div class="subtotal"><?= number_format($cargoAdicional->monto, 2, ',', '.') ?></div>
                             </div>
                             <?php
                             $conteoItems++;
@@ -103,7 +107,7 @@ if (count($formModels) > 0) {
                             <div class="servicio">&nbsp;</div>
                             <div class="precio-unitario">&nbsp;</div>
                             <div class="cantidad">&nbsp;</div>
-                            <div class="subtotal"><b><?= number_format($total,2, ',', '.') ?></b></div>
+                            <div class="subtotal"><b><?= number_format($total, 2, ',', '.') ?></b></div>
                         </div>
                     </div>
                 </div>
@@ -113,13 +117,13 @@ if (count($formModels) > 0) {
                     <div class="col-lg-8 col-md-8" >
                         <h3>Datos del comprador</h3>
                         <div class="mt-10">
-                            <?= $form->field( $buyerInfo, 'name')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
+                            <?= $form->field($buyerInfo, 'name')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
                         </div>
                         <div class="mt-10">
-                            <?= $form->field( $buyerInfo, 'email')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
+                            <?= $form->field($buyerInfo, 'email')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
                         </div>
                         <div class="mt-10">
-                            <?= $form->field( $buyerInfo, 'phone')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
+                            <?= $form->field($buyerInfo, 'phone')->input(['placeholder' => "Nombre completo", 'class' => 'single-input']) ?>
                         </div>
                     </div>
                 </div>
@@ -128,7 +132,7 @@ if (count($formModels) > 0) {
                 <div class="row">
                     <?php
                     $csrf = Yii::$app->request->csrfToken;
-                    $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order, ]);
+                    $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order,]);
                     echo $url;
                     ?>
                     <!-- <?= Html::submitButton('Pagar', ['class' => 'genric-btn primary e-large']) ?> -->
@@ -136,6 +140,7 @@ if (count($formModels) > 0) {
                             src="https://checkout.epayco.co/checkout.js"
                             class="epayco-button"
                             data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
+                            data-epayco-tax-base="<?= $total ?>"
                             data-epayco-amount="<?= $total ?>"
                             data-epayco-name="Pago de servicios para evento Ecuestre"
                             data-epayco-description="<?= rtrim($paymentDescription, ", ") ?>"
