@@ -30,7 +30,9 @@ if (count($formModels) > 0) {
         <div class="container">
             <div class="section-top-border">
                 <h3 class="mb-30">Reservar servicios</h3>
+              
                 <div class="progress-table-wrap">
+                    
                     <div class="progress-table">
                         <div class="table-head">
                             <div class="serial">#</div>
@@ -148,6 +150,8 @@ if (count($formModels) > 0) {
                     </script>
                 </div>
             </div>
+        
+     </div>
     </section>
     <?php
 }

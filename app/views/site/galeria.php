@@ -5,14 +5,134 @@
 $this->title = 'Galeria'; 
 ?>
 
+
+ 
+<!---Start Gallery --->
+
+<section class="gallery-block compact-gallery">
+     <h1 class="pb-10">Galeria 1</h1>
+  
+        <div class="container">
+            <div class="heading">
+            
+                
+                    <h2>Eventos recientes </h2>
+    
+            </div>
+            <div class="row no-gutters">
+                
+                
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/p2.jpg">
+                        <img class="img-fluid image" src="../img/p2.jpg">
+                        <span class="description">
+                            <span class="description-heading">Polo Club</span>
+                            <span class="description-body">Primer encuentro Ecuestre Copa Coprogreso 2019</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/p3.jpg">
+                        <img class="img-fluid image" src="../img/p3.jpg">
+                        <span class="description">
+                            <span class="description-heading">Polo Club</span>
+                            <span class="description-body">Primer encuentro Ecuestre Copa Coprogreso 2019</span>
+                        </span>
+                    </a>
+                </div>
+               
+               <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/p5.jpg">
+                        <img class="img-fluid image" src="../img/p5.jpg">
+                        <span class="description">
+                            <span class="description-heading">Polo Club</span>
+                            <span class="description-body">Primer encuentro Ecuestre Copa Coprogreso 2019</span>
+                        </span>
+                    </a>
+                </div>
+              
+              
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/p4.jpg">
+                        <img class="img-fluid image" src="../img/p4.jpg">
+                        <span class="description">
+                            <span class="description-heading">Polo Club</span>
+                            <span class="description-body">Primer encuentro Ecuestre Copa Coprogreso 2019</span>
+                        </span>
+                        </a>
+                    </div>
+                
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/h3.jpg">
+                        <img class="img-fluid image" src="../img/h3.jpg">
+                        <span class="description">
+                            <span class="description-heading">Club la Hacienda</span>
+                            <span class="description-body">Febrero 3 y 4 - Concurso de salto en la Hacienda Club, Cajicá</span>
+                        </span>
+                    </a>
+                </div>
+               
+                
+                
+                  
+                
+                 <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/h1.jpg">
+                        <img class="img-fluid image" src="../img/h1.jpg">
+                        <span class="description">
+                            <span class="description-heading">Club la Hacienda</span>
+                            <span class="description-body">Febrero 3 y 4 - Concurso de salto en la Hacienda Club, Cajicá</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/h2.jpg">
+                        <img class="img-fluid image" src="../img/h2.jpg">
+                        <span class="description">
+                            <span class="description-heading">Club la Hacienda</span>
+                            <span class="description-body">Febrero 3 y 4 - Concurso de salto en la Hacienda Club, Cajicá</span>
+                        </span>
+                    </a>
+                </div>
+                
+                  <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/h4.jpg">
+                        <img class="img-fluid image" src="../img/h4.jpg">
+                        <span class="description">
+                            <span class="description-heading">Club la Hacienda</span>
+                            <span class="description-body">Febrero 3 y 4 - Concurso de salto en la Hacienda Club, Cajicá</span>
+                        </span>
+                    </a>
+                </div>
+                
+                  <div class="col-md-6 col-lg-4 item zoom-on-hover">
+                    <a class="lightbox" href="../img/p1.jpg">
+                        <img class="img-fluid image" src="../img/p1.jpg">
+                        <span class="description">
+                            <span class="description-heading">Polo Club</span>
+                            <span class="description-body">Primer encuentro Ecuestre Copa Coprogreso 2019</span>
+                        </span>
+                    </a>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.compact-gallery', { animation: 'slideIn'});
+    </script>
+
+
+
 			<!-- Start gallery Area -->
 
 <section class="gallery-block grid-gallery">
     
-    <h1 class="pb-10">Un vistazo a nuestra galeria</h1>
-                <p>
-                    Los mejores momentos en imagenes
-                </p>
+    <h1 class="pb-10 center">Fotos que inspiran</h1>
+                
             <div class="container">
                 <div class="heading">
                     <h2>Galeria</h2>
@@ -58,3 +178,5 @@ $this->title = 'Galeria';
         </script>
 
 <!-- End gallery Area -->
+
+
