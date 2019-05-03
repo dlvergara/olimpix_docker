@@ -60,7 +60,9 @@ if (count($formModels) > 0) {
         <div class="container">
             <div class="section-top-border">
                 <h3 class="mb-30">Reservar servicios</h3>
+              
                 <div class="progress-table-wrap">
+                    
                     <div class="progress-table">
                         <div class="table-head">
                             <div class="serial">#</div>
@@ -189,6 +191,8 @@ if (count($formModels) > 0) {
                            src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png"/>
                 </div>
             </div>
+        
+     </div>
     </section>
     <?php
 }

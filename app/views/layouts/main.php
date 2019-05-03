@@ -58,8 +58,12 @@ AppAsset::register($this);
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/main.map">
     
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/grid-gallery.css">
+    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/compact-gallery.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+   
     
     <?php $this->head() ?>
 </head>
@@ -99,7 +103,7 @@ AppAsset::register($this);
     <script src="<?= Url::base(true) ?>/js/jquery.counterup.min.js"></script>
     <script src="<?= Url::base(true) ?>/js/mail-script.js"></script>
     <script src="<?= Url::base(true) ?>/js/main.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 
 <?php $this->endBody() ?>
 </body>
