@@ -199,7 +199,7 @@ if (count($servicios) > 0) {
 
 if (!Yii::$app->request->isPost) {
     ?>
-<<<<<<< HEAD
+
 
   
                 <div class="row">
@@ -210,11 +210,7 @@ if (!Yii::$app->request->isPost) {
         </div>
   
 
-=======
-    <p align="center" >
-        <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
-    </p>
->>>>>>> d710c0d3fa23606f147ed783127385ee864b8b33
+
     <?php
 }
 ActiveForm::end();

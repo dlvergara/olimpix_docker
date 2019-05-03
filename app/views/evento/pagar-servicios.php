@@ -61,8 +61,8 @@ if (count($formModels) > 0) {
     <section class="training-area section-gap">
         <div class="container">
             <div class="section-top-border">
-                <h3 class="mb-30">Reservar servicios</h3>
-              
+                <h3 class="mb-30"><b>Reservar servicios</b></h3>
+              <table class="table table-responsive">
                 <div class="progress-table-wrap">
                     
                     <div class="progress-table">
@@ -160,6 +160,8 @@ if (count($formModels) > 0) {
                     </div>
                 </div>
                 -->
+                  
+                    </table>
                 <br>
                 <p align="center" >
                     <input name="p_cust_id_cliente" type="hidden" value="<?php echo $p_cust_id_cliente ?>">
@@ -188,9 +190,12 @@ if (count($formModels) > 0) {
                     <input name="p_extra3" type="hidden" value="<?= $csrf ?>">
                     <input name="p_url_confirmation" type="hidden" value="<?= $url ?>">
                     <input name="p_url_response" type="hidden" value="<?= $url ?>">
-
-                    <input type="image" id="imagen"
-                           src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png"/>
+                  
+                  
+              
+                    
+                    <input type="image" id="imagen"  
+                           src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" />  
                 </p>
             </div>
         
