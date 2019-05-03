@@ -160,8 +160,8 @@ if (count($formModels) > 0) {
                     </div>
                 </div>
                 -->
-
-                <div class="row">
+                <br>
+                <p align="center" >
                     <input name="p_cust_id_cliente" type="hidden" value="<?php echo $p_cust_id_cliente ?>">
                     <input name="p_key" type="hidden" value="<?php echo $p_key ?>">
                     <input name="p_id_invoice" type="hidden" value="<?php echo $p_id_invoice ?>">
@@ -191,7 +191,7 @@ if (count($formModels) > 0) {
 
                     <input type="image" id="imagen"
                            src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png"/>
-                </div>
+                </p>
             </div>
         
      </div>
