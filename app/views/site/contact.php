@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
      
   <!--      <div class="section-top-border">
-        <div class="row">
+<div class="section-top-border">      
+<div class="row">
            <div class="col-lg-8 col-md-8">
                 <div class="row align-items-center justify-content-center d-flex">
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
@@ -49,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-3">{input}</div></div>',
                     ]) ?>
 
                     <div class="form-group">
@@ -171,10 +172,13 @@ $this->params['breadcrumbs'][] = $this->title;
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 booking-right">
+                            
+                           
 								<h4 class="mb-19">Formulario de Contacto</h4>
                             
-                             <div class="section-top-border" class="mb-19">
-                             <div class="row" class="mb-19">
+                             <div class="section-top-border" class="mb-100">
+                             <div class="row" class="mb-100">
+                                   <div class="center-block">
           
                             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
@@ -190,15 +194,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'template' => '<div class="row"><div class="col-lg-5">{image}</div><div class="col-lg-6">{input}</div></div>',
                                 ]) ?>
 
-                    <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                    </div>
+                                 <div class="form-group">
+                        <?= Html::submitButton('Enviar  <span class="glyphicon glyphicon-send"></span>', ['class' => 'btn btn-primary btn-block', 'name' => 'contact-button']) ?>
+                              
+                                       
+                                       </div>
 
                 <?php ActiveForm::end(); ?>
-   	              </div>  
-        	    </div>
-               </div>
+                                 </div>  
+                                </div>
+                            </div>
               </div>
+                        </div>
              </div>
            
         

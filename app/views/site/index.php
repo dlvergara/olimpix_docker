@@ -24,9 +24,6 @@ $this->title = 'Olimpix Ecuestre';
 			</section>
 		<!--	End banner Area -->
 
-
-
-
 			<!-- Start about-video Area -->
 			<section class="about-video-area section-gap">
 				<div class="container">
@@ -233,125 +230,7 @@ $this->title = 'Olimpix Ecuestre';
 			</section>
 			<!-- End price Area -->
 
-			<!-- Start booking Area -->
-			<section class="booking-area section-gap relative" id="consultancy">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">
-					<div class="row justify-content-between align-items-center">
-						<div class="col-lg-6 col-md-6 booking-left">
-							<div class="active-review-carusel">
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 booking-right">
-								<h4 class="mb-20">Formulario de Contacto</h4>
-								<form action="#">
-									<input class="form-control" type="text" name="name" placeholder="Nombres" required>
-									<input class="form-control" type="email" name="email" placeholder="Email" required>
-									<input class="form-control" type="text" name="phone" placeholder="Número de Telefono" required>
-									<div class="input-group dates-wrap">
-										<input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Fecha y hora" type="text">
-										<div class="input-group-prepend">
-											<span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-										</div>
-									</div>
-									<textarea class="common-textarea form-control mt-10" name="message" placeholder="Mensage" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-									<button  class="btn btn-default btn-lg btn-block text-center">¡Reservar ahora!</button>
-								</form>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- End booking Area -->
+		
 
 			<!-- Start latest-blog Area -->
 			<section class="latest-blog-area section-gap" id="blog">
