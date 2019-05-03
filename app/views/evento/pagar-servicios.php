@@ -21,7 +21,7 @@ $isTest = true;
 $form = ActiveForm::begin([
     'options' => [
         'data' => ['pjax' => true],
-        'target' => '_blank',
+        'target' => ($isTest) ? '_blank' : '',
     ],
     'action' => 'https://secure.payco.co/splitpayments.php',
 ]);
