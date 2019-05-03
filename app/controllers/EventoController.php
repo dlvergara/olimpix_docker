@@ -47,6 +47,8 @@ class EventoController extends \yii\web\Controller
     public function actionReservar($evento)
     {
         $buyerInfo = new BuyerInfoForm();
+        $buyerInfo->setPorcentajeIva(19);
+
         $view = 'reservar-servicios';
         $eventoModel = $this->findModel($evento);
         $cargosAdicionales = $this->getCargosAdicionales(0);
@@ -84,12 +86,13 @@ class EventoController extends \yii\web\Controller
             }
 
             $orden = $buyerInfo->createOrder($formModels, $cargosAdicionales, null, $total, $baseIva);
+            $totalIva = $buyerInfo->getTotalIva($baseIva);
 
         } else {
             $formModels = $this->models;
         }
 
-        return $this->render($view, ['buyerInfo' => $buyerInfo, 'orden' => $orden, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales, 'total' => $total, 'baseIva' => $baseIva]);
+        return $this->render($view, ['buyerInfo' => $buyerInfo, 'orden' => $orden, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales, 'total' => $total, 'baseIva' => $baseIva, 'totalIva' => $totalIva]);
     }
 
     /**

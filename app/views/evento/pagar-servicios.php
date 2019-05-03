@@ -15,12 +15,14 @@ use app\widgets\Util;
  * @var $buyerInfo \app\models\BuyerInfoForm
  * @var $orden \app\models\Order
  * @var $total float
+ * @var $baseIva float
+ * @var $totalIva float
  */
 $isTest = true;
 
 $form = ActiveForm::begin([
     'options' => [
-        'data' => ['pjax' => true],
+        //'data' => ['pjax' => true],
         'target' => ($isTest) ? '_blank' : '',
     ],
     'action' => 'https://secure.payco.co/splitpayments.php',
@@ -33,8 +35,8 @@ $p_id_invoice = time();
 $p_cust_id_cliente = '19520';
 $p_key = '52beec4a1212c2ffcc702dd565939b4c4707155b';
 $p_amount = $total;
-$p_tax = "0";
-$p_base = "0";
+$p_tax = $totalIva;
+$p_base = $baseIva;
 $p_currency_code = 'COP';
 
 $p_signature = md5($p_cust_id_cliente . '^' . $p_key . '^' . $p_id_invoice . '^' . $p_amount . '^' . $p_currency_code);
@@ -42,7 +44,7 @@ $p_signature = md5($p_cust_id_cliente . '^' . $p_key . '^' . $p_id_invoice . '^'
 $p_split_type = '02';
 $p_split_merchant_receiver = '19520';
 $p_split_primary_receiver = '19520';
-$p_split_primary_receiver_fee = '80';
+$p_split_primary_receiver_fee = $buyerInfo->getTotalComision();
 $p_split_receivers = array();
 $p_signature_receivers = "";
 $p_split_receivers[0] = array('id' => '17511', 'fee' => '20');

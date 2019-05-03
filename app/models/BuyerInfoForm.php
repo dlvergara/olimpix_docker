@@ -11,6 +11,8 @@ class BuyerInfoForm extends \yii\base\Model
     public $phone;
 
     private $paymentDistribution;
+    private $totalComision;
+    private $porcentaje_iva;
 
     /**
      * @return array
@@ -34,6 +36,11 @@ class BuyerInfoForm extends \yii\base\Model
         ];
     }
 
+    public function getTotalIva($baseIva = 0)
+    {
+        return ($baseIva * $this->getPorcentajeIva()) / 100;
+    }
+
     /**
      * @param array $reservas
      * @param array $cargosAdicionales
@@ -48,7 +55,6 @@ class BuyerInfoForm extends \yii\base\Model
 
         $order = new Order();
         $order->total_amount = floatval($total);
-        //$order->
         $order->date = date('Y-m-d H:i:s');
         $order->currency = $currency;
         $order->order_status_id_order_status = 8;
@@ -59,6 +65,7 @@ class BuyerInfoForm extends \yii\base\Model
          * @var $servicio ServicioDisponible
          */
         foreach ($reservas as $index => $reserva) {
+            $this->totalComision += floatval($reserva->montoComisionOlimpix);
             $servicio = $reserva->getServicioDisponible();
             $orderDetail = new OrderDetail();
             $orderDetail->cantidad = $reserva->cantidad;
@@ -86,4 +93,39 @@ class BuyerInfoForm extends \yii\base\Model
     {
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPaymentDistribution()
+    {
+        return $this->paymentDistribution;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalComision()
+    {
+        return $this->totalComision;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPorcentajeIva()
+    {
+        return $this->porcentaje_iva;
+    }
+
+    /**
+     * @param mixed $porcentaje_iva
+     * @return BuyerInfoForm
+     */
+    public function setPorcentajeIva($porcentaje_iva)
+    {
+        $this->porcentaje_iva = $porcentaje_iva;
+        return $this;
+    }
+
 }
