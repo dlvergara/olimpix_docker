@@ -14,15 +14,45 @@ use app\widgets\Util;
  * @var $cargosAdicionales array
  * @var $buyerInfo \app\models\BuyerInfoForm
  * @var $orden \app\models\Order
+ * @var $total float
  */
+$isTest = true;
 
 $form = ActiveForm::begin([
-    'options' => ['data' => ['pjax' => true]],
-    'action' => Yii::$app->getUrlManager()->createUrl(['evento/pagar', 'evento' => $model->id_evento]),
+    'options' => [
+        'data' => ['pjax' => true],
+        'target' => '_blank',
+    ],
+    'action' => 'https://secure.payco.co/splitpayments.php',
 ]);
-?>
-    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
-<?php
+
+$csrf = Yii::$app->request->csrfToken;
+$url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order,]);
+
+$p_id_invoice = time();
+$p_cust_id_cliente = '19520';
+$p_key = '52beec4a1212c2ffcc702dd565939b4c4707155b';
+$p_amount = $total;
+$p_tax = "0";
+$p_base = "0";
+$p_currency_code = 'COP';
+
+$p_signature = md5($p_cust_id_cliente . '^' . $p_key . '^' . $p_id_invoice . '^' . $p_amount . '^' . $p_currency_code);
+
+$p_split_type = '02';
+$p_split_merchant_receiver = '19520';
+$p_split_primary_receiver = '19520';
+$p_split_primary_receiver_fee = '80';
+$p_split_receivers = array();
+$p_signature_receivers = "";
+$p_split_receivers[0] = array('id' => '17511', 'fee' => '20');
+
+foreach ($p_split_receivers as $receiver) {
+    $p_signature_receivers .= $receiver['id'] . '^' . $receiver['fee'];
+}
+
+$p_signature_split = md5($p_split_type . '^' . $p_split_merchant_receiver . '^' . $p_split_primary_receiver . '^' . $p_split_primary_receiver_fee . '^' . $p_signature_receivers);
+
 if (count($formModels) > 0) {
     ?>
     <!-- Start training Area -->
@@ -50,7 +80,7 @@ if (count($formModels) > 0) {
                             $checkBoxName = 'ReservaForm[' . $idServicio . '][servicio]';
 
                             $paymentConcept = $formModel->getServicioDisponible()->nombre;
-                            if( !empty($formModel->getServicioDisponible()->pruebaSaltoIdPrueba) ) {
+                            if (!empty($formModel->getServicioDisponible()->pruebaSaltoIdPrueba)) {
                                 $paymentConcept = $formModel->getServicioDisponible()->pruebaSaltoIdPrueba->nombre . ' - ' . $formModel->getServicioDisponible()->nombre;
                             }
                             $paymentDescription .= $paymentConcept . ', ';
@@ -128,29 +158,35 @@ if (count($formModels) > 0) {
                 -->
 
                 <div class="row">
-                    <?php
-                    $csrf = Yii::$app->request->csrfToken;
-                    $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order,]);
-                    echo $url;
-                    ?>
-                    <!-- <?= Html::submitButton('Pagar', ['class' => 'genric-btn primary e-large']) ?> -->
-                    <script
-                            src="https://checkout.epayco.co/checkout.js"
-                            class="epayco-button"
-                            data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
-                            data-epayco-tax-base="<?= $total ?>"
-                            data-epayco-amount="<?= $total ?>"
-                            data-epayco-name="Pago de servicios para evento Ecuestre"
-                            data-epayco-description="<?= rtrim($paymentDescription, ", ") ?>"
-                            data-epayco-currency="cop"
-                            data-epayco-country="co"
-                            data-epayco-test="true"
-                            data-epayco-external="true"
-                            data-epayco-response="<?= $url ?>"
-                            data-epayco-invoice="<?= $orden->id_order ?>"
-                            data-epayco-confirmation="<?= $url ?>"
-                            data-epayco-extra3="<?= $csrf ?>">
-                    </script>
+                    <input name="p_cust_id_cliente" type="hidden" value="<?php echo $p_cust_id_cliente ?>">
+                    <input name="p_key" type="hidden" value="<?php echo $p_key ?>">
+                    <input name="p_id_invoice" type="hidden" value="<?php echo $p_id_invoice ?>">
+                    <input name="p_description" type="hidden" value="<?= rtrim($paymentDescription, ", ") ?>">
+                    <input name="p_currency_code" type="hidden" value="COP">
+                    <input name="p_amount" id="p_amount" type="hidden" value="<?php echo $p_amount ?>">
+                    <input name="p_tax" id="p_tax" type="hidden" value="0">
+                    <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
+                    <input name="p_test_request" type="hidden" value="<?= $isTest ?>">
+                    <input name="p_url_response" type="hidden" value="">
+                    <input name="p_signature" type="hidden" id="signature" value="<?php echo $p_signature ?>"/>
+                    <input name="p_split_type" type="hidden" value="<?php echo $p_split_type ?>">
+                    <input name="p_split_merchant_receiver" type="hidden"
+                           value="<?php echo $p_split_merchant_receiver ?>">
+                    <input name="p_split_primary_receiver" type="hidden"
+                           value="<?php echo $p_split_primary_receiver ?>">
+                    <input name="p_split_primary_receiver_fee" type="hidden"
+                           value="<?php echo $p_split_primary_receiver_fee ?>">
+                    <input name="p_split_receivers[0][id]" type="hidden"
+                           value="<?php echo $p_split_receivers[0]['id'] ?>">
+                    <input name="p_split_receivers[0][fee]" type="hidden"
+                           value="<?php echo $p_split_receivers[0]['fee'] ?>">
+                    <input name="p_signature_split" type="hidden" value="<?php echo $p_signature_split ?>">
+                    <input name="p_extra3" type="hidden" value="<?= $csrf ?>">
+                    <input name="p_url_confirmation" type="hidden" value="<?= $url ?>">
+                    <input name="p_url_response" type="hidden" value="<?= $url ?>">
+
+                    <input type="image" id="imagen"
+                           src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png"/>
                 </div>
             </div>
     </section>

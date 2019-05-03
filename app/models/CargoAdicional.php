@@ -18,4 +18,5 @@ class CargoAdicional extends \yii\base\Model
             [['monto', 'iva'], 'numeric'],
         ];
     }
+
 }

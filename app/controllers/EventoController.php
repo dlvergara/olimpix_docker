@@ -50,23 +50,46 @@ class EventoController extends \yii\web\Controller
         $view = 'reservar-servicios';
         $eventoModel = $this->findModel($evento);
         $cargosAdicionales = $this->getCargosAdicionales(0);
+        $total = 0;
+        $baseIva = 0;
+
         if (Yii::$app->request->isPost && $this->validarReserva()) {
             $view = 'pagar-servicios';
             $formModels = $this->validModels;
-            $total = 0;
-            foreach ($formModels as $index => $formModel) {
-                $total += $formModel->subtotal;
-            }
 
             //$token = $buyerInfo->getShopToken();
             $cargosAdicionales = $this->getCargosAdicionales($total);
-            $buyerInfo->createOrder($formModels, $cargosAdicionales);
+
+            /**
+             * @var $formModel ReservaForm
+             */
+            foreach ($formModels as $index => $formModel) {
+                $servicioModel = new \app\models\ServicioDisponibleModel();
+                $servicioModel->loadFromParentObj($formModel->getServicioDisponible())
+                    ->calcularComisionOlimpix($formModel->subtotal)
+                    ->calcularMontoIva($formModel->subtotal);
+
+                $formModel->montoComisionOlimpix = $servicioModel->getMontoComision();
+                $formModel->montoIva = $servicioModel->getMontoIva();
+
+                $total += $formModel->subtotal;
+                $baseIva += $formModel->montoIva;
+            }
+            /**
+             * @var $cargoAdicional \app\models\CargoAdicional
+             */
+            foreach ($cargosAdicionales as $index => $cargoAdicional) {
+                $total += $cargoAdicional->monto;
+                $baseIva += $cargoAdicional->iva;
+            }
+
+            $orden = $buyerInfo->createOrder($formModels, $cargosAdicionales, null, $total, $baseIva);
 
         } else {
             $formModels = $this->models;
         }
 
-        return $this->render($view, ['buyerInfo' => $buyerInfo, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales]);
+        return $this->render($view, ['buyerInfo' => $buyerInfo, 'orden' => $orden, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales, 'total' => $total, 'baseIva' => $baseIva]);
     }
 
     /**
@@ -94,7 +117,7 @@ class EventoController extends \yii\web\Controller
         //var_dump( Yii::$app->request->csrfToken );
         //var_dump( Yii::$app->request );
         Yii::$app->request->csrfToken =
-        var_dump( Yii::$app->request->post());
+            var_dump(Yii::$app->request->post());
 
         exit;
     }
