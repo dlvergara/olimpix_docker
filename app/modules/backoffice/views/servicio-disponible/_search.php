@@ -42,6 +42,14 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'prueba_salto_id_prueba') ?>
 
+    <?php // echo $form->field($model, 'proveedor_id_proveedor') ?>
+
+    <?php // echo $form->field($model, 'porcentaje_comision_olimpix') ?>
+
+    <?php // echo $form->field($model, 'monto_comision_olimpix') ?>
+
+    <?php // echo $form->field($model, 'porcentaje_iva') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

@@ -4,21 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Proveedor */
+/* @var $model app\models\OrderStatus */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="proveedor-form">
+<div class="order-status-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'monto')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'procentaje')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'id_pasarela')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Proveedor;
+use app\models\OrderStatus;
 
 /**
- * ProveedorSearch represents the model behind the search form of `app\models\Proveedor`.
+ * OrderStatusSearch represents the model behind the search form of `app\models\OrderStatus`.
  */
-class ProveedorSearch extends Proveedor
+class OrderStatusSearch extends OrderStatus
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class ProveedorSearch extends Proveedor
     public function rules()
     {
         return [
-            [['id_proveedor'], 'integer'],
-            [['nombre', 'id_pasarela'], 'safe'],
-            [['monto', 'procentaje'], 'number'],
+            [['id_order_status'], 'integer'],
+            [['nombre'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class ProveedorSearch extends Proveedor
      */
     public function search($params)
     {
-        $query = Proveedor::find();
+        $query = OrderStatus::find();
 
         // add conditions that should always apply here
 
@@ -59,13 +58,10 @@ class ProveedorSearch extends Proveedor
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_proveedor' => $this->id_proveedor,
-            'monto' => $this->monto,
-            'procentaje' => $this->procentaje,
+            'id_order_status' => $this->id_order_status,
         ]);
 
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'id_pasarela', $this->id_pasarela]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

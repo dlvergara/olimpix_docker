@@ -9,6 +9,8 @@ class ReservaForm extends \yii\base\Model
     public $servicio;
     public $cantidad;
     public $subtotal;
+    public $montoComisionOlimpix;
+    public $montoIva;
 
     /**
      * @var ServicioDisponible

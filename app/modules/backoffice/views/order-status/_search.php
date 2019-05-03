@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ProveedorSearch */
+/* @var $model app\models\OrderStatusSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="proveedor-search">
+<div class="order-status-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,15 +18,9 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id_proveedor') ?>
+    <?= $form->field($model, 'id_order_status') ?>
 
     <?= $form->field($model, 'nombre') ?>
-
-    <?= $form->field($model, 'monto') ?>
-
-    <?= $form->field($model, 'procentaje') ?>
-
-    <?= $form->field($model, 'id_pasarela') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
