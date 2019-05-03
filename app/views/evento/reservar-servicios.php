@@ -24,7 +24,7 @@ if (Yii::$app->request->isPost) {
 }
 
 $form = ActiveForm::begin([
-    'options' => ['data' => ['pjax' => true]],
+    //'options' => ['data' => ['pjax' => true]],
     'action' => Yii::$app->getUrlManager()->createUrl([$postUrl, 'evento' => $model->id_evento]),
 ]);
 
@@ -32,7 +32,7 @@ $form = ActiveForm::begin([
 if (count($model->pruebaSaltos) > 0) {
     ?>
     <!-- Start pruebas Area -->
-    <section class="training-area section-gap">
+    <section class="training-area">
         <div class="container">
             <div class="row">
                 <h3 class="mb-30">Pruebas</h3>
@@ -97,7 +97,7 @@ if (count($model->pruebaSaltos) > 0) {
 if (count($servicios) > 0) {
     ?>
     <!-- Start training Area -->
-    <section class="training-area section-gap">
+    <section class="training-area">
         <div class="container">
             <div class="row">
                 <h3 class="mb-30">Reservar servicios</h3>
@@ -199,9 +199,9 @@ if (count($servicios) > 0) {
 
 if (!Yii::$app->request->isPost) {
     ?>
-    <div class="row">
+    <p align="center" >
         <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
-    </div>
+    </p>
     <?php
 }
 ActiveForm::end();
