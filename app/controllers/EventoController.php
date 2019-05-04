@@ -53,6 +53,7 @@ class EventoController extends \yii\web\Controller
         $eventoModel = $this->findModel($evento);
         $cargosAdicionales = $this->getCargosAdicionales(0);
         $total = 0;
+        $totalIva = 0;
         $baseIva = 0;
 
         if (Yii::$app->request->isPost && $this->validarReserva()) {
@@ -68,9 +69,8 @@ class EventoController extends \yii\web\Controller
             foreach ($formModels as $index => $formModel) {
                 $servicioModel = new \app\models\ServicioDisponibleModel();
                 $servicioModel->loadFromParentObj($formModel->getServicioDisponible())
-                    ->calcularComisionOlimpix($formModel->subtotal)
-                    ->calcularMontoIva($formModel->subtotal);
-
+                    ->calcularComisionOlimpix(floatval($formModel->subtotal))
+                    ->calcularMontoIva(floatval(($formModel->subtotal - $servicioModel->getMontoComision())));
                 $formModel->montoComisionOlimpix = $servicioModel->getMontoComision();
                 $formModel->montoIva = $servicioModel->getMontoIva();
 

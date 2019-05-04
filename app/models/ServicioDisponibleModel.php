@@ -32,14 +32,18 @@ class ServicioDisponibleModel extends ServicioDisponible
     public function calcularComisionOlimpix($subtotal)
     {
         $comision = (($subtotal * $this->porcentaje_comision_olimpix) / 100) + $this->monto_comision_olimpix;
-        $this->monto_comision_olimpix = $comision;
+        $this->montoComision = $comision;
         return $this;
     }
 
-    public function calcularMontoIva($subtotal)
+    /**
+     * @param $subtotal
+     * @return $this\
+     */
+    public function calcularMontoIva(float $subtotal)
     {
-        $porcentajeIva = !empty($this->porcentaje_iva) ? $this->porcentaje_iva : 0;
-        $this->porcentaje_iva = ($subtotal * $porcentajeIva) / 100;
+        $porcentajeIva = !empty($this->porcentaje_iva) ? floatval($this->porcentaje_iva) : 0;
+        $this->montoIva = ($subtotal * $porcentajeIva) / 100;
         return $this;
     }
 
@@ -47,11 +51,10 @@ class ServicioDisponibleModel extends ServicioDisponible
      * @param $parentObj
      * @return ServicioDisponibleModel
      */
-    function loadFromParentObj( $parentObj )
+    public function loadFromParentObj(ServicioDisponible $parentObj)
     {
-        $objValues = get_object_vars($parentObj); // return array of object values
-        foreach($objValues AS $key=>$value)
-        {
+        $objValues = $parentObj->attributes; // return array of object values
+        foreach ($objValues AS $key => $value) {
             $this->$key = $value;
         }
         return $this;

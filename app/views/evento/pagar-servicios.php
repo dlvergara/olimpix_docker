@@ -36,7 +36,7 @@ $p_cust_id_cliente = Yii::$app->params['epayco']['id-client'];
 $p_key = Yii::$app->params['epayco']['api-key'];
 $p_amount = $total;
 $p_tax = $totalIva;
-$p_base = $baseIva;
+$p_amount_base = $total - $totalIva;
 $p_currency_code = 'COP';
 
 $p_signature = md5($p_cust_id_cliente . '^' . $p_key . '^' . $p_id_invoice . '^' . $p_amount . '^' . $p_currency_code);
@@ -45,9 +45,8 @@ $p_split_type = '02';
 $p_split_merchant_receiver = Yii::$app->params['epayco']['id-client'];;
 $p_split_primary_receiver = Yii::$app->params['epayco']['id-client'];
 $p_split_primary_receiver_fee = $buyerInfo->getTotalComision();
-$p_split_receivers = array();
-$p_signature_receivers = "";
-$p_split_receivers[0] = array('id' => '17511', 'fee' => '20');
+$p_split_receivers = $buyerInfo->getPaymentDistribution();
+$p_signature_receivers = '';
 
 foreach ($p_split_receivers as $receiver) {
     $p_signature_receivers .= $receiver['id'] . '^' . $receiver['fee'];
@@ -62,9 +61,8 @@ if (count($formModels) > 0) {
         <div class="container">
             <div class="section-top-border">
                 <h3 class="mb-30"><b>Reservar servicios</b></h3>
-              <table class="table table-responsive">
                 <div class="progress-table-wrap">
-                    
+
                     <div class="progress-table">
                         <div class="table-head">
                             <div class="serial">#</div>
@@ -87,13 +85,16 @@ if (count($formModels) > 0) {
                             if (!empty($formModel->getServicioDisponible()->pruebaSaltoIdPrueba)) {
                                 $paymentConcept = $formModel->getServicioDisponible()->pruebaSaltoIdPrueba->nombre . ' - ' . $formModel->getServicioDisponible()->nombre;
                             }
-                            $paymentDescription .= $paymentConcept . ', ';
+                            $paymentDescription .= $paymentConcept . ', '.chr(10);
                             ?>
                             <div class="table-row">
                                 <div class="serial">
                                     <?= $conteoItems ?>
                                     <?php
-                                    echo $form->field($formModel, 'servicio')->hiddenInput(['name' => $checkBoxName])->label(false);
+                                    echo $form->field($formModel, 'servicio')
+                                        ->hiddenInput(['name' => $checkBoxName])
+                                        ->label(false);
+
                                     echo $form->field($formModel, 'cantidad')
                                         ->hiddenInput([
                                             'name' => 'ReservaForm[' . $idServicio . '][cantidad]',
@@ -160,18 +161,16 @@ if (count($formModels) > 0) {
                     </div>
                 </div>
                 -->
-                  
-                    </table>
                 <br>
-                <p align="center" >
+                <p align="center">
                     <input name="p_cust_id_cliente" type="hidden" value="<?php echo $p_cust_id_cliente ?>">
                     <input name="p_key" type="hidden" value="<?php echo $p_key ?>">
                     <input name="p_id_invoice" type="hidden" value="<?php echo $p_id_invoice ?>">
-                    <input name="p_description" type="hidden" value="<?= rtrim($paymentDescription, ", ") ?>">
+                    <input name="p_description" type="hidden" value="<?= rtrim($paymentDescription, ", ".chr(10)) ?>">
                     <input name="p_currency_code" type="hidden" value="COP">
                     <input name="p_amount" id="p_amount" type="hidden" value="<?php echo $p_amount ?>">
-                    <input name="p_tax" id="p_tax" type="hidden" value="<?= $totalIva ?>">
-                    <input name="p_amount_base" id="p_amount_base" type="hidden" value="<?= $baseIva ?>">
+                    <input name="p_tax" id="p_tax" type="hidden" value="<?= $p_tax ?>">
+                    <input name="p_amount_base" id="p_amount_base" type="hidden" value="<?= $p_amount_base ?>">
                     <input name="p_test_request" type="hidden" value="<?= $isTest ?>">
                     <input name="p_signature" type="hidden" id="signature" value="<?php echo $p_signature ?>"/>
                     <input name="p_split_type" type="hidden" value="<?php echo $p_split_type ?>">
@@ -181,24 +180,29 @@ if (count($formModels) > 0) {
                            value="<?php echo $p_split_primary_receiver ?>">
                     <input name="p_split_primary_receiver_fee" type="hidden"
                            value="<?php echo $p_split_primary_receiver_fee ?>">
-                    <input name="p_split_receivers[0][id]" type="hidden"
-                           value="<?php echo $p_split_receivers[0]['id'] ?>">
-                    <input name="p_split_receivers[0][fee]" type="hidden"
-                           value="<?php echo $p_split_receivers[0]['fee'] ?>">
+
+                    <?php
+                    foreach ($p_split_receivers as $index => $p_split_receiver) {
+                        ?>
+                        <input name="p_split_receivers[<?= $index ?>][id]" type="hidden"
+                               value="<?php echo $p_split_receiver['id'] ?>">
+                        <input name="p_split_receivers[<?= $index ?>][fee]" type="hidden"
+                               value="<?php echo $p_split_receiver['fee'] ?>">
+                        <?php
+                    }
+                    ?>
+
                     <input name="p_signature_split" type="hidden" value="<?php echo $p_signature_split ?>">
                     <input name="p_extra3" type="hidden" value="<?= $csrf ?>">
                     <input name="p_url_confirmation" type="hidden" value="<?= $url ?>">
                     <input name="p_url_response" type="hidden" value="<?= $url ?>">
-                  
-                  
-              
-                    
-                    <input type="image" id="imagen"  
-                           src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" />  
+
+                    <input type="image" id="imagen"
+                           src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png"/>
                 </p>
             </div>
-        
-     </div>
+
+        </div>
     </section>
     <?php
 }
