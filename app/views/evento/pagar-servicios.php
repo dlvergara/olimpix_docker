@@ -32,8 +32,8 @@ $csrf = Yii::$app->request->csrfToken;
 $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order,]);
 
 $p_id_invoice = time();
-$p_cust_id_cliente = '19520';
-$p_key = '52beec4a1212c2ffcc702dd565939b4c4707155b';
+$p_cust_id_cliente = Yii::$app->params['epayco']['id-client'];
+$p_key = Yii::$app->params['epayco']['api-key'];
 $p_amount = $total;
 $p_tax = $totalIva;
 $p_base = $baseIva;
@@ -42,8 +42,8 @@ $p_currency_code = 'COP';
 $p_signature = md5($p_cust_id_cliente . '^' . $p_key . '^' . $p_id_invoice . '^' . $p_amount . '^' . $p_currency_code);
 
 $p_split_type = '02';
-$p_split_merchant_receiver = '19520';
-$p_split_primary_receiver = '19520';
+$p_split_merchant_receiver = Yii::$app->params['epayco']['id-client'];;
+$p_split_primary_receiver = Yii::$app->params['epayco']['id-client'];
 $p_split_primary_receiver_fee = $buyerInfo->getTotalComision();
 $p_split_receivers = array();
 $p_signature_receivers = "";
@@ -168,10 +168,9 @@ if (count($formModels) > 0) {
                     <input name="p_description" type="hidden" value="<?= rtrim($paymentDescription, ", ") ?>">
                     <input name="p_currency_code" type="hidden" value="COP">
                     <input name="p_amount" id="p_amount" type="hidden" value="<?php echo $p_amount ?>">
-                    <input name="p_tax" id="p_tax" type="hidden" value="0">
-                    <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
+                    <input name="p_tax" id="p_tax" type="hidden" value="<?= $totalIva ?>">
+                    <input name="p_amount_base" id="p_amount_base" type="hidden" value="<?= $baseIva ?>">
                     <input name="p_test_request" type="hidden" value="<?= $isTest ?>">
-                    <input name="p_url_response" type="hidden" value="">
                     <input name="p_signature" type="hidden" id="signature" value="<?php echo $p_signature ?>"/>
                     <input name="p_split_type" type="hidden" value="<?php echo $p_split_type ?>">
                     <input name="p_split_merchant_receiver" type="hidden"

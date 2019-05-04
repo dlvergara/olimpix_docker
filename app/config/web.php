@@ -3,13 +3,28 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
+$urlManager = [];
+if (in_array('mod_rewrite', apache_get_modules())) {
+    $urlManager = [
+        'class' => 'yii\web\UrlManager',
+        // Disable index.php
+        'showScriptName' => false,
+        // Disable r= routes
+        'enablePrettyUrl' => true,
+        'rules' => [
+            '/' => 'site/index',
+            '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+        ],
+    ];
+}
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -49,16 +64,7 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            	'' => 'site/index',
-            	'<action>' => 'site/<action>',
-            ],
-        ],
-        */
+        'urlManager' => $urlManager,
     ],
     'modules' => [
         'backoffice' => [

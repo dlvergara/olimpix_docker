@@ -10,6 +10,7 @@ use app\models\EventoSearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\web\View;
+use yii\helpers\Url;
 
 
 $this->title = 'Eventos';
@@ -42,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             <div class="row align-items-center upcoming-wrap">
                 <div class="col-lg-6 upcoming-left">
-                    <img class="img-fluid" src="img/pages/ev<?= $par ?>.jpg" alt="">
+                    <img class="img-fluid" src="<?= Url::to('img/pages/ev'.$par.'.jpg', true) ?>" alt="imagen">
                 </div>
                 <div class="col-lg-6 upcoming-right">
                     <a href="#"><h4><?= $eventoNombre ?></h4></a>

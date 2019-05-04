@@ -23,6 +23,8 @@ RUN apt-get install -y zip unzip
 
 #COMPOSER
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+#RUN a2enmod rewrite
+#RUN service apache2 restart
 RUN composer global require "fxp/composer-asset-plugin:^1.2.0"
 
 RUN echo "date.timezone = America/Lima" > $PHP_INI_DIR/conf.d/php.ini
