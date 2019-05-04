@@ -35,7 +35,7 @@ if (count($model->pruebaSaltos) > 0) {
     <section class="training-area">
         <div class="container">
             <div class="row">
-                <h3 class="mb-30">Pruebas</h3>
+                <h3 class="mb-30"><b>Inscripción a pruebas</b></h3>
             </div>
             <div class="row">
                 <?php
@@ -100,7 +100,7 @@ if (count($servicios) > 0) {
     <section class="training-area">
         <div class="container">
             <div class="row">
-                <h3 class="mb-30">Reservar servicios</h3>
+                <h3 class="mb-30"><b>Reservar Servicios</b></h3>
             </div>
             <div class="row">
                 <?php
@@ -199,9 +199,18 @@ if (count($servicios) > 0) {
 
 if (!Yii::$app->request->isPost) {
     ?>
-    <p align="center" >
-        <?= Html::submitButton('Reservar', ['class' => 'genric-btn primary e-large']) ?>
-    </p>
+
+
+  
+                <div class="row">
+                     <div class="col-md-6 col-md-offset-3">
+        <?= Html::submitButton(' <span class="glyphicon glyphicon-shopping-cart"></span> Reservar', ['class' => 'genric-btn primary btn-block e-large']) ?>
+             
+           </div>
+        </div>
+  
+
+
     <?php
 }
 ActiveForm::end();
