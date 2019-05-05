@@ -154,15 +154,16 @@ class BuyerInfoForm extends \yii\base\Model
     private function setPasarelaCost(array $paymentProveedor, float $comisionTotalPasarela, float $totalOrden)
     {
         $totalOrden = empty($totalOrden) ? 1 : $totalOrden;
-
+        $newPaymentProveedor = [];
         foreach ($paymentProveedor as $idProveedor => $payDistribution) {
             $porcentaje_comision_pasarela = ($payDistribution['fee'] * 100) / $totalOrden;
             $comision_pasarela = ($comisionTotalPasarela * $porcentaje_comision_pasarela) / 100;
 
             $paymentProveedor[$idProveedor]['comision_pasarela'] = $comision_pasarela;
             $paymentProveedor[$idProveedor]['porcentaje_comision_pasarela'] = $porcentaje_comision_pasarela;
+            $newPaymentProveedor[] = $paymentProveedor[$idProveedor];
         }
-        return $paymentProveedor;
+        return $newPaymentProveedor;
     }
 
 

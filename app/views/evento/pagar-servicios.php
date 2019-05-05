@@ -18,7 +18,7 @@ use app\widgets\Util;
  * @var $baseIva float
  * @var $totalIva float
  */
-$isTest = true;
+$isTest = YII_ENV_DEV;
 
 $form = ActiveForm::begin([
     'options' => [

@@ -27,6 +27,7 @@ $config = [
         '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => ['appendTimestamp' => true],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'A2fINLGgsB5sA5kZkedfu00HGCU23jvm',
@@ -67,6 +68,9 @@ $config = [
         'urlManager' => $urlManager,
     ],
     'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module'
+        ],
         'backoffice' => [
             'class' => 'app\modules\backoffice\Module',
             'layout' => 'backoffice',
