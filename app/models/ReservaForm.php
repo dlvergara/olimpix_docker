@@ -11,6 +11,8 @@ class ReservaForm extends \yii\base\Model
     public $subtotal;
     public $montoComisionOlimpix;
     public $montoIva;
+    public $porcentaje_comision_olimpix;
+    public $montoIvaComisionOlimpix;
 
     /**
      * @var ServicioDisponible

@@ -7,14 +7,32 @@ namespace app\models;
 class ServicioDisponibleModel extends ServicioDisponible
 {
     private $montoComision;
+    private $ivaComision;
+    private $porcentajeIvaComision;
     private $montoIva;
+
+    /**
+     * @return mixed
+     */
+    public function getIvaComision()
+    {
+        return $this->ivaComision;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPorcentajeIvaComision()
+    {
+        return $this->porcentajeIvaComision;
+    }
 
     /**
      * @return mixed
      */
     public function getMontoComision()
     {
-        return $this->montoComision;
+        return floatval($this->montoComision);
     }
 
     /**
@@ -33,6 +51,18 @@ class ServicioDisponibleModel extends ServicioDisponible
     {
         $comision = (($subtotal * $this->porcentaje_comision_olimpix) / 100) + $this->monto_comision_olimpix;
         $this->montoComision = $comision;
+        return $this;
+    }
+
+    /**
+     * @param $subtotal
+     * @return $this\
+     */
+    public function calcularMontoIvaComisionOlimpix()
+    {
+        $porcentajeIva = \Yii::$app->params['olimpix']['iva'];
+        $this->porcentajeIvaComision = $porcentajeIva;
+        $this->ivaComision = ($this->montoComision * $porcentajeIva) / 100;
         return $this;
     }
 

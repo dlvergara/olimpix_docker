@@ -31,7 +31,7 @@ $form = ActiveForm::begin([
 $csrf = Yii::$app->request->csrfToken;
 $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order,]);
 
-$p_id_invoice = time();
+$p_id_invoice = $orden->id_order . '-' . time();
 $p_cust_id_cliente = Yii::$app->params['epayco']['id-client'];
 $p_key = Yii::$app->params['epayco']['api-key'];
 $p_amount = $total;
@@ -85,7 +85,7 @@ if (count($formModels) > 0) {
                             if (!empty($formModel->getServicioDisponible()->pruebaSaltoIdPrueba)) {
                                 $paymentConcept = $formModel->getServicioDisponible()->pruebaSaltoIdPrueba->nombre . ' - ' . $formModel->getServicioDisponible()->nombre;
                             }
-                            $paymentDescription .= $paymentConcept . ', '.chr(10);
+                            $paymentDescription .= $paymentConcept . ', ' . chr(10);
                             ?>
                             <div class="table-row">
                                 <div class="serial">
@@ -166,7 +166,7 @@ if (count($formModels) > 0) {
                     <input name="p_cust_id_cliente" type="hidden" value="<?php echo $p_cust_id_cliente ?>">
                     <input name="p_key" type="hidden" value="<?php echo $p_key ?>">
                     <input name="p_id_invoice" type="hidden" value="<?php echo $p_id_invoice ?>">
-                    <input name="p_description" type="hidden" value="<?= rtrim($paymentDescription, ", ".chr(10)) ?>">
+                    <input name="p_description" type="hidden" value="<?= rtrim($paymentDescription, ", " . chr(10)) ?>">
                     <input name="p_currency_code" type="hidden" value="COP">
                     <input name="p_amount" id="p_amount" type="hidden" value="<?php echo $p_amount ?>">
                     <input name="p_tax" id="p_tax" type="hidden" value="<?= $p_tax ?>">

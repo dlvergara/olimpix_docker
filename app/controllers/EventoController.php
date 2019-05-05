@@ -60,32 +60,9 @@ class EventoController extends \yii\web\Controller
             $view = 'pagar-servicios';
             $formModels = $this->validModels;
 
-            //$token = $buyerInfo->getShopToken();
             $cargosAdicionales = $this->getCargosAdicionales($total);
 
-            /**
-             * @var $formModel ReservaForm
-             */
-            foreach ($formModels as $index => $formModel) {
-                $servicioModel = new \app\models\ServicioDisponibleModel();
-                $servicioModel->loadFromParentObj($formModel->getServicioDisponible())
-                    ->calcularComisionOlimpix(floatval($formModel->subtotal))
-                    ->calcularMontoIva(floatval(($formModel->subtotal - $servicioModel->getMontoComision())));
-                $formModel->montoComisionOlimpix = $servicioModel->getMontoComision();
-                $formModel->montoIva = $servicioModel->getMontoIva();
-
-                $total += $formModel->subtotal;
-                $baseIva += $formModel->montoIva;
-            }
-            /**
-             * @var $cargoAdicional \app\models\CargoAdicional
-             */
-            foreach ($cargosAdicionales as $index => $cargoAdicional) {
-                $total += $cargoAdicional->monto;
-                $baseIva += $cargoAdicional->iva;
-            }
-
-            $orden = $buyerInfo->createOrder($formModels, $cargosAdicionales, null, $total, $baseIva);
+            $orden = $buyerInfo->createOrder($formModels, $cargosAdicionales, "COP", $total, $baseIva);
             $totalIva = $buyerInfo->getTotalIva($baseIva);
 
         } else {

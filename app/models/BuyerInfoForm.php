@@ -66,22 +66,78 @@ class BuyerInfoForm extends \yii\base\Model
      */
     public function createOrder($reservas, $cargosAdicionales, $currency = 'COP', $total, $baseIva)
     {
-        $comisionPasarela = $this->calcularComisionPasarela($total);
         $paymentDistribution = [];
-
-        $order = new Order();
-        $order->total_amount = floatval($total);
-        $order->date = date('Y-m-d H:i:s');
-        $order->currency = $currency;
-        $order->order_status_id_order_status = 8;
-        $order->save();
 
         /**
          * @var $reserva ReservaForm
          * @var $servicio ServicioDisponible
          */
         foreach ($reservas as $index => $reserva) {
-            $this->totalComision += floatval($reserva->montoComisionOlimpix);
+            $servicioModel = new ServicioDisponibleModel();
+            $servicioModel->loadFromParentObj($reserva->getServicioDisponible());
+            $subtotal = $servicioModel->monto * $reserva->cantidad;
+            $servicioModel->calcularMontoIva($subtotal);
+            $subtotalIva = $servicioModel->getMontoIva();
+
+            $reserva->subtotal = $subtotal;
+            $reserva->montoIva = $subtotalIva;
+            $total += $subtotal + $subtotalIva;
+            $servicioModel->calcularComisionOlimpix($subtotal)->calcularMontoIvaComisionOlimpix();
+            $reserva->montoComisionOlimpix = $servicioModel->getMontoComision();
+            $reserva->porcentaje_comision_olimpix = $servicioModel->getPorcentajeIvaComision();
+            $reserva->montoIvaComisionOlimpix = $servicioModel->getIvaComision();
+
+            if(isset($paymentDistribution[$servicioModel->proveedor_id_proveedor])) {
+                $paymentDistribution[$servicioModel->proveedor_id_proveedor]['fee'] += $subtotal + $subtotalIva;
+                $paymentDistribution[$servicioModel->proveedor_id_proveedor]['monto_comision_olimpix'] += $servicioModel->getMontoComision();
+                $paymentDistribution[$servicioModel->proveedor_id_proveedor]['monto_iva_olimpix'] += $reserva->montoIvaComisionOlimpix;
+            } else {
+                $paymentDistribution[$servicioModel->proveedor_id_proveedor] = [
+                    'id' => $servicioModel->proveedorIdProveedor->id_pasarela,
+                    'fee' => $subtotal + $subtotalIva,
+                    'monto_comision_olimpix' => $servicioModel->getMontoComision(),
+                    'monto_iva_olimpix' => $reserva->montoIvaComisionOlimpix,
+                ];
+            }
+        }
+        $comisionPasarela = $this->calcularComisionPasarela($total);
+
+        $transaction = Yii::$app->db->beginTransaction();
+
+        $order = new Order();
+        $order->total_amount = floatval($total);
+        $order->date = date('Y-m-d H:i:s');
+        $order->currency = $currency;
+        $order->order_status_id_order_status = 8;
+
+        try {
+            $order->save();
+
+            $paymentProveedor = $this->calcPasarelaCost($paymentDistribution, $comisionPasarela, $total);
+            $this->paymentDistribution = $paymentProveedor;
+            $this->setPaymentDistributionArray($order, $paymentDistribution, $total, $comisionPasarela);
+            $this->setOrderDetails($reservas, $order);
+
+            $transaction->commit();
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            error_log( $e->getMessage() );
+        }
+
+        return $order;
+    }
+
+    /**
+     * @param array $reservas
+     * @param Order $order
+     */
+    private function setOrderDetails(array $reservas, Order $order)
+    {
+        /**
+         * @var $reserva ReservaForm
+         * @var $servicio ServicioDisponible
+         */
+        foreach ($reservas as $index => $reserva) {
             $servicio = $reserva->getServicioDisponible();
             $orderDetail = new OrderDetail();
             $orderDetail->cantidad = $reserva->cantidad;
@@ -89,18 +145,12 @@ class BuyerInfoForm extends \yii\base\Model
             $orderDetail->servicio_disponible_id_servicio_disponible = $servicio->id_servicio_disponible;
             $orderDetail->porcentaje_iva = $servicio->porcentaje_iva;
             $orderDetail->monto_iva = $reserva->montoIva;
-            $orderDetail->porcentaje_comision_olimpix = $servicio->porcentaje_comision_olimpix;
+            $orderDetail->porcentaje_comision_olimpix = $reserva->porcentaje_comision_olimpix;
             $orderDetail->monto_comision_olimpix = $reserva->montoComisionOlimpix;
 
             $orderDetail->order_id_order = $order->id_order;
             $orderDetail->save();
-
-            $paymentDistribution[$servicio->proveedor_id_proveedor][] = $orderDetail;
         }
-
-        $this->setPaymentDistributionArray($order, $paymentDistribution, $total, $comisionPasarela);
-
-        return $order;
     }
 
     /**
@@ -110,32 +160,10 @@ class BuyerInfoForm extends \yii\base\Model
      */
     private function setPaymentDistributionArray(Order $order, array $paymentDistribution, $total, $comisionPasarela)
     {
-        $paymentProveedor = [];
-
-        /**
-         * @var $orderDetail OrderDetail
-         */
-        foreach ($paymentDistribution as $id_proveedor => $orderDetails) {
-            foreach ($orderDetails as $key => $orderDetail) {
-                if(isset($paymentProveedor[$id_proveedor])) {
-                    $paymentProveedor[$id_proveedor]['fee'] += ($orderDetail->cantidad * floatval($orderDetail->precio_unitario));
-                    $paymentProveedor[$id_proveedor]['monto_comision_olimpix'] += floatval($orderDetail->monto_comision_olimpix);
-                } else {
-                    $paymentProveedor[$id_proveedor] = [
-                        'id' => $orderDetail->servicioDisponibleIdServicioDisponible->proveedorIdProveedor->id_pasarela,
-                        'fee' => ($orderDetail->cantidad * floatval($orderDetail->precio_unitario)),
-                        'monto_comision_olimpix' => floatval($orderDetail->monto_comision_olimpix),
-                    ];
-                }
-            }
-        }
-        $paymentProveedor = $this->setPasarelaCost($paymentProveedor, $comisionPasarela, $total);
-        $this->paymentDistribution = $paymentProveedor;
-
-        foreach ($paymentProveedor as $idProveedor => $payDistribution) {
+        foreach ($paymentDistribution as $idProveedor => $payDistribution) {
             $paymentDistribution = new PaymentDistribution();
             $paymentDistribution->order_id_order = $order->id_order;
-            $paymentDistribution->proveedor_id_proveedor = $id_proveedor;
+            $paymentDistribution->proveedor_id_proveedor = $idProveedor;
             $paymentDistribution->total = $payDistribution['fee'];
             $paymentDistribution->porcentaje_comision_olimpix = $payDistribution['porcentaje_comision_olimpix'];
             $paymentDistribution->base_comision = $payDistribution['monto_comision_olimpix'];
@@ -151,7 +179,7 @@ class BuyerInfoForm extends \yii\base\Model
      * @param $totalOrden
      * @return array
      */
-    private function setPasarelaCost(array $paymentProveedor, float $comisionTotalPasarela, float $totalOrden)
+    private function calcPasarelaCost(array $paymentProveedor, float $comisionTotalPasarela, float $totalOrden)
     {
         $totalOrden = empty($totalOrden) ? 1 : $totalOrden;
         $newPaymentProveedor = [];
@@ -161,6 +189,8 @@ class BuyerInfoForm extends \yii\base\Model
 
             $paymentProveedor[$idProveedor]['comision_pasarela'] = $comision_pasarela;
             $paymentProveedor[$idProveedor]['porcentaje_comision_pasarela'] = $porcentaje_comision_pasarela;
+            $paymentProveedor[$idProveedor]['fee'] -= ($comision_pasarela + $payDistribution['monto_comision_olimpix'] + $payDistribution['monto_iva_olimpix']);
+
             $newPaymentProveedor[] = $paymentProveedor[$idProveedor];
         }
         return $newPaymentProveedor;
