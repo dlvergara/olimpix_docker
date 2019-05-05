@@ -34,9 +34,9 @@ $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'ev
 $p_id_invoice = $orden->id_order . '-' . time();
 $p_cust_id_cliente = Yii::$app->params['epayco']['id-client'];
 $p_key = Yii::$app->params['epayco']['api-key'];
-$p_amount = $total;
-$p_tax = $totalIva;
-$p_amount_base = $total - $totalIva;
+$p_amount = $orden->total_amount;
+$p_tax = $orden->base_iva;
+$p_amount_base = $orden->total_amount - $orden->base_iva;
 $p_currency_code = 'COP';
 
 $p_signature = md5($p_cust_id_cliente . '^' . $p_key . '^' . $p_id_invoice . '^' . $p_amount . '^' . $p_currency_code);
@@ -69,6 +69,7 @@ if (count($formModels) > 0) {
                             <div class="servicio">Servicio</div>
                             <div class="precio-unitario">Precio Unitario</div>
                             <div class="cantidad">Cantidad</div>
+                            <div class="precio-unitario">IVA</div>
                             <div class="subtotal">Subtotal</div>
                         </div>
                         <?php
@@ -108,6 +109,7 @@ if (count($formModels) > 0) {
                                 <div class="servicio"><?= $paymentConcept ?></div>
                                 <div class="precio-unitario"><?= number_format($formModel->getServicioDisponible()->monto, 2, ',', '.') ?></div>
                                 <div class="cantidad"><?= $formModel->cantidad ?></div>
+                                <div class="precio-unitario"><?= number_format($formModel->montoIva, 2, ',', '.') ?></div>
                                 <div class="subtotal"><?= number_format($formModel->subtotal, 2, ',', '.') ?></div>
                             </div>
                             <?php

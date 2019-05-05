@@ -82,7 +82,9 @@ class BuyerInfoForm extends \yii\base\Model
             $reserva->subtotal = $subtotal;
             $reserva->montoIva = $subtotalIva;
             $total += $subtotal + $subtotalIva;
+            $baseIva += $reserva->montoIva;
             $servicioModel->calcularComisionOlimpix($subtotal)->calcularMontoIvaComisionOlimpix();
+            $reserva->subtotal = $subtotal + $subtotalIva;
             $reserva->montoComisionOlimpix = $servicioModel->getMontoComision();
             $reserva->porcentaje_comision_olimpix = $servicioModel->getPorcentajeIvaComision();
             $reserva->montoIvaComisionOlimpix = $servicioModel->getIvaComision();
@@ -106,6 +108,7 @@ class BuyerInfoForm extends \yii\base\Model
 
         $order = new Order();
         $order->total_amount = floatval($total);
+        $order->base_iva = floatval($baseIva);
         $order->date = date('Y-m-d H:i:s');
         $order->currency = $currency;
         $order->order_status_id_order_status = 8;

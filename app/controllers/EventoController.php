@@ -69,7 +69,7 @@ class EventoController extends \yii\web\Controller
             $formModels = $this->models;
         }
 
-        return $this->render($view, ['buyerInfo' => $buyerInfo, 'orden' => $orden, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales, 'total' => $total, 'baseIva' => $baseIva, 'totalIva' => $totalIva]);
+        return $this->render($view, ['buyerInfo' => $buyerInfo, 'orden' => $orden, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales, 'baseIva' => $baseIva, 'totalIva' => $totalIva]);
     }
 
     /**
