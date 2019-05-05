@@ -6,6 +6,8 @@ use app\models\BuyerInfoForm;
 use app\models\CargoAdicional;
 use app\models\Evento;
 use app\models\LoginForm;
+use app\models\Order;
+use app\models\OrderModel;
 use app\models\ReservaForm;
 use app\models\ReservaJineteForm;
 use Yii;
@@ -73,33 +75,22 @@ class EventoController extends \yii\web\Controller
     }
 
     /**
-     * @param $evento
-     * @return string
-     */
-    public function actionPagar($evento)
-    {
-
-        echo '<pre>';
-        var_dump(Yii::$app->request->post());
-        exit;
-
-        return $this->render('pago');
-    }
-
-    /**
      *
      */
-    public function actionConfirmacion($evento = null, $orden = null, $ref_payco = null)
+    public function actionConfirmacion($evento = null, $orden = null)
     {
-        $post = Yii::$app->request->post();
+        $orden = $this->findOrderModel($orden);
+        $evento = $this->findModel($evento);
 
-        echo '<pre>';
-        //var_dump( Yii::$app->request->csrfToken );
-        //var_dump( Yii::$app->request );
-        Yii::$app->request->csrfToken =
-            var_dump(Yii::$app->request->post());
+        $ordenModel = new OrderModel();
+        $ordenModel->loadFromParentObj($orden);
 
-        exit;
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            $ordenModel->processPostData($post);
+        }
+
+        return $this->render('confirmacion-' . $ordenModel->order_status_id_order_status, ['eventoModel' => $evento, 'ordenModel' => $orden]);
     }
 
     /**
@@ -162,6 +153,20 @@ class EventoController extends \yii\web\Controller
     protected function findModel($id)
     {
         if (($model = Evento::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param $id
+     * @return Order
+     * @throws NotFoundHttpException
+     */
+    protected function findOrderModel($id)
+    {
+        if (($model = Order::findOne($id)) !== null) {
             return $model;
         }
 
