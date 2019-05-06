@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'jinete_id_jinete',
             'identificador_servicio_contratado',
             'monto',
-            'servicio_disponible_id_servicio_disponible',
+            'order_detail_id_order_detail',
         ],
     ]) ?>
 

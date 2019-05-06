@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'monto') ?>
 
-    <?php // echo $form->field($model, 'servicio_disponible_id_servicio_disponible') ?>
+    <?php // echo $form->field($model, 'order_detail_id_order_detail') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
