@@ -63,6 +63,7 @@ class BuyerInfoForm extends \yii\base\Model
      * @param $total
      * @param $baseIva
      * @return Order
+     * @throws \yii\db\Exception
      */
     public function createOrder($reservas, $cargosAdicionales, $currency = 'COP', $total, $baseIva)
     {
@@ -89,16 +90,18 @@ class BuyerInfoForm extends \yii\base\Model
             $reserva->porcentaje_comision_olimpix = $servicioModel->getPorcentajeIvaComision();
             $reserva->montoIvaComisionOlimpix = $servicioModel->getIvaComision();
 
-            if(isset($paymentDistribution[$servicioModel->proveedor_id_proveedor])) {
+            if (isset($paymentDistribution[$servicioModel->proveedor_id_proveedor])) {
                 $paymentDistribution[$servicioModel->proveedor_id_proveedor]['fee'] += $subtotal + $subtotalIva;
                 $paymentDistribution[$servicioModel->proveedor_id_proveedor]['monto_comision_olimpix'] += $servicioModel->getMontoComision();
                 $paymentDistribution[$servicioModel->proveedor_id_proveedor]['monto_iva_olimpix'] += $reserva->montoIvaComisionOlimpix;
+                $paymentDistribution[$servicioModel->proveedor_id_proveedor]['porcentaje_comision_olimpix'] = $servicioModel->porcentaje_comision_olimpix;
             } else {
                 $paymentDistribution[$servicioModel->proveedor_id_proveedor] = [
                     'id' => $servicioModel->proveedorIdProveedor->id_pasarela,
                     'fee' => $subtotal + $subtotalIva,
                     'monto_comision_olimpix' => $servicioModel->getMontoComision(),
                     'monto_iva_olimpix' => $reserva->montoIvaComisionOlimpix,
+                    'porcentaje_comision_olimpix' => $servicioModel->porcentaje_comision_olimpix,
                 ];
             }
         }
@@ -118,13 +121,13 @@ class BuyerInfoForm extends \yii\base\Model
 
             $paymentProveedor = $this->calcPasarelaCost($paymentDistribution, $comisionPasarela, $total);
             $this->paymentDistribution = $paymentProveedor;
-            $this->setPaymentDistributionArray($order, $paymentDistribution, $total, $comisionPasarela);
+            $this->setPaymentDistributionArray($order, $paymentProveedor);
             $this->setOrderDetails($reservas, $order);
 
             $transaction->commit();
         } catch (Exception $e) {
             $transaction->rollBack();
-            error_log( $e->getMessage() );
+            error_log($e->getMessage());
         }
 
         return $order;
@@ -161,18 +164,24 @@ class BuyerInfoForm extends \yii\base\Model
      * @param array $paymentDistribution
      * $p_split_receivers[0] = array('id' => '17511', 'fee' => '20');
      */
-    private function setPaymentDistributionArray(Order $order, array $paymentDistribution, $total, $comisionPasarela)
+    private function setPaymentDistributionArray(Order $order, array $paymentDistribution)
     {
         foreach ($paymentDistribution as $idProveedor => $payDistribution) {
             $paymentDistribution = new PaymentDistribution();
             $paymentDistribution->order_id_order = $order->id_order;
-            $paymentDistribution->proveedor_id_proveedor = $idProveedor;
+            $paymentDistribution->proveedor_id_proveedor = $payDistribution['id_proveedor'];
             $paymentDistribution->total = $payDistribution['fee'];
+            $paymentDistribution->comision_olimpix = $payDistribution['monto_comision_olimpix'];
             $paymentDistribution->porcentaje_comision_olimpix = $payDistribution['porcentaje_comision_olimpix'];
             $paymentDistribution->base_comision = $payDistribution['monto_comision_olimpix'];
             $paymentDistribution->comision_pasarela = $payDistribution['comision_pasarela'];
             $paymentDistribution->porcentaje_pasarela = $payDistribution['porcentaje_comision_pasarela'];
-            $paymentDistribution->save();
+            $save = $paymentDistribution->save();
+            if( !$save ) {
+                $errors = $paymentDistribution->getErrors();
+                echo '<pre>'; var_dump($errors); exit;
+                throw new \Exception($errors[0]);
+            }
         }
     }
 
@@ -190,12 +199,14 @@ class BuyerInfoForm extends \yii\base\Model
             $porcentaje_comision_pasarela = ($payDistribution['fee'] * 100) / $totalOrden;
             $comision_pasarela = ($comisionTotalPasarela * $porcentaje_comision_pasarela) / 100;
 
+            $paymentProveedor[$idProveedor]['id_proveedor'] = $idProveedor;
             $paymentProveedor[$idProveedor]['comision_pasarela'] = $comision_pasarela;
             $paymentProveedor[$idProveedor]['porcentaje_comision_pasarela'] = $porcentaje_comision_pasarela;
             $paymentProveedor[$idProveedor]['fee'] -= ($comision_pasarela + $payDistribution['monto_comision_olimpix'] + $payDistribution['monto_iva_olimpix']);
 
             $newPaymentProveedor[] = $paymentProveedor[$idProveedor];
         }
+
         return $newPaymentProveedor;
     }
 

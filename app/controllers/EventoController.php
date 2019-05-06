@@ -87,6 +87,10 @@ class EventoController extends \yii\web\Controller
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
+            echo '<pre>';
+            var_dump($post);
+            echo '</pre>';
+            //exit;
             $ordenModel->processPostData($post);
         }
 
