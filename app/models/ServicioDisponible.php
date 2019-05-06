@@ -25,7 +25,6 @@ use Yii;
  * @property string $porcentaje_iva
  *
  * @property OrderDetail[] $orderDetails
- * @property ServicioContratado[] $servicioContratados
  * @property Evento $eventoIdEvento
  * @property Proveedor $proveedorIdProveedor
  * @property PruebaSalto $pruebaSaltoIdPrueba
@@ -90,14 +89,6 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     public function getOrderDetails()
     {
         return $this->hasMany(OrderDetail::className(), ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getServicioContratados()
-    {
-        return $this->hasMany(ServicioContratado::className(), ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']);
     }
 
     /**

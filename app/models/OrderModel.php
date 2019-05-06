@@ -26,14 +26,57 @@ class OrderModel extends Order
      */
     public function processPostData($post)
     {
-        echo '<pre>';
-        var_dump($post);
-        echo '</pre>';
-        //exit;
         $orderStatus = $this->findOrderStatusModel($post['x_cod_response']);
         $this->order_status_id_order_status = $orderStatus->id_order_status;
+        $this->savePaymentNotification($post);
+        $this->setBuyerData($post);
+        $this->save();
 
         return $this;
+    }
+
+    /**
+     * @param $post
+     */
+    private function savePaymentNotification($post)
+    {
+        $paymentNotification = new PaymentNotifications();
+        $paymentNotification->body = json_encode($post);
+        $paymentNotification->order_id_order = $this->id_order;
+        $paymentNotification->timestamp = date('Y-m-d H:i:s');
+        $paymentNotification->save();
+    }
+
+    /**
+     * @param $post
+     */
+    private function setBuyerData($post)
+    {
+        //x_customer_name //x_customer_lastname
+        //x_customer_email
+        //x_customer_phone
+
+        //x_customer_doctype
+        //x_customer_document
+        //x_customer_country
+        //x_customer_city
+        //x_customer_address
+        //x_customer_ip
+
+        $orderInfo = new OrderInfo();
+        $orderInfo->order_id_order = $this->id_order;
+        $orderInfo->info_type = 'billing';
+        $orderInfo->full_name = $post['x_customer_name'] . ' '. $post['x_customer_lastname'];
+        $orderInfo->email = $post['x_customer_email'];
+        $orderInfo->phone = $post['x_customer_phone'];
+        $orderInfo->doc_type = $post['x_customer_doctype'];
+        $orderInfo->document = $post['x_customer_document'];
+        $orderInfo->country = $post['x_customer_country'];
+        $orderInfo->city = $post['x_customer_city'];
+        $orderInfo->address = $post['x_customer_address'];
+        $orderInfo->ip = $post['x_customer_ip'];
+
+        $orderInfo->save();
     }
 
     /**
@@ -43,7 +86,6 @@ class OrderModel extends Order
      */
     private function findOrderStatusModel($idStatus)
     {
-        var_dump($idStatus); exit;
         if (($model = OrderStatus::findOne($idStatus)) !== null) {
             return $model;
         }

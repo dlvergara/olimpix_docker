@@ -19,6 +19,7 @@ use Yii;
  *
  * @property Order $orderIdOrder
  * @property ServicioDisponible $servicioDisponibleIdServicioDisponible
+ * @property ServicioContratado[] $servicioContratados
  */
 class OrderDetail extends \yii\db\ActiveRecord
 {
@@ -76,5 +77,13 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function getServicioDisponibleIdServicioDisponible()
     {
         return $this->hasOne(ServicioDisponible::className(), ['id_servicio_disponible' => 'servicio_disponible_id_servicio_disponible']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioContratados()
+    {
+        return $this->hasMany(ServicioContratado::className(), ['order_detail_id_order_detail' => 'id_order_detail']);
     }
 }
