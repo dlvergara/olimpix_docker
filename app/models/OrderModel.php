@@ -31,9 +31,12 @@ class OrderModel extends Order
         $orderStatus = $this->findOrderStatusModel($post['x_cod_response']);
         if( $this->order_status_id_order_status !== $orderStatus->id_order_status) {
             $this->order_status_id_order_status = $orderStatus->id_order_status;
+            $this->isNewRecord = false;
+            if(!$this->validate() || !$this->save()) {
+                echo '<pre>'; var_dump($this->getErrors()); exit;
+            }
             $this->savePaymentNotification($post);
             $this->setBuyerData($post);
-            $this->update();
         }
 
         return $this;

@@ -39,9 +39,20 @@ use \app\models\Order;
 <section class="training-area">
     <div class="container">
         <div class="row">
-            <pre>
-                <?= var_dump($post) ?>
-            </pre>
+            <h3>Tu orden ha sido procesada exitosamente.</h3>
+            <p>Ahora por favor completa la siguiente información: </p>
+            <?php
+            /**
+             * @var $orderDetail \app\models\OrderDetail
+             */
+            foreach ($ordenModel->orderDetails as $index => $orderDetail) {
+                $servicioContratado = $orderDetail->getServicioContratados()->one();
+                if(empty($servicioContratado)) {
+                    $servicioContratado = new \app\models\ServicioContratado();
+                }
+                echo $this->render('../servicio-contratado/_form', ['model' => $servicioContratado,] );
+            }
+            ?>
         </div>
     </div>
 </section>

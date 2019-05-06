@@ -89,7 +89,7 @@ class EventoController extends \yii\web\Controller
             $post = Yii::$app->request->post();
             $ordenModel->processPostData($post);
         }
-        switch ($ordenModel->order_status_id_order_status){
+        switch ($ordenModel->order_status_id_order_status) {
             case 1:
                 $view = 'aceptada';
                 break;
