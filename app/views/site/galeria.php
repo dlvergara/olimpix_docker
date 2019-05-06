@@ -217,7 +217,7 @@ $this->title = 'Galeria';
 </script>
 
 
-<!-- Start gallery Area -->
+<!-- Start gallery Area 
 
 <section class="gallery-block grid-gallery">
 
@@ -267,6 +267,6 @@ $this->title = 'Galeria';
     baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
 </script>
 
-<!-- End gallery Area -->
+ End gallery Area -->
 
 
