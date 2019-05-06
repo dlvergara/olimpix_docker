@@ -23,14 +23,18 @@ class OrderModel extends Order
      * @param $post
      * @return $this
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function processPostData($post)
     {
         $orderStatus = $this->findOrderStatusModel($post['x_cod_response']);
-        $this->order_status_id_order_status = $orderStatus->id_order_status;
-        $this->savePaymentNotification($post);
-        $this->setBuyerData($post);
-        $this->save();
+        if( $this->order_status_id_order_status !== $orderStatus->id_order_status) {
+            $this->order_status_id_order_status = $orderStatus->id_order_status;
+            $this->savePaymentNotification($post);
+            $this->setBuyerData($post);
+            $this->update();
+        }
 
         return $this;
     }

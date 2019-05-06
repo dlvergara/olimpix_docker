@@ -114,7 +114,7 @@ class BuyerInfoForm extends \yii\base\Model
         $order->base_iva = floatval($baseIva);
         $order->date = date('Y-m-d H:i:s');
         $order->currency = $currency;
-        $order->order_status_id_order_status = 8;
+        $order->order_status_id_order_status = 7;//INICIADA
 
         try {
             $order->save();
@@ -163,6 +163,7 @@ class BuyerInfoForm extends \yii\base\Model
      * @param Order $order
      * @param array $paymentDistribution
      * $p_split_receivers[0] = array('id' => '17511', 'fee' => '20');
+     * @throws \Exception
      */
     private function setPaymentDistributionArray(Order $order, array $paymentDistribution)
     {
@@ -179,8 +180,7 @@ class BuyerInfoForm extends \yii\base\Model
             $save = $paymentDistribution->save();
             if( !$save ) {
                 $errors = $paymentDistribution->getErrors();
-                echo '<pre>'; var_dump($errors); exit;
-                throw new \Exception($errors[0]);
+                throw new \Exception(json_encode($errors));
             }
         }
     }

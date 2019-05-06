@@ -87,14 +87,21 @@ class EventoController extends \yii\web\Controller
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
-            echo '<pre>';
-            var_dump($post);
-            echo '</pre>';
-            //exit;
             $ordenModel->processPostData($post);
         }
+        switch ($ordenModel->order_status_id_order_status){
+            case 1:
+                $view = 'aceptada';
+                break;
+            case 2 || 4 || 5 || 8 || 9 || 10:
+                $view = 'rechazada';
+                break;
+            case 3 || 6 || 7:
+                $view = 'pendiente';
+                break;
+        }
 
-        return $this->render('confirmacion-' . $ordenModel->order_status_id_order_status, ['eventoModel' => $evento, 'ordenModel' => $orden]);
+        return $this->render('confirmacion-' . $view, ['eventoModel' => $evento, 'ordenModel' => $orden, 'post' => $post]);
     }
 
     /**
