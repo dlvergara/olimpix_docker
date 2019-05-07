@@ -47,10 +47,15 @@ use \app\models\Order;
              */
             foreach ($ordenModel->orderDetails as $index => $orderDetail) {
                 $servicioContratado = $orderDetail->getServicioContratados()->one();
-                if(empty($servicioContratado)) {
+                if (empty($servicioContratado)) {
                     $servicioContratado = new \app\models\ServicioContratado();
                 }
-                echo $this->render('../servicio-contratado/_form', ['model' => $servicioContratado,] );
+
+                $form = '../servicio-contratado/_formPrueba';
+                if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
+                    $form = '../servicio-contratado/_formPesebrera';
+                }
+                echo $this->render($form, ['model' => $servicioContratado,]);
             }
             ?>
         </div>
