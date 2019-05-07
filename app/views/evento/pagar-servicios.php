@@ -28,6 +28,10 @@ $form = ActiveForm::begin([
     'action' => 'https://secure.payco.co/splitpayments.php',
 ]);
 
+$secretKey = Yii::$app->params['secretKey'];
+$idEvento = base64_encode(Yii::$app->getSecurity()->encryptByPassword($model->id_evento, $secretKey));
+$idOrder = base64_encode(Yii::$app->getSecurity()->encryptByPassword($orden->id_order, $secretKey));
+
 $csrf = Yii::$app->request->csrfToken;
 $url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => base64_encode($model->id_evento), 'orden' => base64_encode($orden->id_order),]);
 
@@ -196,8 +200,8 @@ if (count($formModels) > 0) {
 
                     <input name="p_signature_split" type="hidden" value="<?php echo $p_signature_split ?>">
 
-                    <input name="p_extra1" type="hidden" value="<?= base64_encode($model->id_evento) ?>">
-                    <input name="p_extra2" type="hidden" value="<?= base64_encode($orden->id_order) ?>">
+                    <input name="p_extra1" type="hidden" value="<?= $idEvento ?>">
+                    <input name="p_extra2" type="hidden" value="<?= $idOrder ?>">
                     <input name="p_extra3" type="hidden" value="<?= $csrf ?>">
 
                     <input name="p_url_confirmation" type="hidden" value="<?= $url ?>">

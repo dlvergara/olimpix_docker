@@ -79,6 +79,7 @@ class EventoController extends \yii\web\Controller
      */
     public function actionConfirmacion($evento = null, $orden = null)
     {
+        $secretKey = Yii::$app->params['secretKey'];
         $evento = base64_decode($evento);
         $orden = base64_decode($orden);
 
@@ -90,7 +91,9 @@ class EventoController extends \yii\web\Controller
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
-            if( $evento == base64_decode($post['x_extra1']) && $orden == base64_decode($post['x_extra2']) ) {
+            $eventoHash = Yii::$app->getSecurity()->decryptByPassword(base64_decode($post['x_extra1']), $secretKey);
+            $ordenHash = Yii::$app->getSecurity()->decryptByPassword(base64_decode($post['x_extra2']), $secretKey);
+            if ($evento->id_evento == $eventoHash && $orden->id_order == $ordenHash) {
                 $ordenModel->processPostData($post, $orden);
             }
         }

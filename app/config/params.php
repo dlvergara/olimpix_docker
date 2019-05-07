@@ -3,6 +3,7 @@
 return [
     'adminEmail' => 'admin@example.com',
     //'homeUrl' => 'http://olimpix.com.co',
+    'secretKey' => 'olimPix2010',
     'olimpix' => [
         'iva' => 19,
     ],
