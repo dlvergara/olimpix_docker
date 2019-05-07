@@ -76,6 +76,8 @@ class EventoSearch extends Evento
             ->andFilterWhere(['like', 'descripcion', $this->descripcion])
             ->andFilterWhere(['like', 'direccion', $this->direccion]);
 
+        $query->addOrderBy("fecha_inicio DESC");
+
         return $dataProvider;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace app\modules\backoffice\controllers;
 
+use app\models\ServicioDisponible;
 use Yii;
 use app\models\PruebaSalto;
 use app\models\PruebaSaltoSearch;
@@ -65,10 +66,28 @@ class PruebaSaltoController extends Controller
     public function actionCreate()
     {
         $model = new PruebaSalto();
+        $post = Yii::$app->request->post();
         if ($model->load(Yii::$app->request->post())) {
-            var_dump( \yii\base\Model::loadMultiple($model, Yii::$app->request->post()) ); exit;
-            if( $model->save() ) {
+            $serviciosDisponibles = [];
+            foreach ($post['ServicioDisponible'] as $index => $servicio) {
+                $servicioDisp = new ServicioDisponible();
+                $servicioDisp->evento_id_evento = $model->evento_id_evento;
+                $servicioDisp->nombre = "Inscripción prueba - ".$index;
+                $servicioDisp->descripcion = $servicio['nombre'];
+                $servicioDisp->monto = $servicio['monto'];
 
+                if( !empty($servicio['monto']) ) {
+                    $serviciosDisponibles[] = $servicioDisp;
+                }
+            }
+            if( $model->save() ) {
+                /**
+                 * @var $servicioDisponible ServicioDisponible
+                 */
+                foreach ($serviciosDisponibles as $index => $servicioDisponible) {
+                    $servicioDisponible->prueba_salto_id_prueba = $model->id_prueba;
+                    $servicioDisponible->save();
+                }
             }
             return $this->redirect(['view', 'id' => $model->id_prueba]);
         }
