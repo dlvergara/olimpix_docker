@@ -37,10 +37,10 @@ $this->title = 'servicios';
 </section>
 
 
-
+<!-- Start Sample Area 
 <div class="panel panel-default">
   <div class="panel-body">
-<!-- Start Sample Area -->
+<!-- Start Sample Area 
 		<section class="about-video-area section-gap">
 				<div class="container">
 					<div class="row">
@@ -67,7 +67,7 @@ $this->title = 'servicios';
 			</section>
 
         </div>
-    </div>
+    </div> -->
 
 <div class="panel panel-default">
   <div class="panel-body">
@@ -76,118 +76,59 @@ $this->title = 'servicios';
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row justify-content-between align-items-center">
-						<div class="col-lg-6 col-md-6 booking-left">
-							<div class="active-review-carusel">
+                        <div class="col-lg-6 col-md-6 booking-left">
+				            <div class="active-review-carusel">
 								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
+								<!--	<div class="col-md-4 mt-sm-30"> -->
+                                <blockquote>
+								<h3 class="mb-20"><b>Servicios:</b></h3>
+								<div class="">
+									<ol class="ordered-list">
+										<li><h4>Sistema de gestión de espectáculos deportivos y ecuestres.</h4> </li>
+                                        
+                                        <h4 class="text-justify"><b>Olimpix</b> pone a su disposición un sistema de información diseñado especialmente para sus eventos que cumple con sus requerimientos técnicos.</h4>
+                                        
+										<li><h4>Sistema de pagos en línea.</h4></li>
+                                        
+                                        <h4 class="text-justify"><b>Olimpix</b> cuenta con una pasarela de pagos donde sus clientes podrán inscribirse a concurso, realizar pagos y adquisición de servicios.</h4>
+                                        
+										<li><h4>Organización y logística de concurso deportivos y ecuestres.</h4></li>
+                                         <h4 class="text-justify"><b>Olimpix</b> pone a disposición personal especializado que se ocupara de la legista de su evento si usted los requiere.</h4>
+                                        
+										<li><h4>Servicio de cronometraje.</h4></li>
+                                        
+                                         <h4 class="text-justify"><b>Olimpix</b> pone a sus disposiciones equipos especializados para el cronometraje de pruebas ecuestres, que se integra con la plataforma tecnológica.</h4>
+                                        
+										<li><h4>Sistema de juzgamiento de pruebas ecuestres.</h4>
+                                            
+                                              <h4 class="text-justify"><b>Olimpix</b> cucuenta con un sistema que almacena el resultado de las pruebas y provee historial e información de su escalonamiento.</h4>
+                                        
+                                        <ol class="ordered-list-alpha">
+												<li><h4>Sistema de resultados.</h4>
+								                   
+								                <li><h4>Historial y escalonamiento integrado con la federación ecuestre colombiana.</h4></li>
+												
+												
+											</ol>
+                                        
+                                        
+                                        
+                                        </li>
+                                        
+									</ol>
 								</div>
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
+                                    
+                                    <a class="primary-btn" href="http://olimpix.com.co/site/events"> Empieza Ahora</a>
+                                    </blockquote>
+							</div>
+                                    
+                                 
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6 booking-right">
-								<h4 class="mb-20">Formulario de Contacto</h4>
-								<form action="#">
-									<input class="form-control" type="text" name="name" placeholder="Nombres" required>
-									<input class="form-control" type="email" name="email" placeholder="Email" required>
-									<input class="form-control" type="text" name="phone" placeholder="Número de Telefono" required>
-									<div class="input-group dates-wrap">
-										<input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Fecha y hora" type="text">
-										<div class="input-group-prepend">
-											<span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-										</div>
-									</div>
-									<textarea class="common-textarea form-control mt-10" name="message" placeholder="Mensage" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-									<button  class="btn btn-default btn-lg btn-block text-center">¡Reservar ahora!</button>
-								</form>
-						</div>
+						
 					</div>
 				</div>
+           <!--  </div> -->
 			</section>
       	</div>
 	</div>
