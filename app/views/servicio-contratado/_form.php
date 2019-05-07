@@ -12,19 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'evento_id_evento')->textInput() ?>
-
-    <?= $form->field($model, 'id_estado_servicio')->textInput() ?>
-
     <?= $form->field($model, 'caballo_id_caballo')->textInput() ?>
 
     <?= $form->field($model, 'jinete_id_jinete')->textInput() ?>
-
-    <?= $form->field($model, 'identificador_servicio_contratado')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'monto')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'order_detail_id_order_detail')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

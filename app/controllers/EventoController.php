@@ -79,6 +79,9 @@ class EventoController extends \yii\web\Controller
      */
     public function actionConfirmacion($evento = null, $orden = null)
     {
+        $evento = base64_decode($evento);
+        $orden = base64_decode($orden);
+
         $orden = $this->findOrderModel($orden);
         $evento = $this->findModel($evento);
 
@@ -87,7 +90,9 @@ class EventoController extends \yii\web\Controller
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
-            $ordenModel->processPostData($post);
+            if( $evento == base64_decode($post['x_extra1']) && $orden == base64_decode($post['x_extra2']) ) {
+                $ordenModel->processPostData($post, $orden);
+            }
         }
         switch ($ordenModel->order_status_id_order_status) {
             case 1:

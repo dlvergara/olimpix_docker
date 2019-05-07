@@ -29,7 +29,7 @@ $form = ActiveForm::begin([
 ]);
 
 $csrf = Yii::$app->request->csrfToken;
-$url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => $model->id_evento, 'orden' => $orden->id_order,]);
+$url = Yii::$app->getUrlManager()->createAbsoluteUrl(['evento/confirmacion', 'evento' => base64_encode($model->id_evento), 'orden' => base64_encode($orden->id_order),]);
 
 $p_id_invoice = $orden->id_order . '-' . time();
 $p_cust_id_cliente = Yii::$app->params['epayco']['id-client'];
@@ -195,7 +195,11 @@ if (count($formModels) > 0) {
                     ?>
 
                     <input name="p_signature_split" type="hidden" value="<?php echo $p_signature_split ?>">
+
+                    <input name="p_extra1" type="hidden" value="<?= base64_encode($model->id_evento) ?>">
+                    <input name="p_extra2" type="hidden" value="<?= base64_encode($orden->id_order) ?>">
                     <input name="p_extra3" type="hidden" value="<?= $csrf ?>">
+
                     <input name="p_url_confirmation" type="hidden" value="<?= $url ?>">
                     <input name="p_url_response" type="hidden" value="<?= $url ?>">
 

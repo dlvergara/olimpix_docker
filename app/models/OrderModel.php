@@ -26,15 +26,12 @@ class OrderModel extends Order
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
-    public function processPostData($post)
+    public function processPostData($post, Order $orden)
     {
         $orderStatus = $this->findOrderStatusModel($post['x_cod_response']);
-        if( $this->order_status_id_order_status !== $orderStatus->id_order_status) {
-            $this->order_status_id_order_status = $orderStatus->id_order_status;
-            $this->isNewRecord = false;
-            if(!$this->validate() || !$this->save()) {
-                echo '<pre>'; var_dump($this->getErrors()); exit;
-            }
+        if ($this->order_status_id_order_status !== $orderStatus->id_order_status) {
+            $orden->order_status_id_order_status = $orderStatus->id_order_status;
+            $orden->update(true, ['order_status_id_order_status']);
             $this->savePaymentNotification($post);
             $this->setBuyerData($post);
         }
@@ -73,7 +70,7 @@ class OrderModel extends Order
         $orderInfo = new OrderInfo();
         $orderInfo->order_id_order = $this->id_order;
         $orderInfo->info_type = 'billing';
-        $orderInfo->full_name = $post['x_customer_name'] . ' '. $post['x_customer_lastname'];
+        $orderInfo->full_name = $post['x_customer_name'] . ' ' . $post['x_customer_lastname'];
         $orderInfo->email = $post['x_customer_email'];
         $orderInfo->phone = $post['x_customer_phone'];
         $orderInfo->doc_type = $post['x_customer_doctype'];
