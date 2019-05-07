@@ -39,25 +39,28 @@ use \app\models\Order;
 <section class="training-area">
     <div class="container">
         <div class="row">
-            <h3>Tu orden ha sido procesada exitosamente.</h3>
-            <p>Ahora por favor completa la siguiente información: </p>
-            <?php
-            /**
-             * @var $orderDetail \app\models\OrderDetail
-             */
-            foreach ($ordenModel->orderDetails as $index => $orderDetail) {
-                $servicioContratado = $orderDetail->getServicioContratados()->one();
-                if (empty($servicioContratado)) {
-                    $servicioContratado = new \app\models\ServicioContratado();
-                }
-
-                $form = '../servicio-contratado/_formPrueba';
-                if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
-                    $form = '../servicio-contratado/_formPesebrera';
-                }
-                echo $this->render($form, ['model' => $servicioContratado,]);
-            }
-            ?>
+            <h2>Tu orden ha sido procesada exitosamente.</h2>
         </div>
+        <div class="row">
+            <h3>Ahora por favor completa la siguiente información: </h3>
+        </div>
+        <?php
+        /**
+         * @var $orderDetail \app\models\OrderDetail
+         */
+        foreach ($ordenModel->orderDetails as $index => $orderDetail) {
+            $servicioContratado = $orderDetail->getServicioContratados()->one();
+            if (empty($servicioContratado)) {
+                $servicioContratado = new \app\models\ServicioContratado();
+            }
+
+            $form = '../servicio-contratado/_formPrueba';
+            if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
+                $form = '../servicio-contratado/_formPesebrera';
+            }
+            echo $this->render($form, ['model' => $servicioContratado, 'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible]);
+            //echo '<br>';
+        }
+        ?>
     </div>
 </section>

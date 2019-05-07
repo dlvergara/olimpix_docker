@@ -7,8 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\ServicioContratado */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
-<div class="servicio-contratado-form">
+<h2><?= $servicioDisponible->nombre ?></h2>
+<div class="row">
 
     <?php $form = ActiveForm::begin(); ?>
 

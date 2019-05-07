@@ -78,6 +78,7 @@ class PruebaSaltoController extends Controller
                 $servicioDisp->monto = $servicio['monto'];
                 $servicioDisp->disponible = 1;
                 $servicioDisp->fecha_inicio = $model->fecha;
+                $servicioDisp->fecha_fin = $model->fecha;
                 $servicioDisp->cantidad_disponible = 100;
                 $servicioDisp->proveedor_id_proveedor = $servicio['proveedor_id_proveedor'];
 
