@@ -118,7 +118,8 @@ $this->title = 'servicios';
 									</ol>
 								</div>
                                     
-                                    <a class="primary-btn" href="http://olimpix.com.co/site/events"> Empieza Ahora</a>
+                          <a class="primary-btn" href="http://olimpix.com.co/site/events"><spa class="glyphicon glyphicon-calendar"></spa> Empieza a Participar</a>
+                                    
                                     </blockquote>
 							</div>
                                     
