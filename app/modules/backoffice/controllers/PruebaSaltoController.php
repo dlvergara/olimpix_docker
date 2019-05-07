@@ -76,7 +76,7 @@ class PruebaSaltoController extends Controller
                 $servicioDisp->nombre = "Inscripción prueba - " . $index;
                 $servicioDisp->descripcion = $servicio['nombre'];
                 $servicioDisp->monto = $servicio['monto'];
-                $servicioDisp->disponible = true;
+                $servicioDisp->disponible = 1;
                 $servicioDisp->fecha_inicio = $model->fecha;
                 $servicioDisp->cantidad_disponible = 100;
                 $servicioDisp->proveedor_id_proveedor = $servicio['proveedor_id_proveedor'];
@@ -95,6 +95,7 @@ class PruebaSaltoController extends Controller
                     foreach ($serviciosDisponibles as $index => $servicioDisponible) {
                         $servicioDisponible->prueba_salto_id_prueba = $model->id_prueba;
                         $servicioDisponible->porcentaje_comision_olimpix = 3;
+                        $servicioDisponible->porcentaje_iva = 0;
                         if (!$servicioDisponible->save()) {
                             throw new \Exception(json_encode($servicioDisponible->getErrors()));
                         }
