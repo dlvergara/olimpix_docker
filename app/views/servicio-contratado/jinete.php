@@ -25,7 +25,7 @@ $jinetes = \app\models\Jinete::find()
 
 $modalId = 'modalJinete-' . $servicioDisponible->id_servicio_disponible;
 $idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jinete_id_jinete';
-
+$modalUrl = Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]);
 ?>
 <p>Jinete:
     <?php
@@ -64,7 +64,7 @@ $idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jin
             "),
         ],
         'size' => ModalAjax::SIZE_LARGE,
-        'url' => Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]), // Ajax view with form to load
+        'url' => $modalUrl,
         'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
     ]);
     echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $idAutoCompleteJinete])->label("");
