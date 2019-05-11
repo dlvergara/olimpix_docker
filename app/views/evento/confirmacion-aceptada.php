@@ -12,6 +12,20 @@ use \app\models\Order;
  * @var $ordenModel Order
  * @var $post array
  */
+
+$script = <<< JS
+    function setInfoJinete(jinete, servicio, autocomplete) {
+        console.log(jinete);
+        console.log(servicio);
+        console.log(autocomplete);
+        
+        $("#"+servicio).val( jinete.id_jinete );
+        $("#"+autocomplete).val( jinete.nombre_completo );
+        return true;
+    }
+JS;
+$this->registerJs($script);
+
 ?>
 <!-- start banner Area -->
 <section class="banner-area relative" id="home">
@@ -44,6 +58,7 @@ use \app\models\Order;
         <div class="row">
             <h3>Ahora por favor completa la siguiente información: </h3>
         </div>
+
         <?php
         /**
          * @var $orderDetail \app\models\OrderDetail

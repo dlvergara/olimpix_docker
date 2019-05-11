@@ -18,41 +18,59 @@ $jinetes = \app\models\Jinete::find()
     ->asArray()
     ->all();
 
-echo ModalAjax::widget([
-    'id' => 'createCompany',
-    'header' => 'Registrar Jinete',
-    'toggleButton' => [
-        'label' => 'Registrar Jinete',
-        'class' => 'btn btn-primary pull-right'
-    ],
-    'url' => Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]), // Ajax view with form to load
-    'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
-    // ... any other yii2 bootstrap modal option you need
-]);
+$modalId = 'modalJinete-' . $servicioDisponible->id_servicio_disponible;
+$idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jinete_id_jinete';
+
 ?>
-<h2>Inscripción <?= ucfirst(strtolower($servicioDisponible->pruebaSaltoIdPrueba->nombre)) ?></h2>
+<h3>Inscripción <?= ucfirst(strtolower($servicioDisponible->pruebaSaltoIdPrueba->nombre)) ?></h3>
 <div class="row">
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'caballo_id_caballo')->hiddenInput() ?>
-
+    <h4>Jinete</h4>
     <?php
-    $id = $servicioDisponible->id_servicio_disponible . '-' . 'jinete_id_jinete';
-    echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $id])->label("") .
-        AutoComplete::widget([
-            'clientOptions' => [
-                'source' => $jinetes,
-                'minLength' => '3',
-                'autoFill' => true,
-                'select' => new JsExpression("function( event, ui ) {
-			        $('#{$id}').val(ui.item.id);
+    echo AutoComplete::widget([
+        'id' => $idAutoCompleteJinete . '-autocomplete',
+        'clientOptions' => [
+            'source' => $jinetes,
+            'minLength' => '3',
+            'autoFill' => true,
+            'select' => new JsExpression("function( event, ui ) {
+			        $('#{$idAutoCompleteJinete}').val(ui.item.id);
 			     }")
-            ],
-        ]);
+        ],
+    ]);
+    echo ModalAjax::widget([
+        'id' => $modalId,
+        'header' => 'Registrar Jinete',
+        'toggleButton' => [
+            'label' => '+',
+            'class' => 'btn btn-primary pull-right'
+        ],
+        'events' => [
+            ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
+            function(event, data, status, xhr, selector) {
+                if(status == 'success') {
+                    var jineteLoaded = setInfoJinete( data.model, data.servicio, data.autocomplete );
+                    if(jineteLoaded) {
+                        $('#{$modalId}').modal('toggle');
+                    }
+                }
+            }
+        "),
+        ],
+        'size' => ModalAjax::SIZE_LARGE,
+        'url' => Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]), // Ajax view with form to load
+        'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
+    ]);
+    echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $idAutoCompleteJinete])->label("");
     ?>
 
+    <h4>Caballo</h4>
+    <?= $form->field($model, 'caballo_id_caballo')->hiddenInput()->label("") ?>
+
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

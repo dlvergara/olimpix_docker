@@ -68,8 +68,10 @@ class JineteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if (Yii::$app->request->isAjax) {
-                echo $servicio;
-                exit;
+                $idServicio = $servicio . '-' . 'jinete_id_jinete';
+                $idAutoComplete = $idServicio . '-' . 'autocomplete';
+
+                return $this->asJson([ 'servicio' => $idServicio, 'model' => $model, 'autocomplete' => $idAutoComplete]);
             }
             return $this->redirect(['view', 'id' => $model->id_jinete]);
         }
