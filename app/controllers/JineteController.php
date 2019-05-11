@@ -62,11 +62,15 @@ class JineteController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($servicio)
     {
         $model = new Jinete();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if (Yii::$app->request->isAjax) {
+                echo $servicio;
+                exit;
+            }
             return $this->redirect(['view', 'id' => $model->id_jinete]);
         }
 

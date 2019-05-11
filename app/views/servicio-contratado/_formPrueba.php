@@ -25,7 +25,7 @@ echo ModalAjax::widget([
         'label' => 'Registrar Jinete',
         'class' => 'btn btn-primary pull-right'
     ],
-    'url' => Url::to(['jinete/create']), // Ajax view with form to load
+    'url' => Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]), // Ajax view with form to load
     'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
     // ... any other yii2 bootstrap modal option you need
 ]);
@@ -36,18 +36,19 @@ echo ModalAjax::widget([
 
     <?= $form->field($model, 'caballo_id_caballo')->hiddenInput() ?>
 
-    <?=
-    $form->field($model, 'jinete_id_jinete')->hiddenInput()->label("") .
-    AutoComplete::widget([
-        'clientOptions' => [
-            'source' => $jinetes,
-            'minLength' => '3',
-            'autoFill' => true,
-            'select' => new JsExpression("function( event, ui ) {
-			        $('#serviciocontratado-jinete_id_jinete').val(ui.item.id);
+    <?php
+    $id = $servicioDisponible->id_servicio_disponible . '-' . 'jinete_id_jinete';
+    echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $id])->label("") .
+        AutoComplete::widget([
+            'clientOptions' => [
+                'source' => $jinetes,
+                'minLength' => '3',
+                'autoFill' => true,
+                'select' => new JsExpression("function( event, ui ) {
+			        $('#{$id}').val(ui.item.id);
 			     }")
-        ],
-    ]);
+            ],
+        ]);
     ?>
 
     <div class="form-group">
