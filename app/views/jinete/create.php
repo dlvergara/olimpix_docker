@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Jinete */
 
-$this->title = 'Create Jinete';
+$this->title = 'Registrar Jinete';
 $this->params['breadcrumbs'][] = ['label' => 'Jinetes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

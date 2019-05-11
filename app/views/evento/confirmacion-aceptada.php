@@ -52,30 +52,37 @@ $this->registerJs($script);
 <!-- Start pruebas Area -->
 <section class="training-area">
     <div class="container">
-        <div class="row">
-            <h2>Tu orden ha sido procesada exitosamente.</h2>
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Tu orden ha sido procesada exitosamente.</h1>
+                    <p>Ahora por favor completa la siguiente información: </p>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+
+<section class="latest-blog-area">
+    <div class="container">
         <div class="row">
-            <h3>Ahora por favor completa la siguiente información: </h3>
+            <?php
+            /**
+             * @var $orderDetail \app\models\OrderDetail
+             */
+            foreach ($ordenModel->orderDetails as $index => $orderDetail) {
+                $servicioContratado = $orderDetail->getServicioContratados()->one();
+                if (empty($servicioContratado)) {
+                    $servicioContratado = new \app\models\ServicioContratado();
+                }
+
+                $form = '../servicio-contratado/_formPrueba';
+                if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
+                    $form = '../servicio-contratado/_formPesebrera';
+                }
+                echo $this->render($form, ['model' => $servicioContratado, 'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible]);
+            }
+            ?>
         </div>
-
-        <?php
-        /**
-         * @var $orderDetail \app\models\OrderDetail
-         */
-        foreach ($ordenModel->orderDetails as $index => $orderDetail) {
-            $servicioContratado = $orderDetail->getServicioContratados()->one();
-            if (empty($servicioContratado)) {
-                $servicioContratado = new \app\models\ServicioContratado();
-            }
-
-            $form = '../servicio-contratado/_formPrueba';
-            if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
-                $form = '../servicio-contratado/_formPesebrera';
-            }
-            echo $this->render($form, ['model' => $servicioContratado, 'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible]);
-            //echo '<br>';
-        }
-        ?>
     </div>
 </section>
