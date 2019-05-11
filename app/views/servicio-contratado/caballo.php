@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: David Leonardo
  * Date: 5/11/2019
- * Time: 4:48 PM
+ * Time: 4:54 PM
  */
 
 use yii\jui\AutoComplete;
@@ -11,42 +11,41 @@ use yii\web\JsExpression;
 use lo\widgets\modal\ModalAjax;
 use yii\helpers\Url;
 
-/**
- * @var $this yii\web\View
- * @var $model app\models\ServicioContratado
- * @var $servicioDisponible \app\models\ServicioDisponible
+/* @var $this yii\web\View */
+/* @var $model app\models\ServicioContratado */
+/* @var $servicioDisponible \app\models\ServicioDisponible
  * @var $form yii\widgets\ActiveForm
  */
 
-$jinetes = \app\models\Jinete::find()
-    ->select(['nombre_completo as value', 'nombre_completo as  label', 'id_jinete as id'])
+$caballos = \app\models\Caballo::find()
+    ->select(['CONCAT(nombre,"-",num_microchip_principal) as value', 'CONCAT(nombre,"-",num_microchip_principal) as  label', 'id_caballo as id'])
     ->asArray()
     ->all();
 
-$modalId = 'modalJinete-' . $servicioDisponible->id_servicio_disponible;
-$idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jinete_id_jinete';
-
+$modalId = 'modalCaballo-' . $servicioDisponible->id_servicio_disponible;
+$idAutoCompleteCaballo = $servicioDisponible->id_servicio_disponible . '-' . 'caballo_id_caballo';
+$modalUrl = Url::to(['caballo/create', 'servicio' => $servicioDisponible->id_servicio_disponible]);
 ?>
-<p>Jinete:
+<p>Caballo:
     <?php
     echo AutoComplete::widget([
-        'id' => $idAutoCompleteJinete . '-autocomplete',
+        'id' => $idAutoCompleteCaballo . '-caballo-autocomplete',
         'clientOptions' => [
-            'source' => $jinetes,
+            'source' => $caballos,
             'minLength' => '3',
             'autoFill' => true,
             'select' => new JsExpression("function( event, ui ) {
-                        $('#{$idAutoCompleteJinete}').val(ui.item.id);
+                        $('#{$idAutoCompleteCaballo}').val(ui.item.id);
                      }")
         ],
         'options' => [
             'class' => 'single-input',
-            'style' => 'max-width: 80%; display: inline-block;'
+            'style' => 'max-width: 75%; display: inline-block;'
         ]
     ]);
     echo ModalAjax::widget([
         'id' => $modalId,
-        'header' => 'Registrar Jinete',
+        'header' => 'Registrar Caballo',
         'toggleButton' => [
             'label' => '+',
             'class' => 'btn btn-primary'
@@ -55,8 +54,8 @@ $idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jin
             ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
                 function(event, data, status, xhr, selector) {
                     if(status == 'success') {
-                        var jineteLoaded = setInfoJinete( data.model, data.servicio, data.autocomplete );
-                        if(jineteLoaded) {
+                        var loaded = setInfoCaballo( data.model, data.servicio, data.autocomplete );
+                        if(loaded) {
                             $('#{$modalId}').modal('toggle');
                         }
                     }
@@ -64,9 +63,9 @@ $idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jin
             "),
         ],
         'size' => ModalAjax::SIZE_LARGE,
-        'url' => Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]), // Ajax view with form to load
+        'url' => $modalUrl,
         'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
     ]);
-    echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $idAutoCompleteJinete])->label("");
-    ?>
+    $form->field($model, 'caballo_id_caballo')->hiddenInput()->label("") ?>
 </p>
+

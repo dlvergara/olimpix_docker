@@ -15,12 +15,13 @@ use \app\models\Order;
 
 $script = <<< JS
     function setInfoJinete(jinete, servicio, autocomplete) {
-        console.log(jinete);
-        console.log(servicio);
-        console.log(autocomplete);
-        
         $("#"+servicio).val( jinete.id_jinete );
         $("#"+autocomplete).val( jinete.nombre_completo );
+        return true;
+    }
+    function setInfoCaballo(jinete, servicio, autocomplete) {
+        $("#"+servicio).val( jinete.id_caballo );
+        $("#"+autocomplete).val( jinete.nombre );
         return true;
     }
 JS;

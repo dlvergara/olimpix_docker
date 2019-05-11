@@ -75,7 +75,7 @@ class EventoController extends \yii\web\Controller
     }
 
     /**
-     *
+     * Action para completar el registro y la confirmacion de la compra
      */
     public function actionConfirmacion($evento = null, $orden = null)
     {
