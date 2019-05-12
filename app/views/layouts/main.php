@@ -67,8 +67,9 @@ AppAsset::register($this);
     
     <?php $this->head() ?>
 </head>
-<body>
-<?php $this->beginBody() ?>
+<body class="" style="display: block;">
+    <button type="button" id="mobile-nav-toggle"><i class="lnr lnr-cross"></i></button>
+    <?php $this->beginBody() ?>
 
     <?=
     $this->render("header");
@@ -104,6 +105,26 @@ AppAsset::register($this);
     <script src="<?= Url::base(true) ?>/js/mail-script.js"></script>
     <script src="<?= Url::base(true) ?>/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+
+    <nav id="mobile-nav">
+        <ul class="" style="touch-action: pan-y;" id="">
+            <li class="menu-active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="training.html">training</a></li>
+            <li><a href="events.html">events</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li class="menu-has-children"><i class="lnr lnr-chevron-down"></i><a href="" class="sf-with-ul">Blog</a>
+                <ul style="display: none;">
+                    <li><a href="blog-home.html">Blog Home</a></li>
+                    <li><a href="blog-single.html">Blog Single</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-body-overly" style="display: none;"></div>
 
 <?php $this->endBody() ?>
 </body>

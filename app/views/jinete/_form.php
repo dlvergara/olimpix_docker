@@ -45,7 +45,7 @@ $clubesArray = ArrayHelper::map(Club::find()->all(), 'id_club', 'nombre');
     <?= $form->field($model, 'direccion')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
