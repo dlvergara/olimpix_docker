@@ -22,8 +22,11 @@ $caballos = ArrayHelper::map(Caballo::find()->all(), 'id_caballo', 'nombre');
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'num_microchip_principal')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
+    <!--
     <?= $form->field($model, 'fecha_nacimiento')->textInput(['type' => 'date']) ?>
 
     <?= $form->field($model, 'fecha_grado')->textInput(['type' => 'date']) ?>
@@ -52,12 +55,10 @@ $caballos = ArrayHelper::map(Caballo::find()->all(), 'id_caballo', 'nombre');
 
     <?= $form->field($model, 'fecha_vigencia_fec')->textInput() ?>
 
-    <?= $form->field($model, 'num_microchip_principal')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'liga_id_liga')->dropDownList($ligasArray, ['prompt' => '']) ?>
 
     <?= $form->field($model, 'club_id_club')->dropDownList($clubesArray, ['prompt' => '']) ?>
-
+    -->
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
