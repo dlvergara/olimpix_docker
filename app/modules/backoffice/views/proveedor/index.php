@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'monto',
             'procentaje',
-            'id_servicio_disponible',
+            'id_pasarela',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

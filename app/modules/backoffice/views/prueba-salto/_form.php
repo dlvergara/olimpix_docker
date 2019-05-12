@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 $eventosArray = \yii\helpers\ArrayHelper::map(\app\models\Evento::find()->all(), 'id_evento', 'nombre');
 $pistaArray = \yii\helpers\ArrayHelper::map(\app\models\Pista::find()->all(), 'id_pista', 'identificador');
 $categoriaArray = \yii\helpers\ArrayHelper::map(\app\models\CategoriaPruebaSalto::find()->all(), 'id_categoria_prueba', 'nombre');
+$proveedorArray= \yii\helpers\ArrayHelper::map(\app\models\Proveedor::find()->all(), 'id_proveedor', 'nombre');
 
 $servicioDisponibleFormPreVenta = new \app\models\ServicioDisponible();
 $servicioDisponibleFormVenta = new \app\models\ServicioDisponible();
@@ -51,16 +52,19 @@ $servicioDisponibleFormPosVenta = new \app\models\ServicioDisponible();
            <h3>Pre venta</h3>
             <?= $form->field($servicioDisponibleFormPreVenta, '[preventa]monto')->textInput(['maxlength' => true, 'name']) ?>
             <?= $form->field($servicioDisponibleFormPreVenta, '[preventa]nombre')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($servicioDisponibleFormPreVenta, '[preventa]proveedor_id_proveedor')->dropDownList($proveedorArray, ['prompt' => 'Seleccione...']) ?>
         </div>
         <div>
             <h3>Venta</h3>
             <?= $form->field($servicioDisponibleFormVenta, '[venta]monto')->textInput(['maxlength' => true]) ?>
             <?= $form->field($servicioDisponibleFormVenta, '[venta]nombre')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($servicioDisponibleFormVenta, '[venta]proveedor_id_proveedor')->dropDownList($proveedorArray, ['prompt' => 'Seleccione...']) ?>
         </div>
         <div>
             <h3>Pos venta</h3>
             <?= $form->field($servicioDisponibleFormPosVenta, '[posventa]monto')->textInput(['maxlength' => true]) ?>
             <?= $form->field($servicioDisponibleFormPosVenta, '[posventa]nombre')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($servicioDisponibleFormPosVenta, '[posventa]proveedor_id_proveedor')->dropDownList($proveedorArray, ['prompt' => 'Seleccione...']) ?>
         </div>
     </div>
 

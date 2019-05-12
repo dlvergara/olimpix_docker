@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'procentaje')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_servicio_disponible')->textInput() ?>
+    <?= $form->field($model, 'id_pasarela')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

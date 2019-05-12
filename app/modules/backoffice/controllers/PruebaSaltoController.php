@@ -2,6 +2,7 @@
 
 namespace app\modules\backoffice\controllers;
 
+use app\models\ServicioDisponible;
 use Yii;
 use app\models\PruebaSalto;
 use app\models\PruebaSaltoSearch;
@@ -61,15 +62,52 @@ class PruebaSaltoController extends Controller
      * Creates a new PruebaSalto model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws \yii\db\Exception
      */
     public function actionCreate()
     {
         $model = new PruebaSalto();
+        $post = Yii::$app->request->post();
         if ($model->load(Yii::$app->request->post())) {
-            var_dump( \yii\base\Model::loadMultiple($model, Yii::$app->request->post()) ); exit;
-            if( $model->save() ) {
+            $serviciosDisponibles = [];
+            foreach ($post['ServicioDisponible'] as $index => $servicio) {
+                $servicioDisp = new ServicioDisponible();
+                $servicioDisp->evento_id_evento = $model->evento_id_evento;
+                $servicioDisp->nombre = "Inscripción prueba - " . $index;
+                $servicioDisp->descripcion = $servicio['nombre'];
+                $servicioDisp->monto = $servicio['monto'];
+                $servicioDisp->disponible = 1;
+                $servicioDisp->fecha_inicio = $model->fecha;
+                $servicioDisp->fecha_fin = $model->fecha;
+                $servicioDisp->cantidad_disponible = 100;
+                $servicioDisp->proveedor_id_proveedor = $servicio['proveedor_id_proveedor'];
 
+                if (!empty($servicio['monto'])) {
+                    $serviciosDisponibles[] = $servicioDisp;
+                }
             }
+
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                if ($model->save()) {
+                    /**
+                     * @var $servicioDisponible ServicioDisponible
+                     */
+                    foreach ($serviciosDisponibles as $index => $servicioDisponible) {
+                        $servicioDisponible->prueba_salto_id_prueba = $model->id_prueba;
+                        $servicioDisponible->porcentaje_comision_olimpix = 3;
+                        $servicioDisponible->porcentaje_iva = 0;
+                        if (!$servicioDisponible->save()) {
+                            throw new \Exception(json_encode($servicioDisponible->getErrors()));
+                        }
+                    }
+                }
+                $transaction->commit();
+            } catch (Exception $e) {
+                $transaction->rollBack();
+                error_log($e->getMessage());
+            }
+
             return $this->redirect(['view', 'id' => $model->id_prueba]);
         }
 

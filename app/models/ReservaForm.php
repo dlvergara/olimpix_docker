@@ -9,6 +9,10 @@ class ReservaForm extends \yii\base\Model
     public $servicio;
     public $cantidad;
     public $subtotal;
+    public $montoComisionOlimpix;
+    public $montoIva;
+    public $porcentaje_comision_olimpix;
+    public $montoIvaComisionOlimpix;
 
     /**
      * @var ServicioDisponible
@@ -20,7 +24,7 @@ class ReservaForm extends \yii\base\Model
         return [
             [['cantidad'], 'required'],
             [['servicio', 'cantidad'], 'integer'],
-            // define validation rules here
+            [['servicio', 'cantidad', 'name', 'phone', 'email'], 'required', 'on' => 'pagar'],
         ];
     }
 

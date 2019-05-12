@@ -2,8 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\BuyerInfoForm;
+use app\models\CargoAdicional;
 use app\models\Evento;
 use app\models\LoginForm;
+use app\models\Order;
+use app\models\OrderModel;
 use app\models\ReservaForm;
 use app\models\ReservaJineteForm;
 use Yii;
@@ -14,6 +18,19 @@ class EventoController extends \yii\web\Controller
 {
     protected $models;
     protected $validModels;
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        if (in_array($action->id, ['confirmacion'])) {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
 
     /**
      * @param $evento
@@ -31,29 +48,92 @@ class EventoController extends \yii\web\Controller
      */
     public function actionReservar($evento)
     {
-        $sumaMonto = 0;
+        $buyerInfo = new BuyerInfoForm();
+        $buyerInfo->setPorcentajeIva(19);
+
+        $view = 'reservar-servicios';
         $eventoModel = $this->findModel($evento);
+        $cargosAdicionales = $this->getCargosAdicionales(0);
+        $total = 0;
+        $totalIva = 0;
+        $baseIva = 0;
+
         if (Yii::$app->request->isPost && $this->validarReserva()) {
-            $sumaMonto = 0;
-            /* @var $validModel ReservaForm */
-            foreach ($this->validModels as $index => $validModel) {
-                $sumaMonto += $validModel->getServicioDisponible()->monto * $validModel->cantidad;
-            }
+            $view = 'pagar-servicios';
+            $formModels = $this->validModels;
+
+            $cargosAdicionales = $this->getCargosAdicionales($total);
+
+            $orden = $buyerInfo->createOrder($formModels, $cargosAdicionales, "COP", $total, $baseIva);
+            $totalIva = $buyerInfo->getTotalIva($baseIva);
+
+        } else {
+            $formModels = $this->models;
         }
 
-        return $this->render('reservar-servicios', ['model' => $eventoModel, 'formModels' => $this->models, 'subtotal' => $sumaMonto]);
+        return $this->render($view, ['buyerInfo' => $buyerInfo, 'orden' => $orden, 'model' => $eventoModel, 'formModels' => $formModels, 'cargosAdicionales' => $cargosAdicionales, 'baseIva' => $baseIva, 'totalIva' => $totalIva]);
     }
 
     /**
-     * @param $evento
+     * Action para completar el registro y la confirmacion de la compra
      */
-    public function actionSearchJinete($evento)
+    public function actionConfirmacion($evento = null, $orden = null)
     {
-        $eventoModel = $this->findModel($evento);
-        if( Yii::$app->request->isPost ) {
+        $secretKey = Yii::$app->params['secretKey'];
+        $evento = base64_decode($evento);
+        $orden = base64_decode($orden);
 
+        $orden = $this->findOrderModel($orden);
+        $evento = $this->findModel($evento);
+
+        $ordenModel = new OrderModel();
+        $ordenModel->loadFromParentObj($orden);
+
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            $eventoHash = Yii::$app->getSecurity()->decryptByPassword(base64_decode($post['x_extra1']), $secretKey);
+            $ordenHash = Yii::$app->getSecurity()->decryptByPassword(base64_decode($post['x_extra2']), $secretKey);
+            if ($evento->id_evento == $eventoHash && $orden->id_order == $ordenHash) {
+                $ordenModel->processPostData($post, $orden);
+            }
         }
-        return $this->render('index', ['model' => $model, 'formaJinete' => $formaJinete]);
+        switch ($ordenModel->order_status_id_order_status) {
+            case 1:
+                $view = 'aceptada';
+                break;
+            case 2 || 4 || 5 || 8 || 9 || 10:
+                $view = 'rechazada';
+                break;
+            case 3 || 6 || 7:
+                $view = 'pendiente';
+                break;
+        }
+
+        return $this->render('confirmacion-' . $view, ['eventoModel' => $evento, 'ordenModel' => $orden, 'post' => $post]);
+    }
+
+    /**
+     * @return array
+     */
+    private function getCargosAdicionales($total = 0)
+    {
+        //comision OLIMPIX
+        $comisionOlimpix = new CargoAdicional();
+        $comisionOlimpix->monto = 1000;
+        $comisionOlimpix->concepto = "Comision Olimpix";
+
+        //comision Pasarela de pago
+        //2.99 + 900 + iva
+        $comisionPasarela = new CargoAdicional();
+        $comisionPasarela->monto = (($total * 2.99) / 100) + 900;
+        $comisionPasarela->concepto = "Comision Pasarela de pagos";
+        $comisionPasarela->iva = ($comisionPasarela->monto * 19) / 100;
+
+        $comisionPasarela = new CargoAdicional();
+        $comisionPasarela->monto = (($total * 19) / 100);
+        $comisionPasarela->concepto = "Iva";
+
+        return [];
     }
 
     /**
@@ -97,4 +177,19 @@ class EventoController extends \yii\web\Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    /**
+     * @param $id
+     * @return Order
+     * @throws NotFoundHttpException
+     */
+    protected function findOrderModel($id)
+    {
+        if (($model = Order::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
 }

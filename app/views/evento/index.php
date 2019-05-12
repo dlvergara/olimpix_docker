@@ -68,9 +68,9 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
                     ?>
                 </div>
             </div>
-            <a href="#" class="genric-btn primary-border circle arrow"
-               onclick="event.preventDefault(); $('#moreInfo').toggle()">Más información<span
-                        class="lnr lnr-arrow-right"></span></a>
+            <a href="#" class="genric-btn primary btn-block e-large"
+               onclick="event.preventDefault(); $('#moreInfo').toggle()"><span
+                        class="glyphicon glyphicon-info-sign"></span> Más información <span class="glyphicon glyphicon-menu-right"></span></a>
         </div>
     </div>
     <!-- Mas info -->
