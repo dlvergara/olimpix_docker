@@ -124,7 +124,7 @@ AppAsset::register($this);
             <li><a href="elements.html">Elements</a></li>
         </ul>
     </nav>
-    <div id="mobile-body-overly" style="display: block;"></div>
+    <div id="mobile-body-overly" style="display: none;"></div>
 
 <?php $this->endBody() ?>
 </body>
