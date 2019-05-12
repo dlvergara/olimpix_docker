@@ -17,8 +17,8 @@ class ProveedorSearch extends Proveedor
     public function rules()
     {
         return [
-            [['id_proveedor', 'id_servicio_disponible'], 'integer'],
-            [['nombre'], 'safe'],
+            [['id_proveedor'], 'integer'],
+            [['nombre', 'id_pasarela'], 'safe'],
             [['monto', 'procentaje'], 'number'],
         ];
     }
@@ -62,10 +62,10 @@ class ProveedorSearch extends Proveedor
             'id_proveedor' => $this->id_proveedor,
             'monto' => $this->monto,
             'procentaje' => $this->procentaje,
-            'id_servicio_disponible' => $this->id_servicio_disponible,
         ]);
 
-        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'id_pasarela', $this->id_pasarela]);
 
         return $dataProvider;
     }

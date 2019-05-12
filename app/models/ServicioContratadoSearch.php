@@ -17,7 +17,7 @@ class ServicioContratadoSearch extends ServicioContratado
     public function rules()
     {
         return [
-            [['id_servicio_contratado', 'evento_id_evento', 'id_estado_servicio', 'caballo_id_caballo', 'jinete_id_jinete', 'servicio_disponible_id_servicio_disponible'], 'integer'],
+            [['id_servicio_contratado', 'evento_id_evento', 'id_estado_servicio', 'caballo_id_caballo', 'jinete_id_jinete', 'order_detail_id_order_detail'], 'integer'],
             [['identificador_servicio_contratado'], 'safe'],
             [['monto'], 'number'],
         ];
@@ -65,7 +65,7 @@ class ServicioContratadoSearch extends ServicioContratado
             'caballo_id_caballo' => $this->caballo_id_caballo,
             'jinete_id_jinete' => $this->jinete_id_jinete,
             'monto' => $this->monto,
-            'servicio_disponible_id_servicio_disponible' => $this->servicio_disponible_id_servicio_disponible,
+            'order_detail_id_order_detail' => $this->order_detail_id_order_detail,
         ]);
 
         $query->andFilterWhere(['like', 'identificador_servicio_contratado', $this->identificador_servicio_contratado]);

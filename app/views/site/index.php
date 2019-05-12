@@ -14,16 +14,92 @@ $this->title = 'Olimpix Ecuestre';
 							<span class="bar"></span>
 							<h1 class="text-white">
 								Disciplinas Ecuestres <br>
-								Reconocidas por la FEI
+								Reconocidas por la FEI <br>
+                                Estos son los nuevos concuros
 							</h1>
-							<a href="#" class="genric-btn">INGRESAR</a>
+							<a href="index.php?r=site%2Fevents" class="genric-btn">INSCRÍBETE</a>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->
+		<!--	End banner Area -->
 
-			<!-- Start about-video Area -->
+	<!-- Start Align Area -->
+			<div class="whole-wrap">
+				<div class="container">
+					<div class="section-top-border">
+						<h3 class="mb-30"><b>Flexibilidad y accesibilidad desde cualquier lugar</b></h3>
+						<div class="row">
+							<div class="col-md-3">
+								<img src="img/mbr-3.jpg" alt="" class="img-fluid">
+							</div>
+							<div class="col-md-9 mt-sm-20">
+                                 <blockquote class="generic-blockquote">
+								<p class="text-justify"><b>Olimpix</b> es un sistema seguro que permite gestionar eventos deportivos y ecuestres, los servicios se encuentra en la nube y permite acceso desde cualquier lugar, contamos con un sitio web responsive o adaptativo que busca la correcta visualización de una misma página en distintos dispositivos, que logra facilitar el acceso desde cualquier ordenador de escritorio a tablets y móviles..</p>
+                                 </blockquote>
+							</div>
+						</div>
+					</div>
+                    
+            <div class="section-top-border text-right">
+						<h3 class="mb-30"><b>Resultados y Escalafón:</b></h3>
+						<div class="row">
+							<div class="col-md-9">
+                                <blockquote class="generic-blockquote">
+								<p class="text-justify" class="text-right">
+                                Para cada deportista es esencial contar con los resultados de cada concurso en el que participa, esto le permitirá conocer y tener el control y la evolución del proceso de entrenamiento que le permitan tomar decisiones técnicas que le ayuden a mejorar sus resultados deportivos permitiendo alcanzar objetivos mas fácilmente.</p>
+                                </blockquote>
+							</div>
+							<div class="col-md-3">
+								<img src="img/h5.jpg" alt="" class="img-fluid">
+							</div>
+						</div>
+					</div>
+            
+                    	<div class="whole-wrap">
+				<div class="container">
+					<div class="section-top-border">
+						<h3 class="mb-30"><b>Despreocúpese.</b></h3>
+						<div class="row">
+							<div class="col-md-3">
+								<img src="img/mbr-2.jpg" alt="" class="img-fluid">
+							</div>
+							<div class="col-md-9 mt-sm-20">
+                                <blockquote class="generic-blockquote">
+								<h6 class="text-uppercase"><b>"No necesita ser experto para que su evento deportivo o ecuestre salga bien"</b></h6>                       
+                                    <p class="text-justify"><b>Olimpix</b> Olimpix pone a su disposición un sistema de información diseñado especialmente para sus eventos que cumple con sus requerimientos técnicos.</p>
+                                </blockquote>
+							</div>
+						</div>
+					</div>
+                    <Section>
+						<div class="row">
+                                <div class="col-md-4 mt-sm-30">
+								<h3 class="mb-20"><b>Servicios:</b></h3>
+								<div class="">
+									<ul class="unordered-list">
+										<li>Sistema de gestión de espectáculos deportivos y ecuestres.</li>
+										<li>Sistema de pagos en línea.</li>
+										<li>Organización y logística de concurso deportivos y ecuestres.</li>
+										<li>Servicio de cronometraje.</li>
+										<li>Sistema de juzgamiento de pruebas ecuestres.</li>
+                                        <li>Sistema de resultados.</li>
+                                        <li>Historial y escalonamiento integrado con la federación ecuestre colombiana.
+</li>
+
+                                    </ul>
+                                  </div>
+                             </div>
+                         </div>
+                   
+                    </Section>
+                    
+                   <div class="button-group-area mt-40">
+						
+						<a href="http://olimpix.com.co/site/servicios" class="genric-btn primary circle arrow">Mas Información<span class="lnr lnr-arrow-right"></span></a>
+						
+					</div>
+			<!-- Start about-video Area 
 			<section class="about-video-area section-gap">
 				<div class="container">
 					<div class="row">
@@ -38,7 +114,7 @@ $this->title = 'Olimpix Ecuestre';
 							</p>
 							<p>
 								Conoce los diferentes deportes ecuestres por modalidades reglamentadas por la 
-Federación Ecustre Internacional.
+                                Federación Ecustre Internacional.
 							</p>
 							<a class="primary-btn" href="#">Empieza Ahora</a>
 						</div>
@@ -50,7 +126,7 @@ Federación Ecustre Internacional.
 			</section>
 			<!-- End about-video Area -->
 
-			<!-- Start feature Area -->
+			<!-- Start feature Area 
 			<section class="feature-area relative pt-100 pb-20">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
@@ -113,19 +189,27 @@ Federación Ecustre Internacional.
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 home-about-left">
-							<img class="mx-auto d-block img-fluid" src="img/about-img.png" alt="">
+							<img class="mx-auto d-block img-fluid" src="img/caballo.jpg" alt="">
 						</div>
 						<div class="col-lg-6 home-about-right">
 							<h6 class="text-uppercase">NUEVA APLICACIÓN PARA DISIPLINAS ECUESTRES</h6>
-							<h1>Hacemos las cosas más faciles<br>
-							para cambiar tu vida.</h1>
+							<h1>Participa de los últimos eventos ecuestres<br>
+							Simple, rápido y seguro.</h1>
 							<p>
 								<span>Estamos aquí para dar soluciones simples</span>
 							</p>
-							<p>
-								Conoce los diferentes deportes ecuestres por modalidades reglamentadas por la Federación Ecustre Internacional.
+							<p class="text-justify">
+								Inscríbete a los próximos eventos ecuestres, paga y adquiere todos los servicios disponibles desde la comodidad de tu casa, hogar o oficina, accediendo desde cualquier dispositivo movil.
+ 
 							</p>
-							<a class="primary-btn" href="#"> Empieza Ahora</a>
+                            
+                            <p class="text-justify"><b>Olimpix</b> solo debes buscar eventos ecuestres, seleccionar las pruebas en las que quieras participar, adiciona servicios, paga y listo.</p>
+                            
+                            <p><span><b>fácil, rápido y seguro</b></span></p>
+                            
+                            <p>    <span>!!!Que espera para comenzar ahora!!!</span></p>
+                            
+							<a class="primary-btn" href="http://olimpix.com.co/site/events"> Empieza Ahora</a>
 						</div>
 					</div>
 				</div>
@@ -229,125 +313,7 @@ Federación Ecustre Internacional.
 			</section>
 			<!-- End price Area -->
 
-			<!-- Start booking Area -->
-			<section class="booking-area section-gap relative" id="consultancy">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">
-					<div class="row justify-content-between align-items-center">
-						<div class="col-lg-6 col-md-6 booking-left">
-							<div class="active-review-carusel">
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-									<img src="img/r2.png" alt="">
-									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-									<p>
-										Comentarios 
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 booking-right">
-								<h4 class="mb-20">Formulario de Contacto</h4>
-								<form action="#">
-									<input class="form-control" type="text" name="name" placeholder="Nombres" required>
-									<input class="form-control" type="email" name="email" placeholder="Email" required>
-									<input class="form-control" type="text" name="phone" placeholder="Número de Telefono" required>
-									<div class="input-group dates-wrap">
-										<input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Fecha y hora" type="text">
-										<div class="input-group-prepend">
-											<span  class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-										</div>
-									</div>
-									<textarea class="common-textarea form-control mt-10" name="message" placeholder="Mensage" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-									<button  class="btn btn-default btn-lg btn-block text-center">¡Reservar ahora!</button>
-								</form>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- End booking Area -->
+		
 
 			<!-- Start latest-blog Area -->
 			<section class="latest-blog-area section-gap" id="blog">
@@ -502,7 +468,7 @@ Federación Ecustre Internacional.
                 
 			</section> 
 
-			<!-- End gallery Area -->
+			<!-- End gallery Area 
 
 <section class="gallery-block grid-gallery">
             <div class="container">
@@ -547,4 +513,4 @@ Federación Ecustre Internacional.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
         <script>
             baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
-        </script>
+        </script> -->

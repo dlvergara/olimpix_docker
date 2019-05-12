@@ -21,10 +21,11 @@ use Yii;
  * @property string $fecha_sorteo
  * @property string $descripcion
  * @property string $direccion
- * @property string $tipo_evento
+ * @property int $id_tipo_evento
  *
  * @property Ciudad $ciudadIdCiudad
  * @property Liga $ligaIdLiga
+ * @property TipoEvento $tipoEvento
  * @property PruebaSalto[] $pruebaSaltos
  * @property ServicioContratado[] $servicioContratados
  * @property ServicioDisponible[] $servicioDisponibles
@@ -47,14 +48,14 @@ class Evento extends \yii\db\ActiveRecord
     {
         return [
             [['fecha_inicio', 'fecha_fin', 'fecha_cierre', 'fecha_sorteo'], 'safe'],
-            [['ciudad_id_ciudad', 'liga_id_liga'], 'required'],
-            [['ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado'], 'integer'],
+            [['ciudad_id_ciudad', 'liga_id_liga', 'id_tipo_evento'], 'required'],
+            [['ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado', 'id_tipo_evento'], 'integer'],
             [['url_bases_tenicas', 'descripcion', 'direccion'], 'string'],
             [['nombre'], 'string', 'max' => 100],
             [['referencia_ubicacion'], 'string', 'max' => 45],
-            [['tipo_evento'], 'string', 'max' => 150],
             [['ciudad_id_ciudad'], 'exist', 'skipOnError' => true, 'targetClass' => Ciudad::className(), 'targetAttribute' => ['ciudad_id_ciudad' => 'id_ciudad']],
             [['liga_id_liga'], 'exist', 'skipOnError' => true, 'targetClass' => Liga::className(), 'targetAttribute' => ['liga_id_liga' => 'id_liga']],
+            [['id_tipo_evento'], 'exist', 'skipOnError' => true, 'targetClass' => TipoEvento::className(), 'targetAttribute' => ['id_tipo_evento' => 'id_tipo_evento']],
         ];
     }
 
@@ -78,7 +79,7 @@ class Evento extends \yii\db\ActiveRecord
             'fecha_sorteo' => 'Fecha Sorteo',
             'descripcion' => 'Descripcion',
             'direccion' => 'Direccion',
-            'tipo_evento' => 'Tipo Evento',
+            'id_tipo_evento' => 'Id Tipo Evento',
         ];
     }
 
@@ -96,6 +97,14 @@ class Evento extends \yii\db\ActiveRecord
     public function getLigaIdLiga()
     {
         return $this->hasOne(Liga::className(), ['id_liga' => 'liga_id_liga']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTipoEvento()
+    {
+        return $this->hasOne(TipoEvento::className(), ['id_tipo_evento' => 'id_tipo_evento']);
     }
 
     /**

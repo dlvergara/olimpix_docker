@@ -46,7 +46,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'direccion') ?>
 
-    <?php // echo $form->field($model, 'tipo_evento') ?>
+    <?php // echo $form->field($model, 'id_tipo_evento') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

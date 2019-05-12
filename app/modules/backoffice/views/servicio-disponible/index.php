@@ -38,6 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'monto',
             //'nombre',
             //'image_url:url',
+            //'prueba_salto_id_prueba',
+            //'proveedor_id_proveedor',
+            //'porcentaje_comision_olimpix',
+            //'monto_comision_olimpix',
+            //'porcentaje_iva',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

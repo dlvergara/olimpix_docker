@@ -64,12 +64,12 @@ class Jinete extends \yii\db\ActiveRecord
     {
         return [
             'id_jinete' => 'Id Jinete',
-            'club_id_club' => 'Club Id Club',
+            'club_id_club' => 'Club',
             'nombre_completo' => 'Nombre Completo',
             'tipo_identificacion' => 'Tipo Identificacion',
             'identificacion' => 'Identificacion',
-            'liga_id_liga' => 'Liga Id Liga',
-            'pais_id_pais' => 'Pais Id Pais',
+            'liga_id_liga' => 'Liga',
+            'pais_id_pais' => 'Pais',
             'fecha_nacimiento' => 'Fecha Nacimiento',
             'registro_fec' => 'Registro Fec',
             'activo_fec' => 'Activo Fec',

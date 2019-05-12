@@ -10,9 +10,15 @@ use Yii;
  * @property int $id_clasificacion_jinete
  * @property string $nombre
  * @property string $nombre_corto
+ * @property int $categoria_nacional
+ * @property int $categoria_internacional
+ * @property int $categoria_liga
+ * @property int $edad_minima
+ * @property int $edad_maxima
+ * @property string $altura_salto_minima
+ * @property string $altura_salto_max
  *
  * @property DisciplinaHasJinete[] $disciplinaHasJinetes
- * @property PruebaSalto[] $pruebaSaltos
  */
 class ClasificacionJinete extends \yii\db\ActiveRecord
 {
@@ -30,6 +36,9 @@ class ClasificacionJinete extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nombre'], 'required'],
+            [['categoria_nacional', 'categoria_internacional', 'categoria_liga', 'edad_minima', 'edad_maxima'], 'integer'],
+            [['altura_salto_minima', 'altura_salto_max'], 'number'],
             [['nombre', 'nombre_corto'], 'string', 'max' => 45],
         ];
     }
@@ -43,6 +52,13 @@ class ClasificacionJinete extends \yii\db\ActiveRecord
             'id_clasificacion_jinete' => 'Id Clasificacion Jinete',
             'nombre' => 'Nombre',
             'nombre_corto' => 'Nombre Corto',
+            'categoria_nacional' => 'Categoria Nacional',
+            'categoria_internacional' => 'Categoria Internacional',
+            'categoria_liga' => 'Categoria Liga',
+            'edad_minima' => 'Edad Minima',
+            'edad_maxima' => 'Edad Maxima',
+            'altura_salto_minima' => 'Altura Salto Minima',
+            'altura_salto_max' => 'Altura Salto Max',
         ];
     }
 
@@ -52,13 +68,5 @@ class ClasificacionJinete extends \yii\db\ActiveRecord
     public function getDisciplinaHasJinetes()
     {
         return $this->hasMany(DisciplinaHasJinete::className(), ['id_clasificacion_jinete' => 'id_clasificacion_jinete']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPruebaSaltos()
-    {
-        return $this->hasMany(PruebaSalto::className(), ['clasificacion_jinete_id_clasificacion_jinete' => 'id_clasificacion_jinete']);
     }
 }

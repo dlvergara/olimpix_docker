@@ -32,6 +32,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image_url')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'prueba_salto_id_prueba')->textInput() ?>
+
+    <?= $form->field($model, 'proveedor_id_proveedor')->textInput() ?>
+
+    <?= $form->field($model, 'porcentaje_comision_olimpix')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'monto_comision_olimpix')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'porcentaje_iva')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

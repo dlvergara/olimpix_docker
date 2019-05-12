@@ -160,4 +160,26 @@ class SiteController extends Controller
     {
         return $this->render('elements');
     }
+    
+    
+    /**
+     * Displays Galeria.
+     *
+     * @return string
+     */
+    public function actionGaleria()
+    {
+        return $this->render('galeria');
+    }
+
+     /**
+     * Displays Calendario.
+     *
+     * @return string
+     */
+    public function actionCalendario()
+    {
+        return $this->render('calendario');
+    }
+    
 }

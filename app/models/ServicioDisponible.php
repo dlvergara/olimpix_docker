@@ -18,11 +18,16 @@ use Yii;
  * @property string $monto
  * @property string $nombre
  * @property string $image_url
+ * @property int $prueba_salto_id_prueba
+ * @property int $proveedor_id_proveedor
+ * @property string $porcentaje_comision_olimpix
+ * @property string $monto_comision_olimpix
+ * @property string $porcentaje_iva
  *
  * @property OrderDetail[] $orderDetails
- * @property Proveedor[] $proveedors
- * @property ServicioContratado[] $servicioContratados
  * @property Evento $eventoIdEvento
+ * @property Proveedor $proveedorIdProveedor
+ * @property PruebaSalto $pruebaSaltoIdPrueba
  */
 class ServicioDisponible extends \yii\db\ActiveRecord
 {
@@ -40,14 +45,16 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['evento_id_evento'], 'required'],
-            [['evento_id_evento', 'disponible'], 'integer'],
+            [['evento_id_evento', 'proveedor_id_proveedor'], 'required'],
+            [['evento_id_evento', 'disponible', 'prueba_salto_id_prueba', 'proveedor_id_proveedor'], 'integer'],
             [['fecha_inicio', 'fecha_fin', 'timestamp'], 'safe'],
-            [['cantidad_disponible', 'monto'], 'number'],
+            [['cantidad_disponible', 'monto', 'porcentaje_comision_olimpix', 'monto_comision_olimpix', 'porcentaje_iva'], 'number'],
             [['descripcion'], 'string'],
             [['nombre'], 'string', 'max' => 45],
             [['image_url'], 'string', 'max' => 100],
             [['evento_id_evento'], 'exist', 'skipOnError' => true, 'targetClass' => Evento::className(), 'targetAttribute' => ['evento_id_evento' => 'id_evento']],
+            [['proveedor_id_proveedor'], 'exist', 'skipOnError' => true, 'targetClass' => Proveedor::className(), 'targetAttribute' => ['proveedor_id_proveedor' => 'id_proveedor']],
+            [['prueba_salto_id_prueba'], 'exist', 'skipOnError' => true, 'targetClass' => PruebaSalto::className(), 'targetAttribute' => ['prueba_salto_id_prueba' => 'id_prueba']],
         ];
     }
 
@@ -68,6 +75,11 @@ class ServicioDisponible extends \yii\db\ActiveRecord
             'monto' => 'Monto',
             'nombre' => 'Nombre',
             'image_url' => 'Image Url',
+            'prueba_salto_id_prueba' => 'Prueba Salto Id Prueba',
+            'proveedor_id_proveedor' => 'Proveedor Id Proveedor',
+            'porcentaje_comision_olimpix' => 'Porcentaje Comision Olimpix',
+            'monto_comision_olimpix' => 'Monto Comision Olimpix',
+            'porcentaje_iva' => 'Porcentaje Iva',
         ];
     }
 
@@ -82,24 +94,24 @@ class ServicioDisponible extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProveedors()
-    {
-        return $this->hasMany(Proveedor::className(), ['id_servicio_disponible' => 'id_servicio_disponible']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getServicioContratados()
-    {
-        return $this->hasMany(ServicioContratado::className(), ['servicio_disponible_id_servicio_disponible' => 'id_servicio_disponible']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getEventoIdEvento()
     {
         return $this->hasOne(Evento::className(), ['id_evento' => 'evento_id_evento']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProveedorIdProveedor()
+    {
+        return $this->hasOne(Proveedor::className(), ['id_proveedor' => 'proveedor_id_proveedor']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPruebaSaltoIdPrueba()
+    {
+        return $this->hasOne(PruebaSalto::className(), ['id_prueba' => 'prueba_salto_id_prueba']);
     }
 }

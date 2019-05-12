@@ -11,9 +11,10 @@ use Yii;
  * @property string $nombre
  * @property string $monto
  * @property string $procentaje
- * @property int $id_servicio_disponible
+ * @property string $id_pasarela
  *
- * @property ServicioDisponible $servicioDisponible
+ * @property PaymentDistribution[] $paymentDistributions
+ * @property ServicioDisponible[] $servicioDisponibles
  */
 class Proveedor extends \yii\db\ActiveRecord
 {
@@ -32,10 +33,7 @@ class Proveedor extends \yii\db\ActiveRecord
     {
         return [
             [['monto', 'procentaje'], 'number'],
-            [['id_servicio_disponible'], 'required'],
-            [['id_servicio_disponible'], 'integer'],
-            [['nombre'], 'string', 'max' => 45],
-            [['id_servicio_disponible'], 'exist', 'skipOnError' => true, 'targetClass' => ServicioDisponible::className(), 'targetAttribute' => ['id_servicio_disponible' => 'id_servicio_disponible']],
+            [['nombre', 'id_pasarela'], 'string', 'max' => 45],
         ];
     }
 
@@ -49,15 +47,23 @@ class Proveedor extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'monto' => 'Monto',
             'procentaje' => 'Procentaje',
-            'id_servicio_disponible' => 'Id Servicio Disponible',
+            'id_pasarela' => 'Id Pasarela',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServicioDisponible()
+    public function getPaymentDistributions()
     {
-        return $this->hasOne(ServicioDisponible::className(), ['id_servicio_disponible' => 'id_servicio_disponible']);
+        return $this->hasMany(PaymentDistribution::className(), ['proveedor_id_proveedor' => 'id_proveedor']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicioDisponibles()
+    {
+        return $this->hasMany(ServicioDisponible::className(), ['proveedor_id_proveedor' => 'id_proveedor']);
     }
 }
