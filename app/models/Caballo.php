@@ -57,7 +57,6 @@ class Caballo extends \yii\db\ActiveRecord
         return [
             [['fecha_nacimiento', 'fecha_grado', 'fecha_vigencia_ica', 'fecha_vigencia_fec'], 'safe'],
             [['puntaje'], 'number'],
-            [['raza_id_raza', 'id_caballo_padre', 'id_caballo_madre', 'id_propietario', 'liga_id_liga', 'club_id_club'], 'required'],
             [['raza_id_raza', 'id_caballo_padre', 'id_caballo_madre', 'id_propietario', 'vigente_ica', 'vigente_fec', 'liga_id_liga', 'club_id_club'], 'integer'],
             [['nombre', 'identificacion', 'registro_fec', 'pasaporte_fec', 'num_microchip_principal'], 'string', 'max' => 45],
             [['id_caballo_padre'], 'exist', 'skipOnError' => true, 'targetClass' => Caballo::className(), 'targetAttribute' => ['id_caballo_padre' => 'id_caballo']],
@@ -81,7 +80,7 @@ class Caballo extends \yii\db\ActiveRecord
             'fecha_grado' => 'Fecha Grado',
             'puntaje' => 'Puntaje',
             'identificacion' => 'Identificacion',
-            'raza_id_raza' => 'Raza',
+            'raza_id_raza' => 'Raza Id Raza',
             'id_caballo_padre' => 'Caballo Padre',
             'id_caballo_madre' => 'Caballo Madre',
             'id_propietario' => 'Propietario',
