@@ -101,7 +101,18 @@ NavBar::begin([
           </nav><!-- #nav-menu-container -->
         </div>
     </div>
-    
+  <!--  <script type="text/javascript">
+  jQuery(document).ready(function () {
+    $('.thumb-popup-link:nth-child(3)').magnificPopup({
+      items:
+      {
+         src: '#backview',
+         closeOnContentClick: true
+      },
+      type: 'inline'
+   });
+ });
+</script> -->
     
 </header>
 <!-- #header -->

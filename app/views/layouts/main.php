@@ -44,18 +44,19 @@ AppAsset::register($this);
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/linearicons.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/bootstrap.css">
-    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/bootstrap.map">
+  <!--    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/bootstrap.map"> -->
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/jquery.DonutWidget.min.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/jquerysctipttop.css">
     
-    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/magnific-popup.css">
+   <link rel="stylesheet" href="<?= Url::base(true) ?>/css/magnific-popup.css"> 
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/nice-select.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/animate.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/owl.carousel.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/main.css">
-    <link rel="stylesheet" href="<?= Url::base(true) ?>/css/main.map">
+    <!--<link rel="stylesheet" href="<?= Url::base(true) ?>/css/main.map"> -->
+  <!--  <link rel="stylesheet" href="<?= Url::base(true) ?>/css/magnific-popup.css"> -->
     
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/grid-gallery.css">
     <link rel="stylesheet" href="<?= Url::base(true) ?>/css/compact-gallery.css">
@@ -63,7 +64,17 @@ AppAsset::register($this);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
-   
+    
+  <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
+
+
+
+
+
+ 
     
     <?php $this->head() ?>
 </head>
@@ -104,27 +115,37 @@ AppAsset::register($this);
     <script src="<?= Url::base(true) ?>/js/jquery.counterup.min.js"></script>
     <script src="<?= Url::base(true) ?>/js/mail-script.js"></script>
     <script src="<?= Url::base(true) ?>/js/main.js"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= Url::base(true) ?>/js/jquery.magnific-popup.js"></script> -->
 
     <nav id="mobile-nav">
         <ul class="" style="touch-action: pan-y;" id="">
-            <li class="menu-active"><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="service.html">Service</a></li>
-            <li><a href="training.html">training</a></li>
-            <li><a href="events.html">events</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li class="menu-has-children"><i class="lnr lnr-chevron-down"></i><a href="" class="sf-with-ul">Blog</a>
-                <ul style="display: none;">
-                    <li><a href="blog-home.html">Blog Home</a></li>
-                    <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="elements.html">Elements</a></li>
+           
+            
+              <li class="menu-active"><a href="<?= Yii::$app->getHomeUrl() ?>">Inicio</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/servicios"]) ?>">servicios</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
+                
         </ul>
     </nav>
     <div id="mobile-body-overly" style="display: none;"></div>
+    
+    <ul class="" style="touch-action: pan-y;" id="">
+        
+         <li class="menu-active"><a href="<?= Yii::$app->getHomeUrl() ?>">Inicio</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/servicios"]) ?>">servicios</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
+              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
+                
+    </ul>
 
 <?php $this->endBody() ?>
 </body>
