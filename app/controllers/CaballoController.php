@@ -69,7 +69,7 @@ class CaballoController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if (Yii::$app->request->isAjax) {
                 $idServicio = $servicio . '-' . 'caballo_id_caballo';
-                $idAutoComplete = $idServicio . '-' . '-caballo-autocomplete';
+                $idAutoComplete = $idServicio . '-' . 'caballo-autocomplete';
 
                 return $this->asJson([ 'servicio' => $idServicio, 'model' => $model, 'autocomplete' => $idAutoComplete]);
             }

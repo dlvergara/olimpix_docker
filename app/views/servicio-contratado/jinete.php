@@ -41,7 +41,8 @@ $modalUrl = Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_serv
         ],
         'options' => [
             'class' => 'single-input',
-            'style' => 'max-width: 80%; display: inline-block;'
+            'style' => 'max-width: 80%; display: inline-block;',
+            'onblur' => 'cleanField(this, "'.$idAutoCompleteJinete.'")',
         ]
     ]);
     echo ModalAjax::widget([

@@ -5,14 +5,11 @@ namespace app\controllers;
 use app\models\BuyerInfoForm;
 use app\models\CargoAdicional;
 use app\models\Evento;
-use app\models\LoginForm;
 use app\models\Order;
 use app\models\OrderModel;
 use app\models\ReservaForm;
-use app\models\ReservaJineteForm;
 use Yii;
 use yii\web\NotFoundHttpException;
-use yii\widgets\ActiveForm;
 
 class EventoController extends \yii\web\Controller
 {

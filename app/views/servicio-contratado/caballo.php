@@ -40,7 +40,8 @@ $modalUrl = Url::to(['caballo/create', 'servicio' => $servicioDisponible->id_ser
         ],
         'options' => [
             'class' => 'single-input',
-            'style' => 'max-width: 75%; display: inline-block;'
+            'style' => 'max-width: 75%; display: inline-block;',
+            'onblur' => 'cleanField(this, "'.$idAutoCompleteCaballo.'")',
         ]
     ]);
     echo ModalAjax::widget([
@@ -66,6 +67,6 @@ $modalUrl = Url::to(['caballo/create', 'servicio' => $servicioDisponible->id_ser
         'url' => $modalUrl,
         'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
     ]);
-    $form->field($model, 'caballo_id_caballo')->hiddenInput()->label("") ?>
+    echo $form->field($model, 'caballo_id_caballo')->hiddenInput(['id' => $idAutoCompleteCaballo])->label("") ?>
 </p>
 

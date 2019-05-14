@@ -2,6 +2,7 @@
 
 use app\models\Evento;
 use \app\models\Order;
+use yii\web\View;
 
 /**
  * Created by PhpStorm.
@@ -24,8 +25,16 @@ $script = <<< JS
         $("#"+autocomplete).val( jinete.nombre );
         return true;
     }
+    function cleanField( htmlObj, targetObject ) {
+        console.log(targetObject);
+        console.log(htmlObj);
+        var contenido = $(htmlObj).val();
+        if( contenido.length == 0 ) {
+            $('#'+targetObject).val("");
+        }
+    }
 JS;
-$this->registerJs($script);
+$this->registerJs($script, View::POS_BEGIN);
 
 ?>
 <!-- start banner Area -->
@@ -81,7 +90,13 @@ $this->registerJs($script);
                 if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
                     $form = '../servicio-contratado/_formPesebrera';
                 }
-                echo $this->render($form, ['model' => $servicioContratado, 'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible]);
+                echo $this->render($form, [
+                        'model' => $servicioContratado,
+                        'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,
+                        'eventoModel' => $eventoModel,
+                        'orderDetail' => $orderDetail,
+                    ]
+                );
             }
             ?>
         </div>
