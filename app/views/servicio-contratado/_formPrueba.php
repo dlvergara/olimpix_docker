@@ -1,10 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\Pjax;
-use yii\helpers\Url;
-
 /**
  * @var $this yii\web\View
  * @var $model app\models\ServicioContratado
@@ -15,7 +10,7 @@ use yii\helpers\Url;
  */
 
 $attributeToShow = ['altura', 'distancia', 'tiempo_limite'];
-$postUrl = Url::to(['servicio-contratado/create', 'evento' => $eventoModel->id_evento,]);
+
 ?>
 <div class="col-lg-6 single-blog">
     <!-- Inscripción -->
@@ -37,41 +32,20 @@ $postUrl = Url::to(['servicio-contratado/create', 'evento' => $eventoModel->id_e
         ?>
     </ul>
 
-    <?php Pjax::begin(); ?>
     <?php
-    if (empty($model->order_detail_id_order_detail)) {
-        $model->order_detail_id_order_detail = $orderDetail->id_order_detail;
-    }
-    $form = ActiveForm::begin([
-        'id' => 'form-' . $servicioDisponible->id_servicio_disponible,
-        'action' => $postUrl,
-        'enableAjaxValidation' => true,
-        //'validationUrl' => 'validation-rul',
-    ]);
-    if (!empty($model->caballo_id_caballo) || !empty($model->jinete_id_jinete)) {
-        echo $form->field($model, 'id_servicio_contratado')->hiddenInput()->label("");
-    }
-    ?>
-
-    <!-- JINETE -->
-    <?= $this->render("jinete", ['model' => $model, 'form' => $form, 'servicioDisponible' => $servicioDisponible]) ?>
-
-    <!-- CABALLO -->
-    <?= $this->render("caballo", ['model' => $model, 'form' => $form, 'servicioDisponible' => $servicioDisponible]) ?>
-
-    <?php
-    if (empty($model->caballo_id_caballo) || empty($model->jinete_id_jinete)) {
+    if( boolval($servicioDisponible->pruebaSaltoIdPrueba->cerrada) ) {
+        echo $this->render('prueba', [
+                'model' => $model,
+                'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,
+                'eventoModel' => $eventoModel,
+                'orderDetail' => $orderDetail,
+            ]
+        );
+    } else {
         ?>
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Guardar' : 'Actualizar', ['class' => 'btn btn-success']) ?>
-    </div>
+        <p>Esta prueba ha finalizado.</p>
         <?php
     }
     ?>
-
-    <?= $form->field($model, 'order_detail_id_order_detail')->hiddenInput()->label("") ?>
-
-    <?php ActiveForm::end(); ?>
-    <?php Pjax::end(); ?>
 
 </div>

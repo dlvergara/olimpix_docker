@@ -21,6 +21,7 @@ use Yii;
  * @property int $evento_id_evento
  * @property int $pista_id_pista
  * @property int $categoria_id_categoria
+ * @property int $cerrada
  *
  * @property Premio[] $premios
  * @property Evento $eventoIdEvento
@@ -46,7 +47,7 @@ class PruebaSalto extends \yii\db\ActiveRecord
     {
         return [
             [['fecha'], 'safe'],
-            [['distancia', 'numero_saltos', 'numero_clasificados', 'evento_id_evento', 'pista_id_pista', 'categoria_id_categoria'], 'integer'],
+            [['distancia', 'numero_saltos', 'numero_clasificados', 'evento_id_evento', 'pista_id_pista', 'categoria_id_categoria', 'cerrada'], 'integer'],
             [['tiempo_acordado', 'velocidad', 'altura', 'tiempo_limite'], 'number'],
             [['evento_id_evento', 'categoria_id_categoria'], 'required'],
             [['nombre'], 'string', 'max' => 45],
@@ -77,6 +78,7 @@ class PruebaSalto extends \yii\db\ActiveRecord
             'evento_id_evento' => 'Evento Id Evento',
             'pista_id_pista' => 'Pista Id Pista',
             'categoria_id_categoria' => 'Categoria Id Categoria',
+            'cerrada' => 'Cerrada',
         ];
     }
 

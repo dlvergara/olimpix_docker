@@ -77,27 +77,31 @@ $this->registerJs($script, View::POS_BEGIN);
     <div class="container">
         <div class="row">
             <?php
-            /**
-             * @var $orderDetail \app\models\OrderDetail
-             */
-            foreach ($ordenModel->orderDetails as $index => $orderDetail) {
-                $servicioContratado = $orderDetail->getServicioContratados()->one();
-                if (empty($servicioContratado)) {
-                    $servicioContratado = new \app\models\ServicioContratado();
-                }
+            if( !boolval($eventoModel->cerrado) ) {
+                /**
+                 * @var $orderDetail \app\models\OrderDetail
+                 */
+                foreach ($ordenModel->orderDetails as $index => $orderDetail) {
+                    $servicioContratado = $orderDetail->getServicioContratados()->one();
+                    if (empty($servicioContratado)) {
+                        $servicioContratado = new \app\models\ServicioContratado();
+                    }
 
-                $form = '../servicio-contratado/_formPrueba';
-                if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
-                    $form = '../servicio-contratado/_formPesebrera';
-                }
+                    $form = '../servicio-contratado/_formPrueba';
+                    if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
+                        $form = '../servicio-contratado/_formPesebrera';
+                    }
 
-                echo $this->render($form, [
-                        'model' => $servicioContratado,
-                        'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,
-                        'eventoModel' => $eventoModel,
-                        'orderDetail' => $orderDetail,
-                    ]
-                );
+                    echo $this->render($form, [
+                            'model' => $servicioContratado,
+                            'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,
+                            'eventoModel' => $eventoModel,
+                            'orderDetail' => $orderDetail,
+                        ]
+                    );
+                }
+            } else {
+                echo 'Este Evento ha sido sorteado y han finalizado las inscripciones.';
             }
             ?>
         </div>
