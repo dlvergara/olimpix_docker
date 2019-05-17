@@ -29,31 +29,35 @@ $modalUrl = Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_serv
 ?>
 <p>Jinete:
     <?php
-    echo AutoComplete::widget([
-        'id' => $idAutoCompleteJinete . '-autocomplete',
-        'clientOptions' => [
-            'source' => $jinetes,
-            'minLength' => '3',
-            'autoFill' => true,
-            'select' => new JsExpression("function( event, ui ) {
+
+    if(empty($model->jinete_id_jinete)) {
+
+        echo AutoComplete::widget([
+            'id' => $idAutoCompleteJinete . '-autocomplete',
+            'clientOptions' => [
+                'source' => $jinetes,
+                'minLength' => '3',
+                'autoFill' => true,
+                'select' => new JsExpression("function( event, ui ) {
                         $('#{$idAutoCompleteJinete}').val(ui.item.id);
                      }")
-        ],
-        'options' => [
-            'class' => 'single-input',
-            'style' => 'max-width: 80%; display: inline-block;',
-            'onblur' => 'cleanField(this, "'.$idAutoCompleteJinete.'")',
-        ]
-    ]);
-    echo ModalAjax::widget([
-        'id' => $modalId,
-        'header' => 'Registrar Jinete',
-        'toggleButton' => [
-            'label' => '+',
-            'class' => 'btn btn-primary'
-        ],
-        'events' => [
-            ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
+            ],
+            'options' => [
+                'class' => 'single-input',
+                'style' => 'max-width: 80%; display: inline-block;',
+                'onblur' => 'cleanField(this, "'.$idAutoCompleteJinete.'")',
+                'value' => $model->jineteIdJinete->nombre_completo,
+            ]
+        ]);
+        echo ModalAjax::widget([
+            'id' => $modalId,
+            'header' => 'Registrar Jinete',
+            'toggleButton' => [
+                'label' => '+',
+                'class' => 'btn btn-primary'
+            ],
+            'events' => [
+                ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
                 function(event, data, status, xhr, selector) {
                     if(status == 'success') {
                         var jineteLoaded = setInfoJinete( data.model, data.servicio, data.autocomplete );
@@ -63,11 +67,14 @@ $modalUrl = Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_serv
                     }
                 }
             "),
-        ],
-        'size' => ModalAjax::SIZE_LARGE,
-        'url' => $modalUrl,
-        'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
-    ]);
-    echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $idAutoCompleteJinete])->label("");
+            ],
+            'size' => ModalAjax::SIZE_LARGE,
+            'url' => $modalUrl,
+            'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
+        ]);
+        echo $form->field($model, 'jinete_id_jinete')->hiddenInput(['id' => $idAutoCompleteJinete])->label("");
+    } else {
+        echo $model->jineteIdJinete->nombre_completo;
+    }
     ?>
 </p>

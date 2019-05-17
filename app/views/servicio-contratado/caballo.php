@@ -28,31 +28,33 @@ $modalUrl = Url::to(['caballo/create', 'servicio' => $servicioDisponible->id_ser
 ?>
 <p>Caballo:
     <?php
-    echo AutoComplete::widget([
-        'id' => $idAutoCompleteCaballo . '-caballo-autocomplete',
-        'clientOptions' => [
-            'source' => $caballos,
-            'minLength' => '3',
-            'autoFill' => true,
-            'select' => new JsExpression("function( event, ui ) {
+    if (empty($model->caballo_id_caballo)) {
+
+        echo AutoComplete::widget([
+            'id' => $idAutoCompleteCaballo . '-caballo-autocomplete',
+            'clientOptions' => [
+                'source' => $caballos,
+                'minLength' => '3',
+                'autoFill' => true,
+                'select' => new JsExpression("function( event, ui ) {
                         $('#{$idAutoCompleteCaballo}').val(ui.item.id);
                      }")
-        ],
-        'options' => [
-            'class' => 'single-input',
-            'style' => 'max-width: 75%; display: inline-block;',
-            'onblur' => 'cleanField(this, "'.$idAutoCompleteCaballo.'")',
-        ]
-    ]);
-    echo ModalAjax::widget([
-        'id' => $modalId,
-        'header' => 'Registrar Caballo',
-        'toggleButton' => [
-            'label' => '+',
-            'class' => 'btn btn-primary'
-        ],
-        'events' => [
-            ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
+            ],
+            'options' => [
+                'class' => 'single-input',
+                'style' => 'max-width: 75%; display: inline-block;',
+                'onblur' => 'cleanField(this, "' . $idAutoCompleteCaballo . '")',
+            ]
+        ]);
+        echo ModalAjax::widget([
+            'id' => $modalId,
+            'header' => 'Registrar Caballo',
+            'toggleButton' => [
+                'label' => '+',
+                'class' => 'btn btn-primary'
+            ],
+            'events' => [
+                ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
                 function(event, data, status, xhr, selector) {
                     if(status == 'success') {
                         var loaded = setInfoCaballo( data.model, data.servicio, data.autocomplete );
@@ -62,11 +64,14 @@ $modalUrl = Url::to(['caballo/create', 'servicio' => $servicioDisponible->id_ser
                     }
                 }
             "),
-        ],
-        'size' => ModalAjax::SIZE_LARGE,
-        'url' => $modalUrl,
-        'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
-    ]);
-    echo $form->field($model, 'caballo_id_caballo')->hiddenInput(['id' => $idAutoCompleteCaballo])->label("") ?>
+            ],
+            'size' => ModalAjax::SIZE_LARGE,
+            'url' => $modalUrl,
+            'ajaxSubmit' => true, // Submit the contained form as ajax, true by default
+        ]);
+        echo $form->field($model, 'caballo_id_caballo')->hiddenInput(['id' => $idAutoCompleteCaballo])->label("");
+    } else {
+        echo $model->caballoIdCaballo->nombre;
+    }
+    ?>
 </p>
-

@@ -90,6 +90,7 @@ $this->registerJs($script, View::POS_BEGIN);
                 if (empty($orderDetail->servicioDisponibleIdServicioDisponible->prueba_salto_id_prueba)) {
                     $form = '../servicio-contratado/_formPesebrera';
                 }
+
                 echo $this->render($form, [
                         'model' => $servicioContratado,
                         'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,
