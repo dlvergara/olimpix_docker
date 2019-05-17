@@ -123,7 +123,7 @@ AppAsset::register($this);
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?= Url::base(true) ?>/js/jquery.magnific-popup.js"></script> -->
 
-    <nav id="mobile-nav">
+ <!--   <nav id="mobile-nav">
         <ul class="" style="touch-action: pan-y;" id="">
            
             
@@ -134,7 +134,7 @@ AppAsset::register($this);
               <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
                 
         </ul>
-    </nav>
+    </nav>  
     <div id="mobile-body-overly" style="display: none;"></div>
     
     <ul class="" style="touch-action: pan-y;" id="">
@@ -145,7 +145,7 @@ AppAsset::register($this);
               <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
               <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
                 
-    </ul>
+    </ul>-->
 
 <?php $this->endBody() ?>
 </body>
