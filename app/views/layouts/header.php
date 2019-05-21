@@ -68,40 +68,38 @@ NavBar::begin([
     <div class="container">
         <div class="row align-items-center justify-content-center d-flex">
           <nav id="nav-menu-container">
+              
+
+              
             <ul class="nav-menu">
               <li class="menu-active"><a href="<?= Yii::$app->getHomeUrl() ?>">Inicio</a></li>
-        <!--  <li><a href="about.html">Nosotros</a></li>   --> 
-           <!--   <li><a href="service.html">Servicios</a></li> -->
-           <!--   <li><a href="training.html">formación</a></li> --> 
-           <!--    <li><a href="about.html">Nosotros</a></li> -->
-                
-                
-                
-        <!--      <li><a href="training.html">formación</a></li> -->
+    
                 
               <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/servicios"]) ?>">servicios</a></li>
 
               <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/events"]) ?>">eventos</a></li>
-           <!--   <li><a href="pricing.html">Precios</a></li>-->
-          <!--      <li class="menu-has-children"><a href="">Blog</a>  
-                <ul>
-                  <li><a href="blog-home.html">Blog Home</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-              </li> --> 
+          
                  <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
                   
                  <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
                 
                  <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
                 
-            <!--  <li><a href="contact.html">Contacto</a></li> -->
+           
             <!--    <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/elements"]) ?>">Elementos</a></li>  -->
             </ul>
           </nav><!-- #nav-menu-container -->
+            
+                  
+                    
         </div>
     </div>
-  <!--  <script type="text/javascript">
+    
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+ <!-- <script type="text/javascript">
   jQuery(document).ready(function () {
     $('.thumb-popup-link:nth-child(3)').magnificPopup({
       items:
