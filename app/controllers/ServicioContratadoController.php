@@ -87,7 +87,7 @@ class ServicioContratadoController extends Controller
             }
         }
 
-        return $this->renderPartial('prueba', [
+        return $this->renderPartial('inscripcion_prueba', [
                 'result' => $result,
                 'model' => $model,
                 'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,

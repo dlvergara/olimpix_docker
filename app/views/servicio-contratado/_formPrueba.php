@@ -34,7 +34,7 @@ $attributeToShow = ['altura', 'distancia', 'tiempo_limite'];
 
     <?php
     if( boolval($servicioDisponible->pruebaSaltoIdPrueba->cerrada) ) {
-        echo $this->render('prueba', [
+        echo $this->render('inscripcion_prueba', [
                 'model' => $model,
                 'servicioDisponible' => $orderDetail->servicioDisponibleIdServicioDisponible,
                 'eventoModel' => $eventoModel,
