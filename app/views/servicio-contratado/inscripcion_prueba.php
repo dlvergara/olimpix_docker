@@ -8,6 +8,7 @@
  * @var $form yii\widgets\ActiveForm
  * @var $eventoModel \app\models\Evento
  */
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
@@ -15,24 +16,27 @@ use yii\helpers\Url;
 
 $postUrl = Url::to(['servicio-contratado/create', 'evento' => $eventoModel->id_evento, 'orderDetailId' => $orderDetail->id_order_detail]);
 
-Pjax::begin();
+Pjax::begin(['timeout' => 5000, 'enablePushState' => false]);
+
 if (empty($model->order_detail_id_order_detail)) {
     $model->order_detail_id_order_detail = $orderDetail->id_order_detail;
 }
 $form = ActiveForm::begin([
     'id' => 'form-' . $servicioDisponible->id_servicio_disponible,
     'action' => $postUrl,
-    'enableAjaxValidation' => true,
+    //'enableAjaxValidation' => true,
     //'validationUrl' => 'validation-rul',
+    'options' => ['data-pjax' => 'form-' . $servicioDisponible->id_servicio_disponible,]
 ]);
-if (!empty($model->caballo_id_caballo) || !empty($model->jinete_id_jinete)) {
+
+if (!empty($model->id_servicio_contratado)) {
     echo $form->field($model, 'id_servicio_contratado')->hiddenInput()->label("");
 }
 ?>
-    <!-- JINETE -->
+<!-- JINETE -->
 <?= $this->render("jinete", ['model' => $model, 'form' => $form, 'servicioDisponible' => $servicioDisponible]) ?>
 
-    <!-- CABALLO -->
+<!-- CABALLO -->
 <?= $this->render("caballo", ['model' => $model, 'form' => $form, 'servicioDisponible' => $servicioDisponible]) ?>
 
 <?php

@@ -27,10 +27,6 @@ $modalId = 'modalJinete-' . $servicioDisponible->id_servicio_disponible;
 $idAutoCompleteJinete = $servicioDisponible->id_servicio_disponible . '-' . 'jinete_id_jinete';
 $modalUrl = Url::to(['jinete/create', 'servicio' => $servicioDisponible->id_servicio_disponible]);
 
-if($result) {
-    return 'aaaa';
-}
-
 ?>
 <p>Jinete:
     <?php

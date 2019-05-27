@@ -95,12 +95,6 @@ class ServicioContratadoController extends Controller
                 'orderDetail' => $orderDetail,
             ]
         );
-
-        return $this->asJson([
-            'result' => $result,
-            'model' => $model,
-            'evento' => $evento,
-        ]);
     }
 
     /**
