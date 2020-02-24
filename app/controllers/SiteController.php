@@ -144,6 +144,8 @@ class SiteController extends Controller
     {
         $queryParams = Yii::$app->request->queryParams;
         $searchModel = new EventoSearch();
+        $queryParams['EventoSearch']['visible'] = 1;
+
         $dataProvider = $searchModel->search($queryParams);
 
         $params = [

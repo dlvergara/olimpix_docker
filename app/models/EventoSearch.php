@@ -4,7 +4,6 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Evento;
 
 /**
  * EventoSearch represents the model behind the search form of `app\models\Evento`.
@@ -18,7 +17,7 @@ class EventoSearch extends Evento
     {
         return [
             [['id_evento', 'ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado', 'id_tipo_evento'], 'integer'],
-            [['fecha_inicio', 'fecha_fin', 'nombre', 'referencia_ubicacion', 'url_bases_tenicas', 'fecha_cierre', 'fecha_sorteo', 'descripcion', 'direccion'], 'safe'],
+            [['fecha_inicio', 'fecha_fin', 'nombre', 'referencia_ubicacion', 'url_bases_tenicas', 'fecha_cierre', 'fecha_sorteo', 'descripcion', 'direccion', 'visible'], 'safe'],
         ];
     }
 
@@ -47,7 +46,6 @@ class EventoSearch extends Evento
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
         $this->load($params);
 
         if (!$this->validate()) {
@@ -68,6 +66,7 @@ class EventoSearch extends Evento
             'sorteado' => $this->sorteado,
             'fecha_sorteo' => $this->fecha_sorteo,
             'id_tipo_evento' => $this->id_tipo_evento,
+            'visible' => $this->visible,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

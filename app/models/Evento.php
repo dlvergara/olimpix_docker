@@ -22,6 +22,7 @@ use Yii;
  * @property string $descripcion
  * @property string $direccion
  * @property int $id_tipo_evento
+ * @property int $visible
  *
  * @property Ciudad $ciudadIdCiudad
  * @property Liga $ligaIdLiga
@@ -47,7 +48,7 @@ class Evento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fecha_inicio', 'fecha_fin', 'fecha_cierre', 'fecha_sorteo'], 'safe'],
+            [['fecha_inicio', 'fecha_fin', 'fecha_cierre', 'fecha_sorteo', 'visible'], 'safe'],
             [['ciudad_id_ciudad', 'liga_id_liga', 'id_tipo_evento'], 'required'],
             [['ciudad_id_ciudad', 'liga_id_liga', 'cerrado', 'sorteado', 'id_tipo_evento'], 'integer'],
             [['url_bases_tenicas', 'descripcion', 'direccion'], 'string'],

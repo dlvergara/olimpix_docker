@@ -13,13 +13,13 @@ RUN apt-get update && apt-get install -y \
 #    libpng12-dev \
     zlib1g-dev \
     libxml2-dev \
-    net-tools
+    net-tools \
+    zip \
+    unzip
 
 RUN apt-get upgrade -y && docker-php-ext-install pdo pdo_mysql mysqli soap \
   && docker-php-ext-configure gd --enable-gd-native-ttf --with-jpeg-dir=/usr/lib/x86_64-linux-gnu --with-png-dir=/usr/lib/x86_64-linux-gnu --with-freetype-dir=/usr/lib/x86_64-linux-gnu \
   && docker-php-ext-install gd
-
-RUN apt-get install -y zip unzip
 
 #COMPOSER
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
