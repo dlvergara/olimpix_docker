@@ -13,12 +13,12 @@ $this->title = 'Calendario';
             <div class="row d-flex justify-content-center">
                 <div class="col-md-9 pb-40 header-text text-center">
                     <div class="heading">
-                  
-                    <h2 class="pb-10"><b>Revisa el calendario Ecuestre 2019</b> </h2>
+
+                        <h2 class="pb-10"><b>Revisa el calendario Ecuestre 2020</b></h2>
 
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item"
-                                src="http://www.fedecuestre.com/images/noticias/2019/CALENDARIO_NACIONAL_2019.pdf"
+                                src="http://www.fedecuestre.com/images/circulares2014/circulares_2020/CALENDARIO_NACIONAL_2020.pdf"
                                 allowfullscreen></iframe>
                     </div>
                           <a class="genric-btn primary e-large" href="http://olimpix.com.co/site/events"><spa class="glyphicon glyphicon-calendar"></spa>Empieza a Participar</a>
