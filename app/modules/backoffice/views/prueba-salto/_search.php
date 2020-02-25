@@ -6,6 +6,10 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\PruebaSaltoSearch */
 /* @var $form yii\widgets\ActiveForm */
+
+$eventos = \yii\helpers\ArrayHelper::map(\app\models\Evento::find()->all(), 'id_evento', 'nombre');
+$pistas = \yii\helpers\ArrayHelper::map(\app\models\Pista::find()->all(), 'id_pista', 'identificador');
+$categorias = \yii\helpers\ArrayHelper::map(\app\models\CategoriaPruebaSalto::find()->all(), 'id_categoria_prueba', 'nombre');
 ?>
 
 <div class="prueba-salto-search">
@@ -24,6 +28,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fecha') ?>
 
+    <?= $form->field($model, 'evento_id_evento')->dropDownList($eventos, ['prompt' => 'Seleccione...']) ?>
+
+    <?= $form->field($model, 'pista_id_pista')->dropDownList($pistas, ['prompt' => 'Seleccione...']) ?>
+
+    <?= $form->field($model, 'categoria_id_categoria')->dropDownList($categorias, ['prompt' => 'Seleccione...']) ?>
+
     <?= $form->field($model, 'distancia') ?>
 
     <?= $form->field($model, 'tiempo_acordado') ?>
@@ -40,15 +50,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'numero_clasificados') ?>
 
-    <?php // echo $form->field($model, 'evento_id_evento') ?>
-
-    <?php // echo $form->field($model, 'pista_id_pista') ?>
-
-    <?php // echo $form->field($model, 'categoria_id_categoria') ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Limpiar', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

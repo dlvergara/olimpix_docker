@@ -22,7 +22,13 @@ $servicioDisponibleFormPosVenta = new \app\models\ServicioDisponible();
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fecha')->textInput(['type' => 'date']) ?>
+    <?= $form->field($model, 'fecha')->textInput(['type' => 'datetime-local']) ?>
+
+    <?= $form->field($model, 'evento_id_evento')->dropDownList($eventosArray, ['prompt' => 'Seleccione...']) ?>
+
+    <?= $form->field($model, 'pista_id_pista')->dropDownList($pistaArray, ['prompt' => 'Seleccione...']) ?>
+
+    <?= $form->field($model, 'categoria_id_categoria')->dropDownList($categoriaArray, ['prompt' => 'Seleccione...']) ?>
 
     <?= $form->field($model, 'distancia')->textInput(['type' => 'number']) ?>
 
@@ -39,12 +45,6 @@ $servicioDisponibleFormPosVenta = new \app\models\ServicioDisponible();
     <?= $form->field($model, 'tiempo_limite')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'numero_clasificados')->textInput(['type' => 'number']) ?>
-
-    <?= $form->field($model, 'evento_id_evento')->dropDownList($eventosArray, ['prompt' => 'Seleccione...']) ?>
-
-    <?= $form->field($model, 'pista_id_pista')->dropDownList($pistaArray, ['prompt' => 'Seleccione...']) ?>
-
-    <?= $form->field($model, 'categoria_id_categoria')->dropDownList($categoriaArray, ['prompt' => 'Seleccione...']) ?>
 
     <div>
         <h2>Inscripciones</h2>
@@ -67,7 +67,6 @@ $servicioDisponibleFormPosVenta = new \app\models\ServicioDisponible();
             <?= $form->field($servicioDisponibleFormPosVenta, '[posventa]proveedor_id_proveedor')->dropDownList($proveedorArray, ['prompt' => 'Seleccione...']) ?>
         </div>
     </div>
-
 
 
     <div class="form-group">
