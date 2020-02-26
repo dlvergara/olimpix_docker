@@ -43,66 +43,58 @@ if (count($model->pruebaSaltos) > 0) {
                 $max = 0;
                 foreach ($model->pruebaSaltos as $index => $prueba) {
                     $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $prueba->fecha);
-                    $fechaLlave = Util::DayName($fechaPrueba).' '.$fechaPrueba->format('d'). ' de ' . Util::DayMonth($fechaPrueba);
+                    $fechaLlave = Util::DayName($fechaPrueba) . ' ' . $fechaPrueba->format('d') . ' de ' . Util::DayMonth($fechaPrueba);
                     $pruebasArray[$fechaLlave][$prueba->orden] = $prueba;
                     $max = max($max, count($pruebasArray[$fechaLlave]));
                 }
 
                 foreach ($pruebasArray as $index => $fechaPrueba) {
                     ?>
-                    <div style="margin-left: 1%;border: 2px dotted #eee;min-width: 22%">
-                        <table border="0">
-                            <thead>
-                            <tr>
-                                <h3><?= $index ?></h3>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $conteoFilas = 0;
-                            ksort($fechaPrueba);
-                            /* @var Prueba $prueba */
-                            foreach ($fechaPrueba as $i => $prueba) {
-                                $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
-                                ?>
-                                <tr>
-                                    <td>
-                                        <a href="<?= $resultadosUrl ?>" class="nav-menu">
-                                            <?= ucfirst(strtolower($prueba->nombre)) . '<br>' ?>
-                                        </a>
-                                        <span style="font-size: 10px"><?= $prueba->fecha ?></span><br>
-                                        <?php
-                                        $fechaPrueba = strtotime($prueba->fecha);
-
-                                        echo $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]);
-                                        $cantidadResultados = count($prueba->resultadoSaltos);
-                                        if ($cantidadResultados > 0) {
-                                            ?>
-                                            <a href="<?= $resultadosUrl ?>"><span
-                                                        style="font-size: 10px">Ver detalles</span></a><br>
-                                            <?php
-                                        }
-                                        ?>
-                                        <br>
-                                    </td>
-                                </tr>
-                                <?php
-                                $conteoFilas++;
-                            }
-                            for ($i = $conteoFilas; $i < $max; $i++) {
-                                ?>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <?php
-                            }
+                    <div class="col-md-3">
+                        <h3><?= $index ?></h3>
+                        <?php
+                        $conteoFilas = 0;
+                        ksort($fechaPrueba);
+                        /* @var Prueba $prueba */
+                        foreach ($fechaPrueba as $i => $prueba) {
+                            $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
                             ?>
-                            </tbody>
-                            <tfoot></tfoot>
-                        </table>
+                            <div class="row">
+                                <a href="<?= $resultadosUrl ?>" class="nav-menu">
+                                    <?= ucfirst(strtolower($prueba->nombre)) ?>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <span style="font-size: 10px"><?= $prueba->fecha ?></span>
+                            </div>
+                            <div class="row">
+                                <?php
+                                $cantidadResultados = count($prueba->resultadoSaltos);
+                                if ($cantidadResultados > 0) {
+                                    ?>
+                                    <a href="<?= $resultadosUrl ?>"><span
+                                                style="font-size: 10px">Ver detalles</span></a><br>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                            <div class="row">
+                                <?= $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]) ?>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <?php
+                            $conteoFilas++;
+                        }
+                        for ($i = $conteoFilas; $i < $max; $i++) {
+                            ?>
+                            <div class="row">&nbsp;</div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <?php
                 }
+
                 ?>
             </div>
         </div>
@@ -218,14 +210,12 @@ if (!Yii::$app->request->isPost) {
     ?>
 
 
-  
-                <div class="row">
-                     <div class="col-md-6 col-md-offset-3">
-        <?= Html::submitButton(' <span class="glyphicon glyphicon-shopping-cart"></span> Reservar', ['class' => 'genric-btn primary btn-block e-large']) ?>
-             
-           </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <?= Html::submitButton(' <span class="glyphicon glyphicon-shopping-cart"></span> Reservar', ['class' => 'genric-btn primary btn-block e-large']) ?>
+
         </div>
-  
+    </div>
 
 
     <?php
