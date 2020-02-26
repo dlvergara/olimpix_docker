@@ -2,6 +2,8 @@
 /* @var $this yii\web\View */
 /* @var $prueba \app\models\PruebaSalto */
 /* @var $resultados array */
+
+$this->title = 'Prueba: ' . $prueba->nombre;
 ?>
 
 <!-- start banner Area -->
