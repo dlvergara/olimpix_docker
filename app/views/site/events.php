@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <img class="img-fluid" src="<?= Url::to('img/pages/ev'.$par.'.jpg', true) ?>" alt="imagen">
                 </div>
                 <div class="col-lg-6 upcoming-right">
-                    <a href="#"><h4><?= $eventoNombre ?></h4></a>
+                    <a href="<?= $eventoUrl ?>"><h4><?= $eventoNombre ?></h4></a>
                     <p class="meta">
                         <span><?= $eventoFecha ?></span> en <?= $eventoLugar . ' - ' . $eventoUbicacion ?>
                     </p>

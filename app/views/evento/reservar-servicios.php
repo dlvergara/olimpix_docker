@@ -44,13 +44,13 @@ if (count($model->pruebaSaltos) > 0) {
                 foreach ($model->pruebaSaltos as $index => $prueba) {
                     $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $prueba->fecha);
                     $fechaLlave = Util::DayName($fechaPrueba).' '.$fechaPrueba->format('d'). ' de ' . Util::DayMonth($fechaPrueba);
-                    $pruebasArray[$fechaLlave][] = $prueba;
+                    $pruebasArray[$fechaLlave][$prueba->orden] = $prueba;
                     $max = max($max, count($pruebasArray[$fechaLlave]));
                 }
 
                 foreach ($pruebasArray as $index => $fechaPrueba) {
                     ?>
-                    <div>
+                    <div style="margin-left: 3%;border: 2px dotted #eee;">
                         <table border="0">
                             <thead>
                             <tr>
@@ -60,13 +60,27 @@ if (count($model->pruebaSaltos) > 0) {
                             <tbody>
                             <?php
                             $conteoFilas = 0;
+                            ksort($fechaPrueba);
+                            /* @var Prueba $prueba */
                             foreach ($fechaPrueba as $i => $prueba) {
                                 ?>
                                 <tr>
                                     <td>
-                                    <?=
-                                    $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form,'formModels' => $formModels])
+                                        <?php
+                                        $mostrarResultados = true;
+                                        echo ucfirst(strtolower($prueba->nombre)) . '<br>';
+                                        $fechaPrueba = strtotime($prueba->fecha);
+
+                                        echo $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]);
+
+                                        if (time() >= $fechaPrueba || $mostrarResultados) {
+                                            $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
+                                            ?>
+                                            <a href="<?= $resultadosUrl ?>">Ver Resultados</a><br>
+                                            <?php
+                                        }
                                     ?>
+                                        <br>
                                     </td>
                                 </tr>
                                 <?php

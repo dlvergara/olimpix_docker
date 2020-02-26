@@ -22,6 +22,7 @@ use Yii;
  * @property int $pista_id_pista
  * @property int $categoria_id_categoria
  * @property int $cerrada
+ * @property float $orden
  *
  * @property Premio[] $premios
  * @property Evento $eventoIdEvento
