@@ -95,6 +95,9 @@ class ResultadoSaltoController extends Controller
             if ($model->faltas_totales == 0) {
                 $model->clasificacion = 1;
             }
+            if ($model->falta_obst > 0) {
+                $model->faltas_totales += $model->falta_obst * 4;
+            }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id_resultado_salto]);
             }
