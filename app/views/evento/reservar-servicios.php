@@ -56,18 +56,21 @@ if (count($model->pruebaSaltos) > 0) {
                         $conteoFilas = 0;
                         ksort($fechaPrueba);
                         /* @var Prueba $prueba */
-                        foreach ($fechaPrueba as $i => $prueba) {
+                        foreach ($fechaPrueba
+
+                                 as $i => $prueba) {
                             $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
                             ?>
-                            <div class="row">
+
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
                                 <a href="<?= $resultadosUrl ?>" class="nav-menu">
-                                    <?= ucfirst(strtolower($prueba->nombre)) ?>
+                                    <?= ucwords(strtolower($prueba->nombre)) ?>
                                 </a>
                             </div>
-                            <div class="row">
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
                                 <span style="font-size: 10px"><?= $prueba->fecha ?></span>
                             </div>
-                            <div class="row">
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
                                 <?php
                                 $cantidadResultados = count($prueba->resultadoSaltos);
                                 if ($cantidadResultados > 0) {
@@ -78,16 +81,16 @@ if (count($model->pruebaSaltos) > 0) {
                                 }
                                 ?>
                             </div>
-                            <div class="row">
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
                                 <?= $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]) ?>
                             </div>
-                            <div class="row">&nbsp;</div>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">&nbsp;</div>
                             <?php
                             $conteoFilas++;
                         }
                         for ($i = $conteoFilas; $i < $max; $i++) {
                             ?>
-                            <div class="row">&nbsp;</div>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">&nbsp;</div>
                             <?php
                         }
                         ?>
