@@ -4,6 +4,7 @@
 /* @var $resultados array */
 
 $this->title = 'Prueba: ' . $prueba->nombre;
+$resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
 ?>
 
 <!-- start banner Area -->
@@ -32,6 +33,9 @@ $this->title = 'Prueba: ' . $prueba->nombre;
         <h4>Fecha y hora: </h4><span><?= $prueba->fecha ?></span><br>
         <h4>Categoría: </h4><span><?= $prueba->categoriaIdCategoria->nombre ?></span><br>
         <h4>Status: </h4><span><?= ($prueba->cerrada) ? 'Cerrada' : 'Abierta' ?></span><br>
+        <h4>Qr code:</h4><span><img
+                    src="https://chart.googleapis.com/chart?cht=qr&chl=<?= $resultadosUrl ?>&choe=UTF-8&chs=177x177"/></span>
+
     </div>
 </section>
 
