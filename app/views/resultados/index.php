@@ -4,7 +4,7 @@
 /* @var $resultados array */
 
 $this->title = 'Prueba: ' . $prueba->nombre;
-$resultadosUrl = Yii::$app->getUrlManager()->createUrl(['/resultados', 'prueba' => $prueba->id_prueba]);
+$resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/resultados', 'prueba' => $prueba->id_prueba]);
 ?>
 
 <!-- start banner Area -->
