@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id_club
  * @property string $nombre
+ * @property string $imagen
  *
  * @property Caballo[] $caballos
  * @property Jinete[] $jinetes
@@ -29,7 +30,7 @@ class Club extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre'], 'string', 'max' => 45],
+            [['nombre'], 'string', 'max' => 200],
         ];
     }
 
