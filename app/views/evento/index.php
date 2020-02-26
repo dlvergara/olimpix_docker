@@ -49,6 +49,9 @@ $resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/evento', 'even
         </div>
     </section>
 
+<?php
+if (count($terminosCondiciones) > 0) {
+    ?>
     <div class="whole-wrap">
         <div class="container">
             <div class="section-top-border">
@@ -74,11 +77,21 @@ $resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/evento', 'even
                     ?>
                 </div>
             </div>
-            <a href="#" class="genric-btn primary btn-block e-large"
-               onclick="event.preventDefault(); $('#moreInfo').toggle()"><span
-                        class="glyphicon glyphicon-info-sign"></span> Más información <span class="glyphicon glyphicon-menu-right"></span></a>
+            <?php
+            if (count($terminosCondiciones) > 0) {
+                ?>
+                <a href="#" class="genric-btn primary btn-block e-large"
+                   onclick="event.preventDefault(); $('#moreInfo').toggle()"><span
+                            class="glyphicon glyphicon-info-sign"></span> Más información <span
+                            class="glyphicon glyphicon-menu-right"></span></a>
+                <?php
+            }
+            ?>
         </div>
     </div>
+    <?php
+}
+?>
     <!-- Mas info -->
     <div class="whole-wrap" id="moreInfo" style="display: none;">
         <div class="container">
