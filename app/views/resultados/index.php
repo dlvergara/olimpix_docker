@@ -29,13 +29,17 @@ $resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/resultados', '
 
 <section class="sample-text-area">
     <div class="container">
-        <h1 class="text-heading"><?= $prueba->nombre ?></h1>
-        <h4>Fecha y hora: </h4><span><?= $prueba->fecha ?></span><br>
-        <h4>Categoría: </h4><span><?= $prueba->categoriaIdCategoria->nombre ?></span><br>
-        <h4>Status: </h4><span><?= ($prueba->cerrada) ? 'Cerrada' : 'Abierta' ?></span><br>
-        <h4>Qr code:</h4><span><img
-                    src="https://chart.googleapis.com/chart?cht=qr&chl=<?= $resultadosUrl ?>&choe=UTF-8&chs=177x177"/></span>
-
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-heading"><?= $prueba->nombre ?></h1>
+                <h4>Fecha y hora: </h4><span><?= $prueba->fecha ?></span><br>
+                <h4>Categoría: </h4><span><?= $prueba->categoriaIdCategoria->nombre ?></span><br>
+                <h4>Status: </h4><span><?= ($prueba->cerrada) ? 'Cerrada' : 'Abierta' ?></span><br>
+            </div>
+            <div class="col-md-4">
+                <img src="https://chart.googleapis.com/chart?cht=qr&chl=<?= $resultadosUrl ?>&choe=UTF-8&chs=177x177"/>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -64,7 +64,6 @@ if (count($model->pruebaSaltos) > 0) {
                             /* @var Prueba $prueba */
                             foreach ($fechaPrueba as $i => $prueba) {
                                 $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
-
                                 ?>
                                 <tr>
                                     <td>
