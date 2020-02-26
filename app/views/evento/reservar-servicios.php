@@ -12,6 +12,7 @@ use app\widgets\Util;
  * @var $formModels array
  * @var $subtotal float
  */
+$this->title = $model->nombre;
 $servicios = $model->getServicioDisponibles()->where(['prueba_salto_id_prueba' => null])->all();
 
 //$serviciosPrueba = $model->getServicioDisponibles()->joinWith('pruebaSaltoIdPrueba')->where(['not', ['prueba_salto_id_prueba' => null]])->orderBy('prueba_salto.fecha')->all();

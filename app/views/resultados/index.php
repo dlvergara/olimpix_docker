@@ -3,7 +3,7 @@
 /* @var $prueba \app\models\PruebaSalto */
 /* @var $resultados array */
 
-$this->title = 'Prueba: ' . $prueba->nombre;
+$this->title = $prueba->nombre;
 $resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/resultados', 'prueba' => $prueba->id_prueba]);
 ?>
 
