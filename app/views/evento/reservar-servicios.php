@@ -35,7 +35,7 @@ if (count($model->pruebaSaltos) > 0) {
     <section class="training-area">
         <div class="container">
             <div class="row">
-                <h3 class="mb-30"><b>Inscripción a pruebas</b></h3>
+                <h3 class="mb-30"><b>Pruebas</b></h3>
             </div>
             <div class="row">
                 <?php
@@ -50,7 +50,7 @@ if (count($model->pruebaSaltos) > 0) {
 
                 foreach ($pruebasArray as $index => $fechaPrueba) {
                     ?>
-                    <div style="margin-left: 3%;border: 2px dotted #eee;">
+                    <div style="margin-left: 1%;border: 2px dotted #eee;min-width: 22%">
                         <table border="0">
                             <thead>
                             <tr>
@@ -63,20 +63,24 @@ if (count($model->pruebaSaltos) > 0) {
                             ksort($fechaPrueba);
                             /* @var Prueba $prueba */
                             foreach ($fechaPrueba as $i => $prueba) {
+                                $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
+
                                 ?>
                                 <tr>
                                     <td>
+                                        <a href="<?= $resultadosUrl ?>" class="nav-menu">
+                                            <?= ucfirst(strtolower($prueba->nombre)) . '<br>' ?>
+                                        </a>
+                                        <span style="font-size: 10px"><?= $prueba->fecha ?></span><br>
                                         <?php
-                                        echo ucfirst(strtolower($prueba->nombre)) . '<br>';
                                         $fechaPrueba = strtotime($prueba->fecha);
 
                                         echo $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]);
                                         $cantidadResultados = count($prueba->resultadoSaltos);
-                                        //time() >= $fechaPrueba &&
                                         if ($cantidadResultados > 0) {
-                                            $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
                                             ?>
-                                            <a href="<?= $resultadosUrl ?>">Ver Resultados</a><br>
+                                            <a href="<?= $resultadosUrl ?>"><span
+                                                        style="font-size: 10px">Ver detalles</span></a><br>
                                             <?php
                                         }
                                         ?>
