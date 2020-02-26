@@ -20,6 +20,11 @@ class ResultadosController extends \yii\web\Controller
         return parent::beforeAction($action);
     }
 
+    /**
+     * @param int $prueba
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionIndex($prueba = 0)
     {
         $pruebaModel = PruebaSalto::find()->where(['id_prueba' => $prueba])->one();

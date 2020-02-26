@@ -67,19 +67,19 @@ if (count($model->pruebaSaltos) > 0) {
                                 <tr>
                                     <td>
                                         <?php
-                                        $mostrarResultados = true;
                                         echo ucfirst(strtolower($prueba->nombre)) . '<br>';
                                         $fechaPrueba = strtotime($prueba->fecha);
 
                                         echo $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]);
-
-                                        if (time() >= $fechaPrueba || $mostrarResultados) {
+                                        $cantidadResultados = count($prueba->resultadoSaltos);
+                                        //time() >= $fechaPrueba &&
+                                        if ($cantidadResultados > 0) {
                                             $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
                                             ?>
                                             <a href="<?= $resultadosUrl ?>">Ver Resultados</a><br>
                                             <?php
                                         }
-                                    ?>
+                                        ?>
                                         <br>
                                     </td>
                                 </tr>
