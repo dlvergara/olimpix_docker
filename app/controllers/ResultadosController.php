@@ -32,8 +32,9 @@ class ResultadosController extends \yii\web\Controller
         if (empty($pruebaModel)) {
             throw new NotFoundHttpException('La prueba solicitada no fue encontrada.');
         }
+        $resultados = $pruebaModel->resultadoSaltos;
 
-        return $this->render('index', ['prueba' => $pruebaModel]);
+        return $this->render('index', ['prueba' => $pruebaModel, 'resultados' => $resultados]);
     }
 
 }

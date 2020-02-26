@@ -68,6 +68,10 @@ class ResultadoSaltoController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_resultado_salto]);
+        } else {
+            $model->fecha_participacion = date('Y-m-d H:i:s');
+            $model->fecha_inicial = date('Y-m-d H:i:s');
+            $model->fecha_inscripcion = date('Y-m-d H:i:s');
         }
 
         return $this->render('create', [

@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $prueba \app\models\PruebaSalto */
-
+/* @var $resultados array */
 ?>
 
 <!-- start banner Area -->
@@ -34,7 +34,8 @@
 </section>
 
 <?php
-if (count($prueba->resultadoSaltos) > 0) {
+if (count($resultados) > 0) {
+
     ?>
     <div class="whole-wrap">
         <div class="container">
@@ -43,9 +44,43 @@ if (count($prueba->resultadoSaltos) > 0) {
             </div>
         </div>
     </div>
-    <div class="whole-wrap" id="moreInfo" style="display: none;">
+    <div class="whole-wrap">
         <div class="container">
             <div class="row">
+                <table style="width: 100%; border: 1px dotted grey;">
+                    <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Jinete</td>
+                        <td>Caballo</td>
+                        <td>Faltas Obst.</td>
+                        <td>Tiempo</td>
+                        <td>Faltas Tiempo</td>
+                        <td>Faltas Totales</td>
+                        <td>Puntaje</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    /* @var $row \app\models\ResultadoSalto */
+                    $i = 1;
+                    foreach ($resultados as $row) { ?>
+                        <tr>
+                            <td><?= $i ?></td>
+                            <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
+                            <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
+                            <td><?= $row->falta_obst ?></td>
+                            <td><?= $row->tiempo ?></td>
+                            <td><?= $row->faltas_tiempo ?></td>
+                            <td><?= $row->faltas_totales ?></td>
+                            <td><?= $row->puntaje ?></td>
+                        </tr>
+                        <?php
+                        $i++;
+                    }
+                    ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

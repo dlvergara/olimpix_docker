@@ -21,7 +21,7 @@ $caballos = \yii\helpers\ArrayHelper::map(Caballo::find()->all(), 'id_caballo', 
         'action' => ['list'],
         'method' => 'post',
         'options' => [
-            'data-pjax' => true
+            'data-pjax' => 1
         ],
     ]); ?>
 
