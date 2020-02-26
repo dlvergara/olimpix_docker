@@ -12,8 +12,6 @@ use yii\web\JsExpression;
 /* @var $model app\models\ResultadoSalto */
 /* @var $form yii\widgets\ActiveForm */
 
-$searchModel = new CaballoHasJineteSearch();
-
 $caballosJinetes = [];
 $caballosJinetesData = \app\models\CaballoHasJinete::find()->joinWith(['caballo', 'jinete'])->orderBy(['jinete.nombre_completo' => SORT_ASC])->all();
 foreach ($caballosJinetesData as $row) {
