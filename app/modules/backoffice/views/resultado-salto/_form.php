@@ -1,11 +1,15 @@
 <?php
 
+use app\models\CaballoHasJineteSearch;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ResultadoSalto */
 /* @var $form yii\widgets\ActiveForm */
+
+$searchModel = new CaballoHasJineteSearch();
 ?>
 
 <div class="resultado-salto-form">
@@ -13,6 +17,23 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'id_caballo_has_jinete')->textInput() ?>
+    <?php
+    $viewUrl = Yii::$app->getUrlManager()->createUrl(['backoffice/caballo-has-jinete/list']);
+    Modal::begin(
+        [
+            'header' => '<h2>Hello world</h2>',
+            'toggleButton' => ['label' => 'Buscar Jinete y Caballo'],
+            'size' => 'modal-lg',
+            'clientOptions' => [
+                'remote' => $viewUrl,
+            ]
+        ]
+    );
+    ?>
+    <?php
+    //<iframe src="" style="width: 100%" ></iframe>
+    Modal::end();
+    ?>
 
     <?= $form->field($model, 'id_prueba')->textInput() ?>
 

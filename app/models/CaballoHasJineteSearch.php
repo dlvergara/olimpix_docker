@@ -35,9 +35,10 @@ class CaballoHasJineteSearch extends CaballoHasJinete
      *
      * @param array $params
      *
+     * @param bool $loadAll
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $loadAll = true)
     {
         $query = CaballoHasJinete::find();
 
@@ -51,7 +52,9 @@ class CaballoHasJineteSearch extends CaballoHasJinete
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            if (!$loadAll) {
+                $query->where('0=1');
+            }
             return $dataProvider;
         }
 

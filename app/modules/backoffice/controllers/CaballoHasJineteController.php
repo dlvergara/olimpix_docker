@@ -45,6 +45,21 @@ class CaballoHasJineteController extends Controller
     }
 
     /**
+     * Lists all CaballoHasJinete models.
+     * @return mixed
+     */
+    public function actionList()
+    {
+        $searchModel = new CaballoHasJineteSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, false);
+
+        return $this->renderAjax('indexAjax', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single CaballoHasJinete model.
      * @param integer $id
      * @return mixed
