@@ -17,10 +17,11 @@ $caballos = \yii\helpers\ArrayHelper::map(Caballo::find()->all(), 'id_caballo', 
 <div class="caballo-has-jinete-search">
 
     <?php $form = ActiveForm::begin([
+        'id' => 'caballoHasJineteAjaxSearchForm',
         'action' => ['list'],
-        'method' => 'get',
+        'method' => 'post',
         'options' => [
-            'data-pjax' => 1
+            'data-pjax' => true
         ],
     ]); ?>
 

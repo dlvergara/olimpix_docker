@@ -14,7 +14,7 @@ $searchModel = new CaballoHasJineteSearch();
 
 <div class="resultado-salto-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'resultadoSaltoForm']); ?>
 
     <?= $form->field($model, 'id_caballo_has_jinete')->textInput() ?>
     <?php

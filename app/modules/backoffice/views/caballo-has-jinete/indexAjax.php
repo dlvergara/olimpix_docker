@@ -15,8 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php Pjax::begin(); ?>
-    <?php echo $this->render('_searchAjax', ['model' => $searchModel]); ?>
+    <?php
+    Pjax::begin(['id' => 'ajaxSearchCaballoHasJinete']);
+    echo $this->render('_searchAjax', ['model' => $searchModel]);
+    ?>
     <br/><br/>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
