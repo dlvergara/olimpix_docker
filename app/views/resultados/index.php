@@ -35,7 +35,6 @@
 
 <?php
 if (count($resultados) > 0) {
-
     ?>
     <div class="whole-wrap">
         <div class="container">
@@ -57,6 +56,7 @@ if (count($resultados) > 0) {
                         <td>Tiempo</td>
                         <td>Faltas Tiempo</td>
                         <td>Faltas Totales</td>
+                        <td>Clasificación</td>
                         <td>Puntaje</td>
                     </tr>
                     </thead>
@@ -64,15 +64,23 @@ if (count($resultados) > 0) {
                     <?php
                     /* @var $row \app\models\ResultadoSalto */
                     $i = 1;
-                    foreach ($resultados as $row) { ?>
+                    foreach ($resultados as $row) {
+                        $tiempo = $row->tiempo;
+                        $faltasTotales = $row->faltas_totales;
+                        if ($row->cantidad_rehuso >= 2) {
+                            $tiempo = "Eliminado";
+                            $faltasTotales = "Eliminado";
+                        }
+                        ?>
                         <tr>
                             <td><?= $i ?></td>
                             <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
                             <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
                             <td><?= $row->falta_obst ?></td>
-                            <td><?= $row->tiempo ?></td>
+                            <td><?= $tiempo ?></td>
                             <td><?= $row->faltas_tiempo ?></td>
-                            <td><?= $row->faltas_totales ?></td>
+                            <td><?= $faltasTotales ?></td>
+                            <td><?= $row->clasificacion ?></td>
                             <td><?= $row->puntaje ?></td>
                         </tr>
                         <?php

@@ -46,7 +46,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'header' => 'Action',
+                'template' => '{update} {view} {delete} {saveResult}',
+                'buttons' => [
+                    'saveResult' => function ($url, $model) {
+                        $t = Yii::$app->getUrlManager()->createUrl(['backoffice/resultado-salto/create', 'id_caballo_has_jinete' => $model->id_caballo_has_jinete]);
+
+                        return Html::a('<span class="glyphicon glyphicon-fire"></span>', $t, ['value' => $t, 'class' => 'btn btn-default btn-xs', 'id' => 'modalButtonView']);
+                    },
+                ],
+            ]
         ],
     ]); ?>
 

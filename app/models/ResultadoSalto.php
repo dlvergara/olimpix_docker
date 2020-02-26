@@ -13,7 +13,7 @@ use Yii;
  * @property int $falta_obst
  * @property string $fecha_inicial
  * @property string $fecha_final
- * @property string $faltas_tiempo
+ * @property float $faltas_tiempo
  * @property int $faltas_totales
  * @property int $clasificacion
  * @property string $observaciones

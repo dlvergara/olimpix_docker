@@ -62,13 +62,14 @@ class ResultadoSaltoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_caballo_has_jinete = null)
     {
         $model = new ResultadoSalto();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_resultado_salto]);
         } else {
+            $model->id_caballo_has_jinete = $id_caballo_has_jinete;
             $model->fecha_participacion = date('Y-m-d H:i:s');
             $model->fecha_inicial = date('Y-m-d H:i:s');
             $model->fecha_inscripcion = date('Y-m-d H:i:s');
@@ -90,8 +91,13 @@ class ResultadoSaltoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_resultado_salto]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->faltas_totales == 0) {
+                $model->clasificacion = 1;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id_resultado_salto]);
+            }
         }
 
         return $this->render('update', [

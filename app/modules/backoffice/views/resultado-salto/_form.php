@@ -83,11 +83,11 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
 
     <?= $form->field($model, 'cantidad_rehuso')->textInput(['type' => 'number']) ?>
 
+    <?= $form->field($model, 'clasificacion')->textInput() ?>
+
     <hr>
 
     <?= $form->field($model, 'clasificacion_final')->textInput() ?>
-
-    <?= $form->field($model, 'clasificacion')->textInput() ?>
 
     <?= $form->field($model, 'observaciones')->textarea(['rows' => 6]) ?>
 
