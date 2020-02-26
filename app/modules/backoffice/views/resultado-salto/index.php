@@ -24,25 +24,53 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_resultado_salto',
-            'id_caballo_has_jinete',
-            'id_prueba',
+            //'id_caballo_has_jinete',
+            [
+                'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                'label' => 'Evento',
+                'value' => function ($data) {
+                    return $data->prueba->eventoIdEvento->nombre;
+                },
+            ],
+            [
+                'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                'label' => 'Caballo',
+                'value' => function ($data) {
+                    return $data->caballoHasJinete->caballo->nombre;
+                },
+            ],
+            [
+                'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                'label' => 'Jinete',
+                'value' => function ($data) {
+                    return $data->caballoHasJinete->jinete->nombre_completo;
+                },
+            ],
+            [
+                'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                'label' => 'Prueba',
+                'value' => function ($data) {
+                    return $data->prueba->nombre;
+                },
+            ],
+            //'id_prueba',
+            'orden_participacion',
+            'clasificacion',
             'falta_obst',
-            'fecha_inicial',
+            //'fecha_inicial',
             //'fecha_final',
             //'faltas_tiempo',
             //'faltas_totales',
-            //'clasificacion',
             //'observaciones:ntext',
             //'cantidad_obstaculos',
             //'puntaje',
             //'fecha_inscripcion',
             //'clasificacion_final',
-            //'orden_participacion',
             //'fecha_participacion',
             //'cantidad_rehuso',
 
