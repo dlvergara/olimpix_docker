@@ -42,7 +42,18 @@ $this->params['breadcrumbs'][] = $this->title;
             //'pista_id_pista',
             //'categoria_id_categoria',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'header' => '',
+                'template' => '{update} {view} {delete} {calificarPrueba}',
+                'buttons' => [
+                    'calificarPrueba' => function ($url, $model) {
+                        $t = Yii::$app->getUrlManager()->createUrl(['backoffice/prueba-salto/calificar-prueba', 'idPrueba' => $model->id_prueba]);
+
+                        return Html::a('<span class="glyphicon glyphicon-fire"></span>', $t, ['value' => $t, 'class' => 'btn btn-default btn-xs', 'id' => 'modalButtonView']);
+                    },
+                ],
+            ]
         ],
     ]); ?>
 
