@@ -32,7 +32,7 @@ class ResultadosController extends \yii\web\Controller
         if (empty($pruebaModel)) {
             throw new NotFoundHttpException('La prueba solicitada no fue encontrada.');
         }
-        $resultados = $pruebaModel->getResultadoSaltos()->orderBy(['orden_participacion' => SORT_ASC, 'clasificacion' => SORT_DESC, 'tiempo' => SORT_DESC])->all();
+        $resultados = $pruebaModel->getResultadoSaltos()->orderBy(['orden_participacion' => SORT_ASC, 'tiempo' => SORT_DESC, 'clasificacion_final' => SORT_DESC,])->all();
 
         return $this->render('index', ['prueba' => $pruebaModel, 'resultados' => $resultados]);
     }

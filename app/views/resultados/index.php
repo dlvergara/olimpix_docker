@@ -69,7 +69,7 @@ if (count($resultados) > 0) {
                         <td scope="col">Tiempo</td>
                         <td scope="col">Faltas Tiempo</td>
                         <td scope="col">Faltas Totales</td>
-                        <td scope="col">Clasificación</td>
+                        <td scope="col">Clasificación Final</td>
                         <!-- <td scope="col">Puntaje</td> -->
                     </tr>
                     </thead>
@@ -101,7 +101,7 @@ if (count($resultados) > 0) {
                             <td><?= $tiempo ?></td>
                             <td><?= $row->faltas_tiempo ?></td>
                             <td><?= $faltasTotales ?></td>
-                            <td><?= $row->clasificacion ?></td>
+                            <td><?= $row->clasificacion_final ?></td>
                             <!-- <td><?= $row->puntaje ?></td> -->
                         </tr>
                         <?php
