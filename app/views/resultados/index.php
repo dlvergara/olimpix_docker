@@ -55,14 +55,14 @@ if (count($resultados) > 0) {
     </div>
     <div class="whole-wrap">
         <div class="container">
-           
+
             <div class="row">
                 <div class="table-responsive">
                     <div class="table-responsive{-sm|-md|-lg|-xl}">
                 <table class="table table-striped table-drak table-bordered table-hover" >
                     <thead class="thead-dark">
                     <tr class="table-active">
-                        <td scope="col">Orden de participación</td>
+                        <td scope="col">#</td>
                         <td scope="col">Jinete</td>
                         <td scope="col">Caballo</td>
                         <td scope="col">Faltas Obst.</td>
