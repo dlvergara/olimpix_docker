@@ -9,6 +9,7 @@ namespace app\commands;
 
 use yii\console\Controller;
 use yii\console\ExitCode;
+use Smalot\PdfParser\Parser;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -27,7 +28,18 @@ class HelloController extends Controller
      */
     public function actionIndex($message = 'hello world')
     {
-        echo $message . "\n";
+        //echo $message . "\n";
+        $dataDir = getcwd() . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR;
+        $fileName = 'ORDEN-PARTICIPACION-CSN3';
+        $pdfUrl = $dataDir . $fileName . '.pdf';
+
+        // Parse pdf file and build necessary objects.
+        $parser = new Parser();
+        $pdf = $parser->parseFile($pdfUrl);
+
+        $text = $pdf->getText();
+        file_put_contents($dataDir . 'op-' . $fileName . '.txt', $text);
+        echo $text;
 
         return ExitCode::OK;
     }
