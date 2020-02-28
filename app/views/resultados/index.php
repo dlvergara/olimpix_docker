@@ -70,7 +70,7 @@ if (count($resultados) > 0) {
                         <td scope="col">Faltas Tiempo</td>
                         <td scope="col">Faltas Totales</td>
                         <td scope="col">Clasificación</td>
-                        <td scope="col">Puntaje</td>
+                        <!-- <td scope="col">Puntaje</td> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -102,7 +102,7 @@ if (count($resultados) > 0) {
                             <td><?= $row->faltas_tiempo ?></td>
                             <td><?= $faltasTotales ?></td>
                             <td><?= $row->clasificacion ?></td>
-                            <td><?= $row->puntaje ?></td>
+                            <!-- <td><?= $row->puntaje ?></td> -->
                         </tr>
                         <?php
                         $i++;
