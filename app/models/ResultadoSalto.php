@@ -25,6 +25,8 @@ use Yii;
  * @property string $fecha_participacion
  * @property int $cantidad_rehuso
  * @property float $tiempo
+ * @property bool $eliminado
+ * @property bool $no_se_presento
  *
  * @property Falla[] $fallas
  * @property Obstaculo[] $obstaculos

@@ -73,7 +73,7 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
 
     <?= $form->field($model, 'falta_obst')->textInput(['type' => 'number']) ?>
 
-    <?= $form->field($model, 'tiempo')->textInput(['type' => 'number']) ?>
+    <?= $form->field($model, 'tiempo')->textInput(['type' => 'number', 'step' => '0.01']) ?>
 
     <?= $form->field($model, 'faltas_tiempo')->textInput(['type' => 'number']) ?>
 
@@ -82,6 +82,11 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
     <?= $form->field($model, 'cantidad_rehuso')->textInput(['type' => 'number']) ?>
 
     <?= $form->field($model, 'clasificacion')->textInput() ?>
+
+    <?= $form->field($model, 'eliminado')->checkbox() ?>
+
+    <?= $form->field($model, 'no_se_presento')->checkbox() ?>
+
 
     <hr>
 

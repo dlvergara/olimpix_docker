@@ -84,6 +84,14 @@ if (count($resultados) > 0) {
                             $tiempo = "Eliminado";
                             $faltasTotales = "Eliminado";
                         }
+                        if ($row->eliminado) {
+                            $tiempo = "Eliminado";
+                            $faltasTotales = "Eliminado";
+                        }
+                        if ($row->no_se_presento) {
+                            $tiempo = "No se presento";
+                            $faltasTotales = "No se presento";
+                        }
                         ?>
                         <tr class="table-light">
                             <td><?= $i ?></td>

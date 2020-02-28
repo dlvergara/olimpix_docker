@@ -132,6 +132,7 @@ class ProcessController extends ScrapController
      */
     private function procesarJinetes(array $pruebasProcesadas)
     {
+        $saveJinetes = false;
         $procesados = 0;
         $encontrado = 0;
         $caballoEncontrado = 0;
@@ -148,46 +149,48 @@ class ProcessController extends ScrapController
                     throw new \Exception('Prueba ' . $idPrueba . ' No encontrada');
                 }
                 echo $pruebaData->nombre, chr(10);
+                $this->updatePrueba($pruebaData, $prueba);
 
-                foreach ($prueba['rows'] as $row) {
-                    $procesados++;
-                    $dataJinete = explode('-', $row);
+                if ($saveJinetes) {
+                    foreach ($prueba['rows'] as $row) {
+                        $procesados++;
+                        $dataJinete = explode('-', $row);
 
-                    echo print_r($dataJinete, true), ' --> ';
+                        echo print_r($dataJinete, true), ' --> ';
 
-                    $idJinete = explode('   ', trim($dataJinete[0]));
-                    $dataJinete[3] = trim($dataJinete[3]);
-                    $jinete = explode('   ', $dataJinete[3]);
-                    $datosCaballo = explode('   ', trim($dataJinete[5]));
+                        $idJinete = explode('   ', trim($dataJinete[0]));
+                        $dataJinete[3] = trim($dataJinete[3]);
+                        $jinete = explode('   ', $dataJinete[3]);
+                        $datosCaballo = explode('   ', trim($dataJinete[5]));
 
-                    $ordenParticipacion = intval($idJinete[0]);
-                    $idJinete = $idJinete[1];
-                    $paisTxt = trim($dataJinete[2]);
-                    $nombreJinete = str_ireplace("  ", ' ', trim($jinete[0]));
-                    //$idCaballo = $jinete[1];
-                    $nombreLiga = str_ireplace(' ', '', trim($datosCaballo[1]));
-                    $nombreCaballo = trim($datosCaballo[0]);
+                        $ordenParticipacion = intval($idJinete[0]);
+                        $idJinete = $idJinete[1];
+                        $paisTxt = trim($dataJinete[2]);
+                        $nombreJinete = str_ireplace("  ", ' ', trim($jinete[0]));
+                        //$idCaballo = $jinete[1];
+                        $nombreLiga = str_ireplace(' ', '', trim($datosCaballo[1]));
+                        $nombreCaballo = trim($datosCaballo[0]);
 
-                    echo 'Pa - ' . $paisTxt . ' ...';
-                    $pais = $this->findOrSavePais($paisTxt);
-                    echo 'Cl - ' . $paisTxt . ' ... ';
-                    $club = $this->findOrSaveClub($paisTxt, '');
-                    echo 'L - ' . $nombreLiga . ' ...';
-                    $liga = $this->findOrSaveLiga($nombreLiga);
+                        echo 'Pa - ' . $paisTxt . ' ...';
+                        $pais = $this->findOrSavePais($paisTxt);
+                        echo 'Cl - ' . $paisTxt . ' ... ';
+                        $club = $this->findOrSaveClub($paisTxt, '');
+                        echo 'L - ' . $nombreLiga . ' ...';
+                        $liga = $this->findOrSaveLiga($nombreLiga);
 
-                    echo 'J...';
-                    $jineteDb = $this->findOrSaveJinete($nombreJinete, $idJinete, $club, $pais, $liga, $encontrado);
+                        echo 'J...';
+                        $jineteDb = $this->findOrSaveJinete($nombreJinete, $idJinete, $club, $pais, $liga, $encontrado);
 
-                    echo 'C...';
-                    $caballo = $this->saveCaballo($nombreCaballo, $jineteDb, $club, $caballoEncontrado);
+                        echo 'C...';
+                        $caballo = $this->saveCaballo($nombreCaballo, $jineteDb, $club, $caballoEncontrado);
 
-                    echo 'CJ...';
-                    $caballoJinete = $this->saveCaballoJinete($caballo, $jineteDb);
+                        echo 'CJ...';
+                        $caballoJinete = $this->saveCaballoJinete($caballo, $jineteDb);
 
-                    echo 'P...';
-                    $this->saveResultadoPrueba($caballoJinete, $pruebaData, $ordenParticipacion);
-                    echo chr(10);
-
+                        echo 'P...';
+                        $this->saveResultadoPrueba($caballoJinete, $pruebaData, $ordenParticipacion);
+                        echo chr(10);
+                    }
                 }
             } catch (\Exception $ex) {
                 echo $ex->getMessage(), chr(10), chr(10);
@@ -199,6 +202,19 @@ class ProcessController extends ScrapController
         echo 'CaballoEncontrado: ' . $caballoEncontrado, chr(10);
     }
 
+    /**
+     * @param PruebaSalto $pruebaData
+     * @param $prueba
+     */
+    private function updatePrueba(PruebaSalto $pruebaData, $prueba)
+    {
+        $pruebaData->fecha = $prueba['fecha'] . ' ' . $prueba['hora'];
+        $res = $pruebaData->save();
+        if (!$res) {
+            var_dump($pruebaData->getErrors());
+            exit;
+        }
+    }
 
     /**
      * @param Club $club
