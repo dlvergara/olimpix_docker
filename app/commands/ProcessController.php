@@ -8,7 +8,10 @@
 namespace app\commands;
 
 use app\models\CaballoHasJinete;
+use app\models\Club;
 use app\models\Jinete;
+use app\models\Liga;
+use app\models\Pais;
 use app\models\PruebaSalto;
 use app\models\ResultadoSalto;
 use yii\console\Controller;
@@ -23,12 +26,13 @@ use Smalot\PdfParser\Parser;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class ProcessController extends Controller
+class ProcessController extends ScrapController
 {
     /**
      * This command echoes what you have entered as the message.
      * @param string $message the message to be echoed.
      * @return int Exit code
+     * @throws \Exception
      */
     public function actionIndex()
     {
@@ -130,6 +134,7 @@ class ProcessController extends Controller
     {
         $procesados = 0;
         $encontrado = 0;
+        $caballoEncontrado = 0;
         $idEvento = 4;
         foreach ($pruebasProcesadas as $idPrueba => $prueba) {
             if (strpos($idPrueba, 'A')) {
@@ -147,24 +152,42 @@ class ProcessController extends Controller
                 foreach ($prueba['rows'] as $row) {
                     $procesados++;
                     $dataJinete = explode('-', $row);
+
+                    echo print_r($dataJinete, true), ' --> ';
+
                     $idJinete = explode('   ', trim($dataJinete[0]));
                     $dataJinete[3] = trim($dataJinete[3]);
                     $jinete = explode('   ', $dataJinete[3]);
+                    $datosCaballo = explode('   ', trim($dataJinete[5]));
 
+                    $ordenParticipacion = intval($idJinete[0]);
                     $idJinete = $idJinete[1];
-                    $pais = trim($dataJinete[2]);
-                    $nombreCaballo = trim($dataJinete[5]);
+                    $paisTxt = trim($dataJinete[2]);
                     $nombreJinete = str_ireplace("  ", ' ', trim($jinete[0]));
-                    $idCaballo = $jinete[1];
+                    //$idCaballo = $jinete[1];
+                    $nombreLiga = str_ireplace(' ', '', trim($datosCaballo[1]));
+                    $nombreCaballo = trim($datosCaballo[0]);
 
+                    echo 'Pa - ' . $paisTxt . ' ...';
+                    $pais = $this->findOrSavePais($paisTxt);
+                    echo 'Cl - ' . $paisTxt . ' ... ';
+                    $club = $this->findOrSaveClub($paisTxt, '');
+                    echo 'L - ' . $nombreLiga . ' ...';
+                    $liga = $this->findOrSaveLiga($nombreLiga);
 
-                    $jineteDb = Jinete::find()->where(['nombre_completo' => $nombreJinete])->one();
-                    if (!empty($jineteDb)) {
-                        $encontrado++;
-                        //echo 'Encontrado: '. $nombreJinete;
-                    } else {
-                        echo $row, chr(10);
-                    }
+                    echo 'J...';
+                    $jineteDb = $this->findOrSaveJinete($nombreJinete, $idJinete, $club, $pais, $liga, $encontrado);
+
+                    echo 'C...';
+                    $caballo = $this->saveCaballo($nombreCaballo, $jineteDb, $club, $caballoEncontrado);
+
+                    echo 'CJ...';
+                    $caballoJinete = $this->saveCaballoJinete($caballo, $jineteDb);
+
+                    echo 'P...';
+                    $this->saveResultadoPrueba($caballoJinete, $pruebaData, $ordenParticipacion);
+                    echo chr(10);
+
                 }
             } catch (\Exception $ex) {
                 echo $ex->getMessage(), chr(10), chr(10);
@@ -173,6 +196,35 @@ class ProcessController extends Controller
 
         echo 'Procesados: ' . $procesados, chr(10);
         echo 'Encontrados: ' . $encontrado, chr(10);
+        echo 'CaballoEncontrado: ' . $caballoEncontrado, chr(10);
+    }
+
+
+    /**
+     * @param Club $club
+     * @param $raider
+     * @return Jinete|\yii\db\ActiveQuery
+     */
+    private function findOrSaveJinete($raider, $id, Club $club, Pais $pais, Liga $liga, &$encontrado)
+    {
+        $jinete = Jinete::find()->where(['nombre_completo' => $raider])->one();
+        if (empty($jinete)) {
+            $jinete = new Jinete();
+            $jinete->nombre_completo = $raider;
+            $jinete->club_id_club = $club->id_club;
+            $jinete->registro_fec = $id;
+            $jinete->liga_id_liga = $liga->id_liga;
+            $jinete->pais_id_pais = $pais->id_pais;
+            $res = $jinete->save();
+            if (!$res) {
+                var_dump($jinete->getErrors());
+                exit;
+            }
+        } else {
+            $encontrado++;
+        }
+
+        return $jinete;
     }
 
     /**
@@ -183,14 +235,19 @@ class ProcessController extends Controller
      */
     private function saveResultadoPrueba(CaballoHasJinete $caballoJinete, PruebaSalto $prueba, $ordenParticipacion)
     {
-        $resultadoPrueba = ResultadoSalto::find()->where([])->one();
+        $resultadoPrueba = ResultadoSalto::find()->where(['id_caballo_has_jinete' => $caballoJinete->id_caballo_has_jinete, 'id_prueba' => $prueba->id_prueba])->one();
         if (empty($resultadoPrueba)) {
             $resultadoPrueba = new ResultadoSalto();
             $resultadoPrueba->id_caballo_has_jinete = $caballoJinete->id_caballo_has_jinete;
             $resultadoPrueba->id_prueba = $prueba->id_prueba;
             $resultadoPrueba->orden_participacion = $ordenParticipacion;
 
-            $resultadoPrueba->save();
+            $res = $resultadoPrueba->save();
+            //echo chr(10), $res, chr(10);
+            if (!$res) {
+                var_dump($resultadoPrueba->getErrors());
+                exit;
+            }
         }
         return $resultadoPrueba;
     }

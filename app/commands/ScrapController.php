@@ -11,6 +11,7 @@ use app\models\Caballo;
 use app\models\CaballoHasJinete;
 use app\models\Club;
 use app\models\Jinete;
+use app\models\Liga;
 use app\models\Pais;
 use Sunra\PhpSimple\HtmlDomParser;
 use yii\console\Controller;
@@ -138,7 +139,7 @@ class ScrapController extends Controller
      * @param $pais
      * @return Pais|array|\yii\db\ActiveRecord|null
      */
-    private function findOrSavePais($pais)
+    public function findOrSavePais($pais)
     {
         $model = Pais::find()->where(['nombre' => $pais])->one();
         if (empty($model)) {
@@ -159,13 +160,34 @@ class ScrapController extends Controller
      * @param $image
      * @return Club|\yii\db\ActiveQuery
      */
-    private function findOrSaveClub($bandera, $image)
+    protected function findOrSaveClub($bandera, $image)
     {
         $club = Club::find()->where(['nombre' => $bandera])->one();
         if (empty($club)) {
             $club = new Club();
             $club->nombre = $bandera;
             $club->imagen = $image;
+            $res = $club->save();
+            if (!$res) {
+                var_dump($club->getErrors());
+                exit;
+            }
+        }
+
+        return $club;
+    }
+
+    /**
+     * @param $bandera
+     * @param $image
+     * @return Liga|\yii\db\ActiveQuery
+     */
+    protected function findOrSaveLiga($nombre)
+    {
+        $club = Liga::find()->where(['nombre' => $nombre])->one();
+        if (empty($club)) {
+            $club = new Liga();
+            $club->nombre = $nombre;
             $res = $club->save();
             if (!$res) {
                 var_dump($club->getErrors());
@@ -206,7 +228,7 @@ class ScrapController extends Controller
      * @param Club $club
      * @return Caballo
      */
-    private function saveCaballo($nombreCaballo, Jinete $jinete, Club $club)
+    protected function saveCaballo($nombreCaballo, Jinete $jinete, Club $club, &$encontrado)
     {
         $nombreCaballo = trim($nombreCaballo);
         $caballo = Caballo::find()->where(['nombre' => $nombreCaballo])->one();
@@ -220,6 +242,8 @@ class ScrapController extends Controller
                 var_dump($caballo->getErrors());
                 exit;
             }
+        } else {
+            $encontrado++;
         }
 
         return $caballo;
@@ -230,7 +254,7 @@ class ScrapController extends Controller
      * @param Jinete $jinete
      * @return CaballoHasJinete
      */
-    private function saveCaballoJinete(Caballo $caballo, Jinete $jinete)
+    protected function saveCaballoJinete(Caballo $caballo, Jinete $jinete)
     {
         $caballoJinete = CaballoHasJinete::find()->where(['id_caballo' => $caballo->id_caballo, 'id_jinete' => $jinete->id_jinete])->one();
         if (empty($caballoJinete)) {
