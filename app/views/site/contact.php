@@ -65,22 +65,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 </div> -->
 
-<section class="booking-area section-gap relative" id="consultancy">
+
+   
+<section class="booking-area section-gap relative" id="consultancy">   
     
-       
-				<div class="overlay overlay-bg"></div>
+		<!--		<div class="overlay overlay-bg"></div> -->
 				<div class="container">
-                    
+                   
+         <div class="alert alert-success">
+         <h4 class="mb-19">   Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para contactarnos.
+             Gracias </h4></div>
+                          
           
 					<div class="row justify-content-between align-items-center">
 						<div class="col-lg-6 col-md-6 booking-left">
-                              <h4>
-            Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para contactarnos.
-            Gracias
-            </h4>
-							<div class="active-review-carusel">
+                           
+							<!--	<div class="active-review-carusel">
 								<div class="single-carusel">
-									<img src="img/r1.png" alt="">
+								<img src="/img/h2.jpg" alt="">
 									<div class="title justify-content-start d-flex">
 										<h4>Fannie Rowe</h4>
 										<div class="star">
@@ -89,21 +91,21 @@ $this->params['breadcrumbs'][] = $this->title;
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
-										</div>
+										</div> 
 									</div>
 									<p>
 										Comentarios 
 									</p>
-									<img src="img/r2.png" alt="">
+								<!--	<img src="img/r2.png" alt="">
 									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
+								<!--		<h4>Hulda Sutton</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
-										</div>
+										</div> 
 									</div>
 									<p>
 										Comentarios 
@@ -112,28 +114,28 @@ $this->params['breadcrumbs'][] = $this->title;
 								<div class="single-carusel">
 									<img src="img/r1.png" alt="">
 									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
+								<!--		<h4>Fannie Rowe</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
-										</div>
+										</div> 
 									</div>
 									<p>
 										Comentarios 
 									</p>
 									<img src="img/r2.png" alt="">
 									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
+									<!--	<h4>Hulda Sutton</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
-										</div>
+										</div> 
 									</div>
 									<p>
 										Comentarios 
@@ -142,44 +144,48 @@ $this->params['breadcrumbs'][] = $this->title;
 								<div class="single-carusel">
 									<img src="img/r1.png" alt="">
 									<div class="title justify-content-start d-flex">
-										<h4>Fannie Rowe</h4>
+									<!--	<h4>Fannie Rowe</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
-										</div>
+										</div> 
 									</div>
 									<p>
 										Comentarios 
 									</p>
 									<img src="img/r2.png" alt="">
 									<div class="title justify-content-start d-flex">
-										<h4>Hulda Sutton</h4>
+									<!--	<h4>Hulda Sutton</h4>
 										<div class="star">
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star checked"></span>
 											<span class="fa fa-star"></span>
 											<span class="fa fa-star"></span>
-										</div>
+										</div> 
 									</div>
 									<p>
 										Comentarios 
 									</p>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 booking-right">
+						</div>  -->
                             
-                           
+                            
+                            <div class="overlay overlay-bg"></div>
+                                <div class="container">
+                                
+                                  <div class="col-lg-6 col-md-6 booking-left">
+                                
 								<h4 class="mb-19">Formulario de Contacto</h4>
                             
                              <div class="section-top-border" class="mb-100">
                              <div class="row" class="mb-100">
-                                   <div class="center-block">
-          
+                             <div class="center-block">
+                             
                             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -189,27 +195,34 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($model, 'subject') ?>
 
                                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
+                                  
                                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                    'template' => '<div class="row"><div class="col-lg-5">{image}</div><div class="col-lg-6">{input}</div></div>',
+                                    'template' => ' <div class="row"><div class="col-md-4">{image}</div><div class="col-md-4">{input}</div></div>',
                                 ]) ?>
-
+                                 
                                  <div class="form-group">
                         <?= Html::submitButton('Enviar  <span class="glyphicon glyphicon-send"></span>', ['class' => 'btn btn-primary btn-block', 'name' => 'contact-button']) ?>
                               
-                                       
+                             
                                        </div>
 
                 <?php ActiveForm::end(); ?>
+                         
                                  </div>  
                                 </div>
+                                
                             </div>
+                                 
+                           </div>
+                                      
+                        </div> 
+                                         
               </div>
-                        </div>
-             </div>
-           
-        
-   </section>
+            </div>
+         </div>
+       
+ </section>
+                        
 						<!--	<form action="#">
 									<input class="form-control" type="text" name="name" placeholder="Nombres" required>
 									<input class="form-control" type="email" name="email" placeholder="Email" required>
