@@ -70,7 +70,6 @@ if (count($resultados) > 0) {
                         <td scope="col">Faltas Tiempo</td>
                         <td scope="col">Faltas Totales</td>
                         <td scope="col">Clasificación Final</td>
-                        <!-- <td scope="col">Puntaje</td> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -92,19 +91,30 @@ if (count($resultados) > 0) {
                             $tiempo = "No se presento";
                             $faltasTotales = "No se presento";
                         }
-                        ?>
-                        <tr class="table-light">
-                            <td><?= $row->orden_participacion ?></td>
-                            <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
-                            <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
-                            <td><?= $row->falta_obst ?></td>
-                            <td><?= $tiempo ?></td>
-                            <td><?= $row->faltas_tiempo ?></td>
-                            <td><?= $faltasTotales ?></td>
-                            <td><?= $row->clasificacion_final ?></td>
-                            <!-- <td><?= $row->puntaje ?></td> -->
-                        </tr>
-                        <?php
+                        if (is_numeric($tiempo)) {
+                            ?>
+                            <tr class="table-light">
+                                <td><?= $row->orden_participacion ?></td>
+                                <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
+                                <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
+                                <td><?= $row->falta_obst ?></td>
+                                <td><?= $tiempo ?></td>
+                                <td><?= $row->faltas_tiempo ?></td>
+                                <td><?= $faltasTotales ?></td>
+                                <td><?= $row->clasificacion_final ?></td>
+                            </tr>
+                            <?php
+                        } else {
+                            ?>
+                            <tr class="table-light">
+                                <td><?= $row->orden_participacion ?></td>
+                                <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
+                                <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
+                                <td colspan="5"><?= $tiempo ?></td>
+                            </tr>
+                            <?php
+                        }
+
                         $i++;
                     }
                     ?>
