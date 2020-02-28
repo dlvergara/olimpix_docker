@@ -55,19 +55,22 @@ if (count($resultados) > 0) {
     </div>
     <div class="whole-wrap">
         <div class="container">
+           
             <div class="row">
-                <table style="width: 100%; border: 1px dotted grey;">
-                    <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>Jinete</td>
-                        <td>Caballo</td>
-                        <td>Faltas Obst.</td>
-                        <td>Tiempo</td>
-                        <td>Faltas Tiempo</td>
-                        <td>Faltas Totales</td>
-                        <td>Clasificación</td>
-                        <td>Puntaje</td>
+                <div class="table-responsive">
+                    <div class="table-responsive{-sm|-md|-lg|-xl}">
+                <table class="table table-striped table-drak table-bordered table-hover" >
+                    <thead class="thead-dark">
+                    <tr class="table-active">
+                        <td scope="col">#</td>
+                        <td scope="col">Jinete</td>
+                        <td scope="col">Caballo</td>
+                        <td scope="col">Faltas Obst.</td>
+                        <td scope="col">Tiempo</td>
+                        <td scope="col">Faltas Tiempo</td>
+                        <td scope="col">Faltas Totales</td>
+                        <td scope="col">Clasificación</td>
+                        <td scope="col">Puntaje</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -82,7 +85,7 @@ if (count($resultados) > 0) {
                             $faltasTotales = "Eliminado";
                         }
                         ?>
-                        <tr>
+                        <tr class="table-light">
                             <td><?= $i ?></td>
                             <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
                             <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
@@ -100,6 +103,8 @@ if (count($resultados) > 0) {
                     </tbody>
                 </table>
             </div>
+              </div>
+          </div>
         </div>
     </div>
     <?php
