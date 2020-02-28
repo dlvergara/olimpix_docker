@@ -62,7 +62,7 @@ if (count($resultados) > 0) {
                 <table class="table table-striped table-drak table-bordered table-hover" >
                     <thead class="thead-dark">
                     <tr class="table-active">
-                        <td scope="col">#</td>
+                        <td scope="col">Orden de participación</td>
                         <td scope="col">Jinete</td>
                         <td scope="col">Caballo</td>
                         <td scope="col">Faltas Obst.</td>
@@ -94,7 +94,7 @@ if (count($resultados) > 0) {
                         }
                         ?>
                         <tr class="table-light">
-                            <td><?= $i ?></td>
+                            <td><?= $row->orden_participacion ?></td>
                             <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
                             <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
                             <td><?= $row->falta_obst ?></td>
