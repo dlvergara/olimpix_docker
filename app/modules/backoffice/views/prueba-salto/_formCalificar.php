@@ -18,6 +18,7 @@ Pjax::begin([
 
 $form = ActiveForm::begin([
     'id' => 'form_prueba_' . $model->id_prueba . '_' . $row->id_resultado_salto,
+    'enableClientValidation' => true,
     //'layout' => 'horizontal',
     //'class' => 'row',
     'action' => ['/backoffice/prueba-salto/calificar', 'id' => $row->id_resultado_salto],

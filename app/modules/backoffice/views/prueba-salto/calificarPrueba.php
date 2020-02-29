@@ -8,17 +8,22 @@ use yii\widgets\Pjax;
 /* @var $model \app\models\PruebaSalto */
 /* @var $resultadoPrevio \app\models\ResultadoSalto */
 
-
 $this->title = 'Calificar: ' . $model->nombre;
 $porCalificar = $model->getResultadoSaltos()->orderBy("-`clasificacion_final` DESC, orden_participacion ASC")->all();
+$pjaxId = 'savePrueba_' . $model->id_prueba;
 
 Pjax::begin([
-    'id' => 'savePrueba_' . $model->id_prueba,
+    'id' => $pjaxId,
     'enablePushState' => false,
     'options' => ['class' => 'row']
 ]);
 
 ?>
+<script src="/assets/8b34cb6a/jquery.js?v=<?= time() ?>"></script>
+<script src="/assets/db9e8dc/yii.js?v=<?= time() ?>"></script>
+<script src="/assets/db9e8dc/yii.validation.js?v=<?= time() ?>"></script>
+<script src="/assets/db9e8dc/yii.activeForm.js?v=<?= time() ?>"></script>
+
 <div class="container">
 
     <div class="row">
@@ -53,10 +58,12 @@ Pjax::begin([
             ?>
         </div>
     </div>
-<?php
+    <script type="application/javascript" language="JavaScript">
+        $(document).on('<?= $pjaxId ?>:beforeSend', function () {
+            //alert('Seguro?');
+        });
+    </script>
+    <?php
 Pjax::end();
 ?>
 </div>
-<script language="JavaScript">
-
-</script>

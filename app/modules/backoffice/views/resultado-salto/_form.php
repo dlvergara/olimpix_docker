@@ -1,10 +1,7 @@
 <?php
 
-use app\models\Caballo;
-use app\models\CaballoHasJineteSearch;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\bootstrap\Modal;
 use yii\jui\AutoComplete;
 use yii\web\JsExpression;
 

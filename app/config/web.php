@@ -75,6 +75,22 @@ $config = [
             'class' => 'app\modules\backoffice\Module',
             'layout' => 'backoffice',
         ],
+        'jurado' => [
+            'class' => 'app\modules\jurado\Module',
+            'layout' => 'backoffice',
+        ],
+        'organizador' => [
+            'class' => 'app\modules\organizador\Module',
+            'layout' => 'backoffice',
+        ],
+        'jinete' => [
+            'class' => 'app\modules\backoffice\Module',
+            'layout' => 'backoffice',
+        ],
+        'profesor' => [
+            'class' => 'app\modules\backoffice\Module',
+            'layout' => 'backoffice',
+        ],
     ],
     'timezone' => 'America/Lima',
     'params' => $params,
