@@ -194,6 +194,7 @@ class PruebaSaltoController extends Controller
 
         return $this->render('calificarPrueba', [
             'model' => $model,
+            'resultadoPrevio' => null,
         ]);
     }
 
@@ -206,9 +207,9 @@ class PruebaSaltoController extends Controller
 
         }
 
-        return $this->render('_formCalificar', [
+        return $this->render('calificarPrueba', [
             'model' => $prueba,
-            'row' => $model,
+            'resultadoPrevio' => $model,
         ]);
     }
 }
