@@ -57,9 +57,7 @@ if (count($model->pruebaSaltos) > 0) {
                         $conteoFilas = 0;
                         ksort($fechaPrueba);
                         /* @var Prueba $prueba */
-                        foreach ($fechaPrueba
-
-                                 as $i => $prueba) {
+                        foreach ($fechaPrueba as $i => $prueba) {
                             $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
                             ?>
 

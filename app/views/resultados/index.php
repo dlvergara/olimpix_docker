@@ -91,12 +91,13 @@ if (count($resultados) > 0) {
                             $tiempo = "No se presento";
                             $faltasTotales = "No se presento";
                         }
+                        $nombreCompleto = ucwords(strtolower(str_ireplace('Ñ', 'ñ', $row->caballoHasJinete->jinete->nombre_completo)));
                         if (is_numeric($tiempo)) {
                             ?>
                             <tr class="table-light">
                                 <td><?= $row->orden_participacion ?></td>
-                                <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
-                                <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
+                                <td><?= $nombreCompleto ?></td>
+                                <td><?= ucwords(strtolower($row->caballoHasJinete->caballo->nombre)) ?></td>
                                 <td><?= $row->falta_obst ?></td>
                                 <td><?= $tiempo ?></td>
                                 <td><?= $row->faltas_tiempo ?></td>
@@ -108,7 +109,7 @@ if (count($resultados) > 0) {
                             ?>
                             <tr class="table-light">
                                 <td><?= $row->orden_participacion ?></td>
-                                <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
+                                <td><?= $nombreCompleto ?></td>
                                 <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
                                 <td colspan="5"><?= $tiempo ?></td>
                             </tr>

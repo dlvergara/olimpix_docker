@@ -198,6 +198,11 @@ class PruebaSaltoController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionCalificar($id)
     {
         $model = $this->findResultadoSaltoModel($id);
