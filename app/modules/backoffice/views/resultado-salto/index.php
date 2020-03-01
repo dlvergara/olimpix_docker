@@ -11,6 +11,9 @@ use yii\widgets\Pjax;
 $this->title = 'Resultado Saltos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
+
 <div class="resultado-salto-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -25,6 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
+    
+    
+    
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

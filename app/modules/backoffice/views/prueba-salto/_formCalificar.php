@@ -1,4 +1,5 @@
-<?php
+
+         <?php
 /* @var $row \app\models\ResultadoSalto */
 /* @var $this yii\web\View */
 
@@ -16,6 +17,7 @@ Pjax::begin([
 ]);
 */
 
+    
 $form = ActiveForm::begin([
     'id' => 'form_prueba_' . $model->id_prueba . '_' . $row->id_resultado_salto,
     'enableClientValidation' => true,
@@ -26,11 +28,10 @@ $form = ActiveForm::begin([
     'options' => ['data-pjax' => '1', 'class' => 'row'],
 ]);
 ?>
-
-  
+ 
     <div class="table-responsive{-sm|-md|-lg|-xl}">
             <div style="text-align:center;">
-    <table class="table table-striped table-drak table-bordered table-hover">
+    <table class="table table-striped  table-bordered table-hover">
         <tbody>
         <tr class="bg-warning">
             <td class="col-md-1"><?= $row->orden_participacion ?></td>

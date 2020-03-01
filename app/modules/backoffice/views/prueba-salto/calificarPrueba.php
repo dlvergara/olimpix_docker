@@ -1,3 +1,6 @@
+
+
+  
 <?php
 
 /* @var $this yii\web\View */
@@ -42,6 +45,11 @@ $pjaxId = 'savePrueba_' . $model->id_prueba;
         width: 15%;
     }
 </style>
+
+          
+
+
+
 
 <div class="container">
     <div class="row">
