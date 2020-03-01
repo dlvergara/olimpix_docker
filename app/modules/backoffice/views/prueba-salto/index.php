@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PruebaSaltoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -28,21 +29,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_prueba',
-            'nombre',
+            'eventoIdEvento.nombre',
             'fecha',
-            'distancia',
-            'tiempo_acordado',
+            'nombre',
+            //'distancia',
+            //'tiempo_acordado',
             //'presidente_jurado',
             //'numero_saltos',
             //'velocidad',
             //'altura',
             //'tiempo_limite',
             //'numero_clasificados',
-            //'evento_id_evento',
             //'pista_id_pista',
             //'categoria_id_categoria',
 
-            //['class' => 'yii\grid\ActionColumn'],
             ['class' => 'yii\grid\ActionColumn',
                 'header' => '',
                 'template' => '{update} {view} {delete} {calificarPrueba}',
