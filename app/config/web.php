@@ -27,7 +27,14 @@ $config = [
         '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
-        'assetManager' => ['appendTimestamp' => true],
+        'assetManager' => [
+            'appendTimestamp' => true,
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => ['/js/vendor/jquery-2.2.4.min.js']
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'A2fINLGgsB5sA5kZkedfu00HGCU23jvm',
