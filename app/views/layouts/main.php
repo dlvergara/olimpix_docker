@@ -87,7 +87,6 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body class="" style="display: block;">
-    <button type="button" id="mobile-nav-toggle"><i class="lnr lnr-cross"></i></button>
     <?php $this->beginBody() ?>
 
     <?=
@@ -105,10 +104,13 @@ AppAsset::register($this);
     $this->render("footer");
     ?>
 
-    <script src="<?= Url::base(true) ?>/js/vendor/jquery-2.2.4.min.js"></script>
+    <?php $this->endBody() ?>
+
+    <!-- FIN DE BODY -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="<?= Url::base(true) ?>/js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
     <script src="<?= Url::base(true) ?>/js/easing.min.js"></script>
     <script src="<?= Url::base(true) ?>/js/hoverIntent.js"></script>
     <script src="<?= Url::base(true) ?>/js/superfish.min.js"></script>
@@ -123,39 +125,7 @@ AppAsset::register($this);
     <script src="<?= Url::base(true) ?>/js/jquery.counterup.min.js"></script>
     <script src="<?= Url::base(true) ?>/js/mail-script.js"></script>
     <script src="<?= Url::base(true) ?>/js/main.js"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="<?= Url::base(true) ?>/js/jquery.magnific-popup.js"></script> -->
 
- <!--   <nav id="mobile-nav">
-        <ul class="" style="touch-action: pan-y;" id="">
-           
-            
-              <li class="menu-active"><a href="<?= Yii::$app->getHomeUrl() ?>">Inicio</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/servicios"]) ?>">servicios</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
-                
-        </ul>
-    </nav>  
-    <div id="mobile-body-overly" style="display: none;"></div>
-    
-    <ul class="" style="touch-action: pan-y;" id="">
-        
-         <li class="menu-active"><a href="<?= Yii::$app->getHomeUrl() ?>">Inicio</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/servicios"]) ?>">servicios</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/galeria"]) ?>">Galeria</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/calendario"]) ?>">Calendario</a></li>
-              <li><a href="<?= Yii::$app->getUrlManager()->createUrl(["site/contact"]) ?>">Contacto</a></li>
-                
-    </ul>-->
-
-<?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

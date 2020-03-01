@@ -64,9 +64,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						</div>
 					</div>
 				</div>
-                
-                
-                  
-			</footer>
+
+            </footer>
 			<!-- End footer Area -->
 
