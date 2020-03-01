@@ -22,13 +22,17 @@ $form = ActiveForm::begin([
     //'layout' => 'horizontal',
     //'class' => 'row',
     'action' => ['/backoffice/prueba-salto/calificar', 'id' => $row->id_resultado_salto],
-    'fieldConfig' => ['options' => ['class' => 'form-group col-md-1']],
+  // 'fieldConfig' => ['options' => ['class' => 'form-group']],
     'options' => ['data-pjax' => '1', 'class' => 'row'],
 ]);
 ?>
-    <table class="table-responsive" border="1px solid black">
+
+  
+    <div class="table-responsive{-sm|-md|-lg|-xl}">
+            <div style="text-align:center;">
+    <table class="table table-striped table-drak table-bordered table-hover">
         <tbody>
-        <tr>
+        <tr class="bg-warning">
             <td class="col-md-1"><?= $row->orden_participacion ?></td>
             <td class="col-md-2"
                 style="width 300px"><?= ucwords(strtolower($row->caballoHasJinete->jinete->nombre_completo)) ?></td>
@@ -65,6 +69,8 @@ $form = ActiveForm::begin([
         </tr>
         </tbody>
     </table>
+    </div>
+ </div>
 
     <!--
     <div class="col-md-2"><?= $row->orden_participacion . '. ' . ucwords(strtolower($row->caballoHasJinete->jinete->nombre_completo)) ?></div>

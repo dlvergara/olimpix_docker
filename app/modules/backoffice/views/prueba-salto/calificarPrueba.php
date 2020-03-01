@@ -66,10 +66,14 @@ $pjaxId = 'savePrueba_' . $model->id_prueba;
                 <div class="col-md-2">&nbsp;</div>
             </div>
             -->
+            
             <div class="row" data-spy="affix" data-offset-top="90" style="background-color: #ecf0f5; z-index: 99">
-                <table class="table-responsive" border="1px solid black">
-                    <thead>
-                    <tr>
+            
+             <div class="table-responsive{-sm|-md|-lg|-xl}">
+               <div style="text-align:center;">
+                <table class="table table-striped table-drak table-bordered table-hover"  border="1px solid black">
+                    <thead class="bg-warning">
+                    <tr  class="table-active" >
                         <td class="col-md-1">#</td>
                         <td class="col-md-2" style="width 300px">Jinete</td>
                         <td class="col-md-1">Caballo</td>
@@ -87,7 +91,10 @@ $pjaxId = 'savePrueba_' . $model->id_prueba;
                     </tr>
                     </thead>
                 </table>
+               </div>
+             </div>
             </div>
+            
             <?php
             /* @var $row \app\models\ResultadoSalto */
             foreach ($porCalificar as $row) {

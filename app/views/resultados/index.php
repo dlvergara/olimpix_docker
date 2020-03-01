@@ -57,7 +57,7 @@ if (count($resultados) > 0) {
         <div class="container">
 
             <div class="row">
-                <div class="table-responsive">
+               
                     <div class="table-responsive{-sm|-md|-lg|-xl}">
                 <table class="table table-striped table-drak table-bordered table-hover" >
                     <thead class="thead-dark">
@@ -126,7 +126,7 @@ if (count($resultados) > 0) {
               </div>
           </div>
         </div>
-    </div>
+    
     <?php
 }
 ?>
