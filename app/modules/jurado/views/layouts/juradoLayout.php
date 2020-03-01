@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -50,7 +51,7 @@ AppAsset::register($this);
 
     <!-- Google Font -->
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -71,9 +72,9 @@ AppAsset::register($this);
 
     <?php $this->head() ?>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-black-light sidebar-mini">
 <div class="wrapper">
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
 
     <?=
     $this->render("header");
@@ -84,13 +85,13 @@ AppAsset::register($this);
     ?>
 
     <div class="content-wrapper" id="mainWrapper">
-    <?= Breadcrumbs::widget([
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-    <?= Alert::widget() ?>
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
 
-    <?= $content ?>
-</div>
+        <?= $content ?>
+    </div>
 
     <?=
     $this->render("footer");

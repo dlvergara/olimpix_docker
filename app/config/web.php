@@ -84,19 +84,19 @@ $config = [
         ],
         'jurado' => [
             'class' => 'app\modules\jurado\Module',
-            'layout' => 'backoffice',
+            'layout' => 'juradoLayout',
         ],
         'organizador' => [
             'class' => 'app\modules\organizador\Module',
-            'layout' => 'backoffice',
+            'layout' => 'organizadorLayout',
         ],
         'jinete' => [
-            'class' => 'app\modules\backoffice\Module',
-            'layout' => 'backoffice',
+            'class' => 'app\modules\jinete\Module',
+            'layout' => 'jineteLayout',
         ],
         'profesor' => [
-            'class' => 'app\modules\backoffice\Module',
-            'layout' => 'backoffice',
+            'class' => 'app\modules\profesor\Module',
+            'layout' => 'profesorLayout',
         ],
     ],
     'timezone' => 'America/Lima',

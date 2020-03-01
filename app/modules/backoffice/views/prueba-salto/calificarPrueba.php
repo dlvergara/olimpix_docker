@@ -13,10 +13,17 @@ $porCalificar = $model->getResultadoSaltos()->orderBy("-`clasificacion_final` DE
 $pjaxId = 'savePrueba_' . $model->id_prueba;
 
 ?>
-<script src="/assets/8b34cb6a/jquery.js?v=<?= time() ?>"></script>
-<script src="/assets/db9e8dc/yii.js?v=<?= time() ?>"></script>
-<script src="/assets/db9e8dc/yii.validation.js?v=<?= time() ?>"></script>
-<script src="/assets/db9e8dc/yii.activeForm.js?v=<?= time() ?>"></script>
+<script type="javascript" language="JavaScript">
+    $(document)
+        .on('pjax:start', function () {
+            alert('si');
+            $('#mainWrapper').fadeOut(200);
+        })
+        .on('pjax:end', function () {
+            alert('si');
+            $('#mainWrapper').fadeIn(200);
+        })
+</script>
 
 <style type="text/css">
     .table-num-participacion {
