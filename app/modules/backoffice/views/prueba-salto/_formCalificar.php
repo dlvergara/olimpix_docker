@@ -1,5 +1,4 @@
-
-         <?php
+<?php
 /* @var $row \app\models\ResultadoSalto */
 /* @var $this yii\web\View */
 

@@ -1,6 +1,3 @@
-
-
-  
 <?php
 
 /* @var $this yii\web\View */
@@ -15,6 +12,7 @@ $this->title = 'Calificar: ' . $model->nombre;
 $porCalificar = $model->getResultadoSaltos()->orderBy("-`clasificacion_final` DESC, orden_participacion ASC")->all();
 $pjaxId = 'savePrueba_' . $model->id_prueba;
 
+
 ?>
 <script type="javascript" language="JavaScript">
     $(document)
@@ -27,27 +25,6 @@ $pjaxId = 'savePrueba_' . $model->id_prueba;
             $('#mainWrapper').fadeIn(200);
         })
 </script>
-
-<style type="text/css">
-    .table-num-participacion {
-        width: 3%;
-    }
-
-    .table-jinete {
-        width: 15%;
-    }
-
-    .table-calificacion {
-        min-width: 100%;
-    }
-
-    .col-md-1 {
-        width: 15%;
-    }
-</style>
-
-          
-
 
 
 
