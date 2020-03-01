@@ -1,18 +1,13 @@
 <?php
 
-use app\models\Caballo;
-use app\models\CaballoHasJineteSearch;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\bootstrap\Modal;
 use yii\jui\AutoComplete;
 use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ResultadoSalto */
 /* @var $form yii\widgets\ActiveForm */
-
-$searchModel = new CaballoHasJineteSearch();
 
 $caballosJinetes = [];
 $caballosJinetesData = \app\models\CaballoHasJinete::find()->joinWith(['caballo', 'jinete'])->orderBy(['jinete.nombre_completo' => SORT_ASC])->all();
@@ -75,7 +70,7 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
 
     <?= $form->field($model, 'falta_obst')->textInput(['type' => 'number']) ?>
 
-    <?= $form->field($model, 'tiempo')->textInput(['type' => 'number']) ?>
+    <?= $form->field($model, 'tiempo')->textInput(['type' => 'number', 'step' => '0.01']) ?>
 
     <?= $form->field($model, 'faltas_tiempo')->textInput(['type' => 'number']) ?>
 
@@ -84,6 +79,11 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
     <?= $form->field($model, 'cantidad_rehuso')->textInput(['type' => 'number']) ?>
 
     <?= $form->field($model, 'clasificacion')->textInput() ?>
+
+    <?= $form->field($model, 'eliminado')->checkbox() ?>
+
+    <?= $form->field($model, 'no_se_presento')->checkbox() ?>
+
 
     <hr>
 

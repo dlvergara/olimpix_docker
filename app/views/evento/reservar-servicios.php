@@ -12,6 +12,7 @@ use app\widgets\Util;
  * @var $formModels array
  * @var $subtotal float
  */
+$this->title = $model->nombre;
 $servicios = $model->getServicioDisponibles()->where(['prueba_salto_id_prueba' => null])->all();
 
 //$serviciosPrueba = $model->getServicioDisponibles()->joinWith('pruebaSaltoIdPrueba')->where(['not', ['prueba_salto_id_prueba' => null]])->orderBy('prueba_salto.fecha')->all();
@@ -35,7 +36,7 @@ if (count($model->pruebaSaltos) > 0) {
     <section class="training-area">
         <div class="container">
             <div class="row">
-                <h3 class="mb-30"><b>Inscripción a pruebas</b></h3>
+                <h3 class="mb-30"><b>Pruebas</b></h3>
             </div>
             <div class="row">
                 <?php
@@ -43,63 +44,59 @@ if (count($model->pruebaSaltos) > 0) {
                 $max = 0;
                 foreach ($model->pruebaSaltos as $index => $prueba) {
                     $fechaPrueba = DateTime::createFromFormat("Y-m-d H:i:s", $prueba->fecha);
-                    $fechaLlave = Util::DayName($fechaPrueba).' '.$fechaPrueba->format('d'). ' de ' . Util::DayMonth($fechaPrueba);
+                    $fechaLlave = Util::DayName($fechaPrueba) . ' ' . $fechaPrueba->format('d') . ' de ' . Util::DayMonth($fechaPrueba);
                     $pruebasArray[$fechaLlave][$prueba->orden] = $prueba;
                     $max = max($max, count($pruebasArray[$fechaLlave]));
                 }
 
                 foreach ($pruebasArray as $index => $fechaPrueba) {
                     ?>
-                    <div style="margin-left: 3%;border: 2px dotted #eee;">
-                        <table border="0">
-                            <thead>
-                            <tr>
-                                <h3><?= $index ?></h3>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $conteoFilas = 0;
-                            ksort($fechaPrueba);
-                            /* @var Prueba $prueba */
-                            foreach ($fechaPrueba as $i => $prueba) {
-                                ?>
-                                <tr>
-                                    <td>
-                                        <?php
-                                        echo ucfirst(strtolower($prueba->nombre)) . '<br>';
-                                        $fechaPrueba = strtotime($prueba->fecha);
-
-                                        echo $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]);
-                                        $cantidadResultados = count($prueba->resultadoSaltos);
-                                        //time() >= $fechaPrueba &&
-                                        if ($cantidadResultados > 0) {
-                                            $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
-                                            ?>
-                                            <a href="<?= $resultadosUrl ?>">Ver Resultados</a><br>
-                                            <?php
-                                        }
-                                        ?>
-                                        <br>
-                                    </td>
-                                </tr>
-                                <?php
-                                $conteoFilas++;
-                            }
-                            for ($i = $conteoFilas; $i < $max; $i++) {
-                                ?>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <?php
-                            }
+                    <div class="col-md-3">
+                        <h3><?= $index ?></h3>
+                        <?php
+                        $conteoFilas = 0;
+                        ksort($fechaPrueba);
+                        /* @var Prueba $prueba */
+                        foreach ($fechaPrueba as $i => $prueba) {
+                            $resultadosUrl = Yii::$app->getUrlManager()->createUrl(['resultados', 'prueba' => $prueba->id_prueba]);
                             ?>
-                            </tbody>
-                            <tfoot></tfoot>
-                        </table>
+
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
+                                <a href="<?= $resultadosUrl ?>" class="nav-menu">
+                                    <?= ucwords(strtolower($prueba->nombre)) ?>
+                                </a>
+                            </div>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
+                                <span style="font-size: 10px"><?= $prueba->fecha ?></span>
+                            </div>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
+                                <?php
+                                $cantidadResultados = count($prueba->resultadoSaltos);
+                                if ($cantidadResultados > 0) {
+                                    ?>
+                                    <a href="<?= $resultadosUrl ?>"><span
+                                                style="font-size: 10px">Ver detalles</span></a><br>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">
+                                <?= $this->render('view-prueba-salto', ['prueba' => $prueba, 'form' => $form, 'formModels' => $formModels]) ?>
+                            </div>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">&nbsp;</div>
+                            <?php
+                            $conteoFilas++;
+                        }
+                        for ($i = $conteoFilas; $i < $max; $i++) {
+                            ?>
+                            <div class="row" style="margin-left: 0%;margin-right: 0%;">&nbsp;</div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <?php
                 }
+
                 ?>
             </div>
         </div>
@@ -215,14 +212,12 @@ if (!Yii::$app->request->isPost) {
     ?>
 
 
-  
-                <div class="row">
-                     <div class="col-md-6 col-md-offset-3">
-        <?= Html::submitButton(' <span class="glyphicon glyphicon-shopping-cart"></span> Reservar', ['class' => 'genric-btn primary btn-block e-large']) ?>
-             
-           </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <?= Html::submitButton(' <span class="glyphicon glyphicon-shopping-cart"></span> Reservar', ['class' => 'genric-btn primary btn-block e-large']) ?>
+
         </div>
-  
+    </div>
 
 
     <?php

@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 
 $date = DateTime::createFromFormat("Y-m-d H:i:s", $model->fecha_inicio);
 $terminosCondiciones = $model->getTerminoCondicions()->all();
+$resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/evento', 'evento' => $model->id_evento]);
 ?>
     <!-- start banner Area -->
     <section class="banner-area relative" id="banner">
@@ -32,17 +33,25 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
 
     <section class="sample-text-area">
         <div class="container">
-            <h1 class="text-heading"><?= $model->nombre ?></h1>
-            <p class="sample-text">
-                <?= $model->descripcion ?>
-            </p>
-            <h3>Lugar: </h3>
-            <span><?= $model->ciudadIdCiudad->nombre . ', ' . ucwords($model->ciudadIdCiudad->paisIdPais->nombre) ?></span><br>
-            <h3>Fecha: </h3><span><?= strftime("%A %d de %B", $date->getTimestamp()) ?></span><br>
-            <h3>Hora: </h3><span><?= strftime("%l:%M%p", $date->getTimestamp()) ?></span><br>
+            <div class="col-md-8">
+                <h1 class="text-heading"><?= $model->nombre ?></h1>
+                <p class="sample-text">
+                    <?= $model->descripcion ?>
+                </p>
+                <h3>Lugar: </h3>
+                <span><?= $model->ciudadIdCiudad->nombre . ', ' . ucwords($model->ciudadIdCiudad->paisIdPais->nombre) ?></span><br>
+                <h3>Fecha: </h3><span><?= strftime("%A %d de %B", $date->getTimestamp()) ?></span><br>
+                <h3>Hora: </h3><span><?= strftime("%l:%M%p", $date->getTimestamp()) ?></span><br>
+            </div>
+            <div class="col-md-4">
+                <img src="https://chart.googleapis.com/chart?cht=qr&chl=<?= $resultadosUrl ?>&choe=UTF-8&chs=177x177"/>
+            </div>
         </div>
     </section>
 
+<?php
+if (count($terminosCondiciones) > 0) {
+    ?>
     <div class="whole-wrap">
         <div class="container">
             <div class="section-top-border">
@@ -68,11 +77,21 @@ $terminosCondiciones = $model->getTerminoCondicions()->all();
                     ?>
                 </div>
             </div>
-            <a href="#" class="genric-btn primary btn-block e-large"
-               onclick="event.preventDefault(); $('#moreInfo').toggle()"><span
-                        class="glyphicon glyphicon-info-sign"></span> Más información <span class="glyphicon glyphicon-menu-right"></span></a>
+            <?php
+            if (count($terminosCondiciones) > 0) {
+                ?>
+                <a href="#" class="genric-btn primary btn-block e-large"
+                   onclick="event.preventDefault(); $('#moreInfo').toggle()"><span
+                            class="glyphicon glyphicon-info-sign"></span> Más información <span
+                            class="glyphicon glyphicon-menu-right"></span></a>
+                <?php
+            }
+            ?>
         </div>
     </div>
+    <?php
+}
+?>
     <!-- Mas info -->
     <div class="whole-wrap" id="moreInfo" style="display: none;">
         <div class="container">

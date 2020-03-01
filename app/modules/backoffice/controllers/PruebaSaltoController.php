@@ -2,6 +2,7 @@
 
 namespace app\modules\backoffice\controllers;
 
+use app\models\ResultadoSalto;
 use app\models\ServicioDisponible;
 use Yii;
 use app\models\PruebaSalto;
@@ -142,6 +143,8 @@ class PruebaSaltoController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
@@ -164,5 +167,54 @@ class PruebaSaltoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param $id
+     * @return ResultadoSalto|null
+     * @throws NotFoundHttpException
+     */
+    protected function findResultadoSaltoModel($id)
+    {
+        if (($model = ResultadoSalto::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param $idPrueba
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionCalificarPrueba($idPrueba)
+    {
+        $model = $this->findModel($idPrueba);
+
+        return $this->render('calificarPrueba', [
+            'model' => $model,
+            'resultadoPrevio' => null,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionCalificar($id)
+    {
+        $model = $this->findResultadoSaltoModel($id);
+        $prueba = $this->findModel($model->id_prueba);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        }
+
+        return $this->render('calificarPrueba', [
+            'model' => $prueba,
+            'resultadoPrevio' => $model,
+        ]);
     }
 }

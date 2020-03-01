@@ -11,6 +11,9 @@ use app\models\ResultadoSalto;
  */
 class ResultadoSaltoSearch extends ResultadoSalto
 {
+    public $id_caballo;
+    public $id_jinete;
+
     /**
      * {@inheritdoc}
      */

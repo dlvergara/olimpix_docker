@@ -2,6 +2,9 @@
 /* @var $this yii\web\View */
 /* @var $prueba \app\models\PruebaSalto */
 /* @var $resultados array */
+
+$this->title = $prueba->nombre;
+$resultadosUrl = Yii::$app->getUrlManager()->createAbsoluteUrl(['/resultados', 'prueba' => $prueba->id_prueba]);
 ?>
 
 <!-- start banner Area -->
@@ -26,10 +29,17 @@
 
 <section class="sample-text-area">
     <div class="container">
-        <h1 class="text-heading"><?= $prueba->nombre ?></h1>
-        <h4>Fecha y hora: </h4><span><?= $prueba->fecha ?></span><br>
-        <h4>Categoría: </h4><span><?= $prueba->categoriaIdCategoria->nombre ?></span><br>
-        <h4>Status: </h4><span><?= ($prueba->cerrada) ? 'Cerrada' : 'Abierta' ?></span><br>
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-heading"><?= $prueba->nombre ?></h1>
+                <h4>Fecha y hora: </h4><span><?= $prueba->fecha ?></span><br>
+                <h4>Categoría: </h4><span><?= $prueba->categoriaIdCategoria->nombre ?></span><br>
+                <h4>Status: </h4><span><?= ($prueba->cerrada) ? 'Cerrada' : 'Abierta' ?></span><br>
+            </div>
+            <div class="col-md-4">
+                <img src="https://chart.googleapis.com/chart?cht=qr&chl=<?= $resultadosUrl ?>&choe=UTF-8&chs=177x177"/>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -45,7 +55,7 @@ if (count($resultados) > 0) {
     </div>
     <div class="whole-wrap">
         <div class="container">
-           
+
             <div class="row">
                 <div class="table-responsive">
                     <div class="table-responsive{-sm|-md|-lg|-xl}">
@@ -59,8 +69,7 @@ if (count($resultados) > 0) {
                         <td scope="col">Tiempo</td>
                         <td scope="col">Faltas Tiempo</td>
                         <td scope="col">Faltas Totales</td>
-                        <td scope="col">Clasificación</td>
-                        <td scope="col">Puntaje</td>
+                        <td scope="col">Clasificación Final</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -74,19 +83,40 @@ if (count($resultados) > 0) {
                             $tiempo = "Eliminado";
                             $faltasTotales = "Eliminado";
                         }
-                        ?>
-                        <tr class="table-light">
-                            <td><?= $i ?></td>
-                            <td><?= $row->caballoHasJinete->jinete->nombre_completo ?></td>
-                            <td><?= $row->caballoHasJinete->caballo->nombre ?></td>
-                            <td><?= $row->falta_obst ?></td>
-                            <td><?= $tiempo ?></td>
-                            <td><?= $row->faltas_tiempo ?></td>
-                            <td><?= $faltasTotales ?></td>
-                            <td><?= $row->clasificacion ?></td>
-                            <td><?= $row->puntaje ?></td>
-                        </tr>
-                        <?php
+                        if ($row->eliminado) {
+                            $tiempo = "Eliminado";
+                            $faltasTotales = "Eliminado";
+                        }
+                        if ($row->no_se_presento) {
+                            $tiempo = "No se presento";
+                            $faltasTotales = "No se presento";
+                        }
+                        $nombreCompleto = ucwords(strtolower(str_ireplace('Ñ', 'ñ', $row->caballoHasJinete->jinete->nombre_completo)));
+                        $nombreCaballo = ucwords(strtolower($row->caballoHasJinete->caballo->nombre));
+                        if (is_numeric($tiempo)) {
+                            ?>
+                            <tr class="table-light">
+                                <td><?= $row->orden_participacion ?></td>
+                                <td><?= $nombreCompleto ?></td>
+                                <td><?= $nombreCaballo ?></td>
+                                <td><?= $row->falta_obst ?></td>
+                                <td><?= $tiempo ?></td>
+                                <td><?= $row->faltas_tiempo ?></td>
+                                <td><?= $faltasTotales ?></td>
+                                <td><?= $row->clasificacion_final ?></td>
+                            </tr>
+                            <?php
+                        } else {
+                            ?>
+                            <tr class="table-light">
+                                <td><?= $row->orden_participacion ?></td>
+                                <td><?= $nombreCompleto ?></td>
+                                <td><?= $nombreCaballo ?></td>
+                                <td colspan="5"><?= $tiempo ?></td>
+                            </tr>
+                            <?php
+                        }
+
                         $i++;
                     }
                     ?>
