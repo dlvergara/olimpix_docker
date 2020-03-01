@@ -95,7 +95,7 @@ $config = [
             'layout' => 'jineteLayout',
         ],
         'profesor' => [
-            'class' => 'app\modules\jinete\Module',
+            'class' => 'app\modules\profesor\Module',
             'layout' => 'profesorLayout',
         ],
     ],
