@@ -55,78 +55,76 @@ if (count($resultados) > 0) {
     </div>
     <div class="whole-wrap">
         <div class="container">
-
             <div class="row">
-               
-                    <div class="table-responsive{-sm|-md|-lg|-xl}">
-                <table class="table table-striped table-drak table-bordered table-hover" >
-                    <thead class="thead-dark">
-                    <tr class="table-active">
-                        <td scope="col">#</td>
-                        <td scope="col">Jinete</td>
-                        <td scope="col">Caballo</td>
-                        <td scope="col">Faltas Obst.</td>
-                        <td scope="col">Tiempo</td>
-                        <td scope="col">Faltas Tiempo</td>
-                        <td scope="col">Faltas Totales</td>
-                        <td scope="col">Clasificación Final</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    /* @var $row \app\models\ResultadoSalto */
-                    $i = 1;
-                    foreach ($resultados as $row) {
-                        $tiempo = $row->tiempo;
-                        $faltasTotales = $row->faltas_totales;
-                        if ($row->cantidad_rehuso >= 2) {
-                            $tiempo = "Eliminado";
-                            $faltasTotales = "Eliminado";
-                        }
-                        if ($row->eliminado) {
-                            $tiempo = "Eliminado";
-                            $faltasTotales = "Eliminado";
-                        }
-                        if ($row->no_se_presento) {
-                            $tiempo = "No se presento";
-                            $faltasTotales = "No se presento";
-                        }
-                        $nombreCompleto = ucwords(strtolower(str_ireplace('Ñ', 'ñ', $row->caballoHasJinete->jinete->nombre_completo)));
-                        $nombreCaballo = ucwords(strtolower($row->caballoHasJinete->caballo->nombre));
-                        if (is_numeric($tiempo)) {
-                            ?>
-                            <tr class="table-light">
-                                <td><?= $row->orden_participacion ?></td>
-                                <td><?= $nombreCompleto ?></td>
-                                <td><?= $nombreCaballo ?></td>
-                                <td><?= $row->falta_obst ?></td>
-                                <td><?= $tiempo ?></td>
-                                <td><?= $row->faltas_tiempo ?></td>
-                                <td><?= $faltasTotales ?></td>
-                                <td><?= $row->clasificacion_final ?></td>
-                            </tr>
-                            <?php
-                        } else {
-                            ?>
-                            <tr class="table-light">
-                                <td><?= $row->orden_participacion ?></td>
-                                <td><?= $nombreCompleto ?></td>
-                                <td><?= $nombreCaballo ?></td>
-                                <td colspan="5"><?= $tiempo ?></td>
-                            </tr>
-                            <?php
-                        }
+                <div class="table-responsive{-sm|-md|-lg|-xl}">
+                    <table class="table table-striped table-drak table-bordered table-hover">
+                        <thead class="thead-dark">
+                        <tr class="table-active">
+                            <td scope="col">#</td>
+                            <td scope="col">Jinete</td>
+                            <td scope="col">Caballo</td>
+                            <td scope="col">Faltas Obst.</td>
+                            <td scope="col">Tiempo</td>
+                            <td scope="col">Faltas Tiempo</td>
+                            <td scope="col">Faltas Totales</td>
+                            <td scope="col">Clasificación Final</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        /* @var $row \app\models\ResultadoSalto */
+                        $i = 1;
+                        foreach ($resultados as $row) {
+                            $tiempo = $row->tiempo;
+                            $faltasTotales = $row->faltas_totales;
+                            if ($row->cantidad_rehuso >= 2) {
+                                $tiempo = "Eliminado";
+                                $faltasTotales = "Eliminado";
+                            }
+                            if ($row->eliminado) {
+                                $tiempo = "Eliminado";
+                                $faltasTotales = "Eliminado";
+                            }
+                            if ($row->no_se_presento) {
+                                $tiempo = "No se presento";
+                                $faltasTotales = "No se presento";
+                            }
+                            $nombreCompleto = ucwords(strtolower(str_ireplace('Ñ', 'ñ', $row->caballoHasJinete->jinete->nombre_completo)));
+                            $nombreCaballo = ucwords(strtolower($row->caballoHasJinete->caballo->nombre));
+                            if (is_numeric($tiempo)) {
+                                ?>
+                                <tr class="table-light">
+                                    <td><?= $row->orden_participacion ?></td>
+                                    <td><?= $nombreCompleto ?></td>
+                                    <td><?= $nombreCaballo ?></td>
+                                    <td><?= $row->falta_obst ?></td>
+                                    <td><?= $tiempo ?></td>
+                                    <td><?= $row->faltas_tiempo ?></td>
+                                    <td><?= $faltasTotales ?></td>
+                                    <td><?= $row->clasificacion_final ?></td>
+                                </tr>
+                                <?php
+                            } else {
+                                ?>
+                                <tr class="table-light">
+                                    <td><?= $row->orden_participacion ?></td>
+                                    <td><?= $nombreCompleto ?></td>
+                                    <td><?= $nombreCaballo ?></td>
+                                    <td colspan="5"><?= $tiempo ?></td>
+                                </tr>
+                                <?php
+                            }
 
-                        $i++;
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                            $i++;
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-              </div>
-          </div>
         </div>
-    
+    </div>
+
     <?php
 }
 ?>
