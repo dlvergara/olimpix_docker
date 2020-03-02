@@ -78,6 +78,7 @@ $pjaxId = 'savePrueba_' . $model->id_prueba;
                         <td class="col-md-1">Cantidad Rehusos</td>
                         <td class="col-md-1">Eliminado</td>
                         <td class="col-md-1">No se presento</td>
+                        <td class="col-md-1">Retirado</td>
                         <td class="col-md-1">Clasificación Final</td>
                         <td class="col-md-2">&nbsp;</td>
                     </tr>

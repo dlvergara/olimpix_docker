@@ -66,6 +66,8 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
 
     <?= $form->field($model, 'fecha_inscripcion')->textInput(['type' => 'datetime']) ?>
 
+    <?= $form->field($model, 'costo_inscripcion')->textInput() ?>
+
     <hr>
 
     <?= $form->field($model, 'falta_obst')->textInput(['type' => 'number']) ?>
@@ -84,6 +86,7 @@ $pruebas = \yii\helpers\ArrayHelper::map(\app\models\PruebaSalto::find()->where(
 
     <?= $form->field($model, 'no_se_presento')->checkbox() ?>
 
+    <?= $form->field($model, 'retirado')->checkbox() ?>
 
     <hr>
 
